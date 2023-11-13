@@ -4,6 +4,8 @@
  */
 package proyecto_edd2;
 
+import Estructuras.ListaSimple;
+
 /**
  *
  * @author Ana Blanco
