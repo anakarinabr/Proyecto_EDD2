@@ -9,41 +9,64 @@ package Estructuras;
  * @author Ana Blanco
  */
 public class HashTable {
+
     //Campos de la clase 
     private ListaSimpleUsuarios[] table;
     private Integer size;
-   
-    // Constructor para la creacion de tablas hash  
 
+    // Constructor para la creacion de tablas hash  
     public HashTable(int size) {
         this.size = size;
         this.table = new ListaSimpleUsuarios[this.size];
-        
-        for (int i = 0 ; i < size; i++){
+
+        for (int i = 0; i < size; i++) {
             ListaSimpleUsuarios lista = new ListaSimpleUsuarios();
-            table[i]= lista;
-        } 
+            table[i] = lista;
+        }
     } //Cierre del constructor
+
+    public long transformaClave(String clave) {
+        long d;
+        d = 0;
+        for (int j = 0; j <clave.length(); j++) {
+            d = d * 27 + (int) clave.charAt(j);
+        }
+        /*
+         Para un valor mayor que el máximo entero genera un
+         numero negativo.
+         */
+        if (d < 0) {
+            d = -d;
+        }
+        return d;
+    }
     
-    /**
+     /**
      * Método para buscar un indice de un elemento en una tabla hash
-     * @param reference String que será la referencia al que se le buscará el índice
+     *
+     * @param reference String que será la referencia al que se le buscará el
+     * índice
      * @return Integer que es el índice a donde será ingresado en la tabla hash
      */
-    public int Hash(String reference){
-        int hash = 0;
-        for(int i = 0; i < reference.length(); i++) {
-            hash = (hash * 31 + reference.charAt(i)) % getSize();} // NO SE SI SE QUEDARA ASI
-    
-        return hash; 
+    public int hash(String clave) {
+        long x = transformaClave(clave);
+        double t;
+        int v;
+        double R = 0.618034;
+        t = R * x - Math.floor(R * x); // parte decimal
+        v = (int) (this.size* t);
+        return v;
     } //Cierre metodo
-    
+
     /**
      * Método de inserción de un Objeto PalabraClave en una tabla Hash
-     * @param Hash Integer que es el índice a donde será ingresado en la tabla hash
-     * @param usuario Objeto Usuario que será el objeto al que se le realizará la inserción
+     *
+     * @param Hash Integer que es el índice a donde será ingresado en la tabla
+     * hash
+     * @param usuario Objeto Usuario que será el objeto al que se le realizará
+     * la inserción
      */
-    public void Insert_Usuario(int hash,Usuario usuario){
+    public void Insert_Usuario(int hash, Usuario usuario) {
         this.getTable()[hash].addend(usuario);
     } //Cierre metodo
 
@@ -62,6 +85,5 @@ public class HashTable {
     public void setSize(Integer size) {
         this.size = size;
     }
-    
-    
+
 }
