@@ -16,8 +16,9 @@ import Estructuras.Usuario;
 public class Global {
     
     //Parámetros de la clase Global
-    private static HashTable hashtable = new HashTable(16);
     private static ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
+    private static HashTable hashtable = new HashTable(16);
+    
     
     public static HashTable getHashtable() {
         return hashtable;

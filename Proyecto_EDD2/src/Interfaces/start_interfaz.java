@@ -10,6 +10,7 @@ import com.sun.tools.javac.Main;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.PrintWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -23,9 +24,20 @@ public class start_interfaz extends javax.swing.JFrame {
     /**
      * Creates new form start_interfaz
      */
+    private String path;
+
     public start_interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
+        this.path = null;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     /**
@@ -41,7 +53,7 @@ public class start_interfaz extends javax.swing.JFrame {
         CargarUsuariosButton = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -55,7 +67,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 CargarUsuariosButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 370, 50));
+        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 110, 370, 50));
 
         jButton2.setText("Manejo de usuarios");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -63,13 +75,18 @@ public class start_interfaz extends javax.swing.JFrame {
                 jButton2ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 370, 50));
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 370, 50));
 
         jButton3.setText("Manejo de documentos");
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 280, 370, 50));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 230, 370, 50));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (1).png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        jButton1.setText("Guardar información");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 370, 50));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -86,7 +103,7 @@ public class start_interfaz extends javax.swing.JFrame {
 
             File archive = file.getSelectedFile();
             String path = archive.getAbsolutePath();
-            
+            setPath(path);
             if (!path.contains("csv")) {
                 JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo csv");
             } else {
@@ -108,17 +125,19 @@ public class start_interfaz extends javax.swing.JFrame {
                     fr.close();
                     br.close();
                     UsuariosInfo = UsuariosInfo.trim();
-                    
+
                     if (!"".equals(UsuariosInfo)) {
-                        
+
                         String[] info1 = UsuariosInfo.split("\n");
-                        
-                        for (int i = 1; i < info1.length ; i++) {
+
+                        for (int i = 1; i < info1.length; i++) {
                             String[] info2 = info1[i].split(",");
                             Usuario usuario = new Usuario(info2[0], info2[1]);
                             Global.getListaUsuarios().addend(usuario);
+                            int hash = Global.getHashtable().hash(usuario.getName());
+                            Global.getHashtable().Insert_Usuario(hash, usuario);
                         }
-                        
+
                     }
 
                 } catch (Exception e) {
@@ -131,8 +150,26 @@ public class start_interfaz extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        JOptionPane.showMessageDialog(null , "hola");
+        JOptionPane.showMessageDialog(null, "hola");
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        String todo = Global.getListaUsuarios().getAllUsers();
+
+        try {
+            if (getPath() != null) {
+                PrintWriter pw = new PrintWriter(getPath());
+                pw.print(todo);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "Guardado exitoso");
+            } else {
+                JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo txt");
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Error!!!!!");
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -171,9 +208,9 @@ public class start_interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton CargarUsuariosButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

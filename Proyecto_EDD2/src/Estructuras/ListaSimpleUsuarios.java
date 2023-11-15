@@ -104,16 +104,22 @@ public class ListaSimpleUsuarios<T> {
         }
         size--;
     }
-
-    public void invertirlista() {
-
+    
+     public String getAllUsers() {
+         String todo = "usuario,tipo";
         if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        } else {
-            NodoSimple<T> pAux = this.pFirst;
-            eliminaralinicio();
-            invertirlista();
-            addend((Usuario)pAux.getData());
+            return todo;
         }
+        NodoSimple<T> pAux = this.pFirst;
+
+        while (pAux != null) {
+            Usuario data=(Usuario)pAux.getData();
+            todo +=  "\n" + data.getName() + ","+ data.getPrioridad()+"";
+            pAux = pAux.getPnext();
+        }
+        
+        System.out.println(todo);
+        return todo;
+
     }
 }
