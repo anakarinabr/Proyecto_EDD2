@@ -10,31 +10,31 @@ package Estructuras;
  * @author luisr
  * @param <T>
  */
-public class ListaSimple<T> {
+public class ListaSimpleUsuarrios<T> {
 
-    private Nodo<T> pFrist;
-    private Nodo<T> pLast;
+    private NodoUsuario<T> pFrist;
+    private NodoUsuario<T> pLast;
     private int size;
 
-    public ListaSimple() {
+    public ListaSimpleUsuarrios() {
         this.pFrist = null;
         this.pLast = null;
         this.size = 0;
     }
 
-    public Nodo<T> getpFrist() {
+    public NodoUsuario<T> getpFrist() {
         return pFrist;
     }
 
-    public void setpFrist(Nodo<T> pFrist) {
+    public void setpFrist(NodoUsuario<T> pFrist) {
         this.pFrist = pFrist;
     }
 
-    public Nodo<T> getpLast() {
+    public NodoUsuario<T> getpLast() {
         return pLast;
     }
 
-    public void setpLast(Nodo<T> pLast) {
+    public void setpLast(NodoUsuario<T> pLast) {
         this.pLast = pLast;
     }
 
@@ -51,9 +51,9 @@ public class ListaSimple<T> {
 
     }
 
-    public void addFrist(T dato) {
+    public void addFrist(T dato, String priority) {
 
-        Nodo nodo = new Nodo(dato);
+        NodoUsuario nodo = new NodoUsuario(dato, priority);
         if (EsVacia() == true) {
             this.pFrist = nodo;
             this.pLast = nodo;
@@ -67,9 +67,9 @@ public class ListaSimple<T> {
 
     }
 
-    public void addend(T dato) {
+    public void addend(T dato, String priority) {
 
-        Nodo nodo = new Nodo(dato);
+        NodoUsuario nodo = new NodoUsuario(dato, priority);
 
         if (EsVacia() == true) {
             this.pFrist = nodo;
@@ -86,7 +86,7 @@ public class ListaSimple<T> {
         if (EsVacia()) {
             System.out.println("La lista esta vacia");
         }
-        Nodo<T> pAux = this.pFrist;
+        NodoUsuario<T> pAux = this.pFrist;
 
         while (pAux != null) {
             System.out.print(pAux.getData() + "->");
@@ -113,10 +113,10 @@ public class ListaSimple<T> {
         if (EsVacia()) {
             System.out.println("La lista esta vacia");
         } else {
-            Nodo<T> pAux = this.pFrist;
+            NodoUsuario<T> pAux = this.pFrist;
             eliminaralinicio();
             invertirlista();
-            addend(pAux.getData());
+            addend(pAux.getData(), pAux.getPriority());
         }
     }
 }

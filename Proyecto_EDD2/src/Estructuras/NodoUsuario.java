@@ -9,14 +9,15 @@ package Estructuras;
  *
  * @author luisr
  */
-public class Nodo<T> {
+public class NodoUsuario<T> {
     
     private T data;
-    private T priority;
-    private Nodo pnext;
+    private String priority;
+    private NodoUsuario pnext;
 
-    public Nodo(T data) {
+    public NodoUsuario(T data, String priority) {
         this.data = data;
+        this.priority = priority;
         this.pnext = null;
     }
 
@@ -28,19 +29,19 @@ public class Nodo<T> {
         this.data = data;
     }
 
-    public Nodo getPnext() {
+    public NodoUsuario getPnext() {
         return pnext;
     }
 
-    public void setPnext(Nodo pnext) {
+    public void setPnext(NodoUsuario pnext) {
         this.pnext = pnext;
     }
 
-    public T getPriority() {
+    public String getPriority() {
         return priority;
     }
 
-    public void setPriority(T priority) {
+    public void setPriority(String priority) {
         this.priority = priority;
     }
     

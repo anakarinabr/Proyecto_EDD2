@@ -11,12 +11,12 @@ package Estructuras;
 public class Usuario {
     
     private String name;
-    private String prioridad;
-    private ListaSimple docs;
+    private String priority;
+    private ListaSimpleUsuarrios docs;
 
-    public Usuario(String name, String prioridad, ListaSimple docs) {
+    public Usuario(String name, String priority, ListaSimpleUsuarrios docs) {
         this.name = name;
-        this.prioridad = prioridad;
+        this.priority = priority;
         this.docs = docs;
     }
 
@@ -29,18 +29,18 @@ public class Usuario {
     }
 
     public String getPrioridad() {
-        return prioridad;
+        return priority;
     }
 
-    public void setPrioridad(String prioridad) {
-        this.prioridad = prioridad;
+    public void setPriority(String prioridad) {
+        this.priority = prioridad;
     }
 
-    public ListaSimple getDocs() {
+    public ListaSimpleUsuarrios getDocs() {
         return docs;
     }
 
-    public void setDocs(ListaSimple docs) {
+    public void setDocs(ListaSimpleUsuarrios docs) {
         this.docs = docs;
     }
     
