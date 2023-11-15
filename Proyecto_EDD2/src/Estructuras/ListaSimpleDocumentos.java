@@ -1,40 +1,38 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package Estructuras;
 
 /**
  *
- * @author luisr
- * @param <T>
+ * @author Ana Blanco
  */
-public class ListaSimpleUsuarrios<T> {
+public class ListaSimpleDocumentos<T> {
 
-    private NodoUsuario<T> pFrist;
-    private NodoUsuario<T> pLast;
+    private NodoSimple pFirst;
+    private NodoSimple pLast;
     private int size;
 
-    public ListaSimpleUsuarrios() {
-        this.pFrist = null;
+    public ListaSimpleDocumentos() {
+        this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
 
-    public NodoUsuario<T> getpFrist() {
-        return pFrist;
+    public NodoSimple<T> getpFirst() {
+        return pFirst;
     }
 
-    public void setpFrist(NodoUsuario<T> pFrist) {
-        this.pFrist = pFrist;
+    public void setpFirst(NodoSimple<T> pFirst) {
+        this.pFirst = pFirst;
     }
 
-    public NodoUsuario<T> getpLast() {
+    public NodoSimple<T> getpLast() {
         return pLast;
     }
 
-    public void setpLast(NodoUsuario<T> pLast) {
+    public void setpLast(NodoSimple<T> pLast) {
         this.pLast = pLast;
     }
 
@@ -47,32 +45,32 @@ public class ListaSimpleUsuarrios<T> {
     }
 
     public boolean EsVacia() {
-        return this.pFrist == null;
+        return this.pFirst == null;
 
     }
 
-    public void addFrist(T dato, String priority) {
+    public void addFirst(Documento documento) {
 
-        NodoUsuario nodo = new NodoUsuario(dato, priority);
+        NodoSimple nodo = new NodoSimple(documento);
         if (EsVacia() == true) {
-            this.pFrist = nodo;
+            this.pFirst = nodo;
             this.pLast = nodo;
 
         } else {
-            nodo.setPnext(this.pFrist);
-            this.setpFrist(nodo);
+            nodo.setPnext(this.pFirst);
+            this.setpFirst(nodo);
 
         }
         this.size++;
 
     }
 
-    public void addend(T dato, String priority) {
+    public void addend(Documento documento) {
 
-        NodoUsuario nodo = new NodoUsuario(dato, priority);
+        NodoSimple nodo = new NodoSimple(documento);
 
         if (EsVacia() == true) {
-            this.pFrist = nodo;
+            this.pFirst = nodo;
             this.pLast = nodo;
 
         } else {
@@ -86,7 +84,7 @@ public class ListaSimpleUsuarrios<T> {
         if (EsVacia()) {
             System.out.println("La lista esta vacia");
         }
-        NodoUsuario<T> pAux = this.pFrist;
+        NodoSimple<T> pAux = this.pFirst;
 
         while (pAux != null) {
             System.out.print(pAux.getData() + "->");
@@ -102,7 +100,7 @@ public class ListaSimpleUsuarrios<T> {
         if (EsVacia()) {
             System.out.println("La lista esta vacia");
         } else {
-            this.pFrist = this.pFrist.getPnext();
+            this.pFirst = this.pFirst.getPnext();
 
         }
         size--;
@@ -113,10 +111,11 @@ public class ListaSimpleUsuarrios<T> {
         if (EsVacia()) {
             System.out.println("La lista esta vacia");
         } else {
-            NodoUsuario<T> pAux = this.pFrist;
+            NodoSimple<T> pAux = this.pFirst;
             eliminaralinicio();
             invertirlista();
-            addend(pAux.getData(), pAux.getPriority());
+            this.addend((Documento) pAux.getData());
         }
     }
 }
+

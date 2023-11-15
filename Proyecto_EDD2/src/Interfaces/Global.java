@@ -5,8 +5,9 @@
 package Interfaces;
 
 import Estructuras.HashTable;
-import Estructuras.ListaSimpleUsuarrios;
-import Estructuras.NodoUsuario;
+import Estructuras.ListaSimpleUsuarios;
+import Estructuras.NodoSimple;
+import Estructuras.Usuario;
 
 /**
  *
@@ -16,7 +17,7 @@ public class Global {
     
     //Parámetros de la clase Global
     private static HashTable hashtable = new HashTable(16);
-    private static ListaSimpleUsuarrios ListaUsuarios = new ListaSimpleUsuarrios();
+    private static ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
     
     public static HashTable getHashtable() {
         return hashtable;
@@ -25,4 +26,14 @@ public class Global {
     public static void setHashtable(HashTable hashtable) {
         Global.hashtable = hashtable;
     }
+
+    public static ListaSimpleUsuarios<Usuario> getListaUsuarios() {
+        return ListaUsuarios;
+    }
+
+    public static void setListaUsuarios(ListaSimpleUsuarios<Usuario> ListaUsuarios) {
+        Global.ListaUsuarios = ListaUsuarios;
+    }
+    
+    
 }

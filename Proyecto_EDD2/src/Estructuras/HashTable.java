@@ -10,17 +10,17 @@ package Estructuras;
  */
 public class HashTable {
     //Campos de la clase 
-    private ListaSimpleUsuarrios[] table;
+    private ListaSimpleUsuarios[] table;
     private Integer size;
    
     // Constructor para la creacion de tablas hash  
 
     public HashTable(int size) {
         this.size = size;
-        this.table = new ListaSimpleUsuarrios[this.size];
+        this.table = new ListaSimpleUsuarios[this.size];
         
         for (int i = 0 ; i < size; i++){
-            ListaSimpleUsuarrios lista = new ListaSimpleUsuarrios();
+            ListaSimpleUsuarios lista = new ListaSimpleUsuarios();
             table[i]= lista;
         } 
     } //Cierre del constructor
@@ -44,14 +44,14 @@ public class HashTable {
      * @param usuario Objeto Usuario que será el objeto al que se le realizará la inserción
      */
     public void Insert_Usuario(int hash,Usuario usuario){
-        this.getTable()[hash].addend(usuario, usuario.getPrioridad());
+        this.getTable()[hash].addend(usuario);
     } //Cierre metodo
 
-    public ListaSimpleUsuarrios[] getTable() {
+    public ListaSimpleUsuarios[] getTable() {
         return table;
     }
 
-    public void setTable(ListaSimpleUsuarrios[] table) {
+    public void setTable(ListaSimpleUsuarios[] table) {
         this.table = table;
     }
 

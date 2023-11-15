@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Estructuras.Usuario;
 import Funciones.funciones;
 import com.sun.tools.javac.Main;
 import java.io.BufferedReader;
@@ -114,10 +115,10 @@ public class start_interfaz extends javax.swing.JFrame {
                         
                         for (int i = 1; i < info1.length ; i++) {
                             String[] info2 = info1[i].split(",");
-                            
+                            Usuario usuario = new Usuario(info2[0], info2[1]);
+                            Global.getListaUsuarios().addend(usuario);
                         }
                         
-                        //Aqui ya lee la informacion pero no la he ingresado en ningun lado
                     }
 
                 } catch (Exception e) {

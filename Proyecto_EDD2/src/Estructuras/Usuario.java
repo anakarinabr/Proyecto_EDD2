@@ -12,12 +12,12 @@ public class Usuario {
     
     private String name;
     private String priority;
-    private ListaSimpleUsuarrios docs;
+    private ListaSimpleDocumentos docs;
 
-    public Usuario(String name, String priority, ListaSimpleUsuarrios docs) {
+    public Usuario(String name, String priority) {
         this.name = name;
         this.priority = priority;
-        this.docs = docs;
+        this.docs = new ListaSimpleDocumentos();
     }
 
     public String getName() {
@@ -36,11 +36,11 @@ public class Usuario {
         this.priority = prioridad;
     }
 
-    public ListaSimpleUsuarrios getDocs() {
+    public ListaSimpleDocumentos getDocs() {
         return docs;
     }
 
-    public void setDocs(ListaSimpleUsuarrios docs) {
+    public void setDocs(ListaSimpleDocumentos docs) {
         this.docs = docs;
     }
     
