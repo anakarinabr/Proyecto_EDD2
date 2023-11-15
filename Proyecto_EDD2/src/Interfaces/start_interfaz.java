@@ -57,6 +57,11 @@ public class start_interfaz extends javax.swing.JFrame {
         getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 370, 50));
 
         jButton2.setText("Manejo de usuarios");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 370, 50));
 
         jButton3.setText("Manejo de documentos");
@@ -122,6 +127,11 @@ public class start_interfaz extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_CargarUsuariosButtonActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(null , "hola");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
