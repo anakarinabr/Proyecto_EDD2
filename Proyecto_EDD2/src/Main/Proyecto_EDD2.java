@@ -5,13 +5,16 @@
 package Main;
 
 import Interfaces.main_interfaz;
+import java.io.File;
 
 /**
  *
  * @author Ana Blanco
  */
 public class Proyecto_EDD2 {
-
+    
+    
+    public static File selectedFile;
     /**
      * @param args the command line arguments
      */

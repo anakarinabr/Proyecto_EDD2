@@ -4,6 +4,15 @@
  */
 package Interfaces;
 
+import Funciones.funciones;
+import com.sun.tools.javac.Main;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+
 /**
  *
  * @author Ana Blanco
@@ -40,7 +49,12 @@ public class start_interfaz extends javax.swing.JFrame {
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         CargarUsuariosButton.setText("Cargar Usuarios");
-        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, 370, 60));
+        CargarUsuariosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CargarUsuariosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 370, 50));
 
         jButton2.setText("Manejo de usuarios");
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, 370, 50));
@@ -53,6 +67,61 @@ public class start_interfaz extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void CargarUsuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarUsuariosButtonActionPerformed
+
+        JFileChooser file = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
+        file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+        file.setFileFilter(filter);
+        int selection = file.showOpenDialog(this);
+
+        if (selection == JFileChooser.APPROVE_OPTION) {
+
+            File archive = file.getSelectedFile();
+            String path = archive.getAbsolutePath();
+            
+            if (!path.contains("csv")) {
+                JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo csv");
+            } else {
+                try {
+                    File archivo = new File(path);
+                    FileReader fr = new FileReader(archivo);
+                    BufferedReader br = new BufferedReader(fr);
+
+                    String usuarios;
+                    String UsuariosInfo = "";
+
+                    while ((usuarios = br.readLine()) != null) {
+
+                        if (!usuarios.isEmpty() && !usuarios.isBlank()) {
+                            UsuariosInfo += usuarios + "\n";
+
+                        }
+                    }
+                    fr.close();
+                    br.close();
+                    UsuariosInfo = UsuariosInfo.trim();
+                    
+                    if (!"".equals(UsuariosInfo)) {
+                        
+                        String[] info1 = UsuariosInfo.split("\n");
+                        
+                        for (int i = 1; i < info1.length ; i++) {
+                            String[] info2 = info1[i].split(",");
+                            
+                        }
+                        
+                        //Aqui ya lee la informacion pero no la he ingresado en ningun lado
+                    }
+
+                } catch (Exception e) {
+                    JOptionPane.showMessageDialog(null, "Error!!!");
+
+                }
+            }
+        }
+    }//GEN-LAST:event_CargarUsuariosButtonActionPerformed
 
     /**
      * @param args the command line arguments

@@ -12,6 +12,7 @@ package Estructuras;
 public class Nodo<T> {
     
     private T data;
+    private T priority;
     private Nodo pnext;
 
     public Nodo(T data) {
@@ -34,5 +35,15 @@ public class Nodo<T> {
     public void setPnext(Nodo pnext) {
         this.pnext = pnext;
     }
+
+    public T getPriority() {
+        return priority;
+    }
+
+    public void setPriority(T priority) {
+        this.priority = priority;
+    }
+    
+    
     
 }
