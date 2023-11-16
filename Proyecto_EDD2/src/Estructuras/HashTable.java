@@ -17,7 +17,7 @@ public class HashTable {
     // Constructor para la creacion de tablas hash  
     public HashTable(int size) {
         this.size = size;
-        this.table = new ListaSimpleUsuarios[this.size];
+        this.table = new ListaSimpleUsuarios[size];
 
         for (int i = 0; i < size; i++) {
             ListaSimpleUsuarios lista = new ListaSimpleUsuarios();
@@ -25,41 +25,54 @@ public class HashTable {
         }
     } //Cierre del constructor
 
-    public long transformaClave(String clave) {
-        long d;
-        d = 0;
-        for (int j = 0; j <clave.length(); j++) {
-            d = d * 27 + (int) clave.charAt(j);
-        }
-        /*
-         Para un valor mayor que el máximo entero genera un
-         numero negativo.
-         */
-        if (d < 0) {
-            d = -d;
-        }
-        return d;
-    }
-    
-     /**
+    /**
      * Método para buscar un indice de un elemento en una tabla hash
      *
      * @param reference String que será la referencia al que se le buscará el
      * índice
      * @return Integer que es el índice a donde será ingresado en la tabla hash
      */
-    public int hash(String clave) {
-        long x = transformaClave(clave);
+//    public int hash(String clave) {
+//        
+//        int hash = 0;
+//        
+//        for (int i = 1; i < clave.length()+1; i++) {
+//            hash += (int)clave.charAt(i-1) * i;
+//        }
+//        
+//        hash = hash % this.size;
+//        
+//        return hash;
+//    } //Cierre metodo
+
+    static long transformaClave(String clave) {
+        long d;
+        d = 0;
+        for (int j = 0; j < clave.length(); j++) {
+            d = d * 27 + (int) clave.charAt(j);
+        }
+        /*
+        Para un valor mayor que el máximo entero genera un
+        numero negativo.
+         */
+        if (d < 0) {
+            d = -d;
+        }
+        return d;
+    }
+
+    public int hash(String name) {
+        long valor = transformaClave(name);
         double t;
         int v;
         double R = 0.618034;
-        t = R * x - Math.floor(R * x); // parte decimal
+        t = R * valor - Math.floor(R * valor); // parte decimal
         v = (int) (this.size* t);
         return v;
-    } //Cierre metodo
+    }
 
     /**
-     * Método de inserción de un Objeto PalabraClave en una tabla Hash
+     * Método de inserción de un Objeto Usuario en una tabla Hash
      *
      * @param Hash Integer que es el índice a donde será ingresado en la tabla
      * hash

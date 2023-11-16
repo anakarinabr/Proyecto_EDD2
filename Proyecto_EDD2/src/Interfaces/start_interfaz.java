@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Estructuras.HashTable;
 import Estructuras.Usuario;
 import Funciones.funciones;
 import com.sun.tools.javac.Main;
@@ -29,15 +30,45 @@ public class start_interfaz extends javax.swing.JFrame {
     public start_interfaz() {
         initComponents();
         this.setLocationRelativeTo(null);
-        this.path = null;
     }
 
-    public String getPath() {
-        return path;
+    private static boolean isPrime(int number) {
+
+        // Un número es primo si solo es divisible por 1 y por sí mismo
+        for (int i = 2; i <= Math.sqrt(number); i++) {
+            if (number % i == 0) {
+                return false;
+            }
+        }
+
+        return true;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public int primocercano(int cantidad_usuario) {
+
+        // Comprueba si el número dado es primo
+        if (isPrime(cantidad_usuario)) {
+            return cantidad_usuario;
+        }
+
+        // Inicializa el número primo cercano mayor
+        int nearestPrime = cantidad_usuario + 1;
+
+        // Comprueba si el número primo cercano mayor es primo
+        while (!isPrime(nearestPrime)) {
+            System.out.println("Aqui entra");
+            System.out.println(nearestPrime);
+            nearestPrime++;
+        }
+
+        return nearestPrime;
+    }
+
+    public HashTable creacionHashTable(int cantidad_usuarios) {
+        int num = primocercano(cantidad_usuarios);
+
+        HashTable hashtable = new HashTable(num);
+        return hashtable;
     }
 
     /**
@@ -121,7 +152,7 @@ public class start_interfaz extends javax.swing.JFrame {
 
             File archive = file.getSelectedFile();
             String path = archive.getAbsolutePath();
-            setPath(path);
+
             if (!path.contains("csv")) {
                 JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo csv");
             } else {
@@ -129,7 +160,7 @@ public class start_interfaz extends javax.swing.JFrame {
                     File archivo = new File(path);
                     FileReader fr = new FileReader(archivo);
                     BufferedReader br = new BufferedReader(fr);
-
+                    
                     String usuarios;
                     String UsuariosInfo = "";
 
@@ -137,25 +168,37 @@ public class start_interfaz extends javax.swing.JFrame {
 
                         if (!usuarios.isEmpty() && !usuarios.isBlank()) {
                             UsuariosInfo += usuarios + "\n";
-
+                        
                         }
                     }
                     fr.close();
                     br.close();
                     UsuariosInfo = UsuariosInfo.trim();
-
+                    
                     if (!"".equals(UsuariosInfo)) {
-
+                        
                         String[] info1 = UsuariosInfo.split("\n");
-
+                        
+                        for (int i = 0; i < info1.length; i++) {
+                            System.out.println(info1[i]);
+                        }
+                        
+                        int cantidad_usuarios = info1.length - 1;
+                     
+                        HashTable hashtable = creacionHashTable(cantidad_usuarios);
+                        System.out.println(hashtable.getSize());
                         for (int i = 1; i < info1.length; i++) {
                             String[] info2 = info1[i].split(",");
                             Usuario usuario = new Usuario(info2[0], info2[1]);
                             Global.getListaUsuarios().addend(usuario);
-                            int hash = Global.getHashtable().hash(usuario.getName());
-                            Global.getHashtable().Insert_Usuario(hash, usuario);
+                            int hash = hashtable.hash(usuario.getName());
+                            System.out.println(hash);
+                            hashtable.Insert_Usuario(hash, usuario);
                         }
-
+                        
+                        for (int i = 0; i < hashtable.getTable().length; i++) {
+                            hashtable.getTable()[i].print();
+                        }
                     }
 
                 } catch (Exception e) {
@@ -170,21 +213,35 @@ public class start_interfaz extends javax.swing.JFrame {
         this.setVisible(false);
         Usuarios_interfaz v2 = new Usuarios_interfaz();
         v2.setVisible(true);
-        
+
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String todo = Global.getListaUsuarios().getAllUsers();
 
         try {
-            if (getPath() != null) {
-                PrintWriter pw = new PrintWriter(getPath());
-                pw.print(todo);
-                pw.close();
-                JOptionPane.showMessageDialog(null, "Guardado exitoso");
+            if (!todo.equalsIgnoreCase("usuario,tipo")) {
+                JFileChooser file = new JFileChooser();
+                FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
+                file.setFileSelectionMode(JFileChooser.FILES_ONLY);
+                file.setFileFilter(filter);
+                int selection = file.showOpenDialog(this);
+
+                if (selection == JFileChooser.APPROVE_OPTION) {
+
+                    File archive = file.getSelectedFile();
+                    String path = archive.getAbsolutePath();
+
+                    PrintWriter pw = new PrintWriter(path);
+                    pw.print(todo);
+                    pw.close();
+                    JOptionPane.showMessageDialog(null, "Guardado exitoso");
+
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo csv");
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error!!!!!");
         }
@@ -217,16 +274,24 @@ public class start_interfaz extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(start_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(start_interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(start_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(start_interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(start_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(start_interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
+
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(start_interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(start_interfaz.class
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
