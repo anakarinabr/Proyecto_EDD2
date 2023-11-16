@@ -15,6 +15,7 @@ public class Documentos_interfaz extends javax.swing.JFrame {
      */
     public Documentos_interfaz() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

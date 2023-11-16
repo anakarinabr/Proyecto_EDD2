@@ -15,6 +15,7 @@ public class Impresora_interfaz extends javax.swing.JFrame {
      */
     public Impresora_interfaz() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**

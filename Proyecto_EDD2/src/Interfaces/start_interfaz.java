@@ -55,6 +55,7 @@ public class start_interfaz extends javax.swing.JFrame {
         Documentos = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         Impresora = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -68,7 +69,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 CargarUsuariosButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 140, 370, 30));
+        getContentPane().add(CargarUsuariosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 100, 170, 30));
 
         Usuarios.setText("Manejo de usuarios");
         Usuarios.addActionListener(new java.awt.event.ActionListener() {
@@ -76,7 +77,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 UsuariosActionPerformed(evt);
             }
         });
-        getContentPane().add(Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 370, 30));
+        getContentPane().add(Usuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 140, 170, 30));
 
         Documentos.setText("Manejo de documentos");
         Documentos.addActionListener(new java.awt.event.ActionListener() {
@@ -84,7 +85,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 DocumentosActionPerformed(evt);
             }
         });
-        getContentPane().add(Documentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 220, 370, 30));
+        getContentPane().add(Documentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, 170, 30));
 
         jButton1.setText("Guardar información");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -92,7 +93,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 370, 30));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 260, 170, 30));
 
         Impresora.setText("Manejo de impresora");
         Impresora.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +101,10 @@ public class start_interfaz extends javax.swing.JFrame {
                 ImpresoraActionPerformed(evt);
             }
         });
-        getContentPane().add(Impresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 260, 370, 30));
+        getContentPane().add(Impresora, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 170, 30));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs..png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -179,7 +183,7 @@ public class start_interfaz extends javax.swing.JFrame {
                 pw.close();
                 JOptionPane.showMessageDialog(null, "Guardado exitoso");
             } else {
-                JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo txt");
+                JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo csv");
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Error!!!!!");
@@ -240,6 +244,7 @@ public class start_interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Impresora;
     private javax.swing.JButton Usuarios;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

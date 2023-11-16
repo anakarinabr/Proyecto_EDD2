@@ -15,6 +15,7 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
      */
     public Usuarios_interfaz() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
