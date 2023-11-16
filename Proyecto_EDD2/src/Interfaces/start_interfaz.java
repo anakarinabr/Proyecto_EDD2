@@ -55,18 +55,28 @@ public class start_interfaz extends javax.swing.JFrame {
         int nearestPrime = cantidad_usuario + 1;
 
         // Comprueba si el número primo cercano mayor es primo
-        while (!isPrime(nearestPrime)) {
-            System.out.println("Aqui entra");
-            System.out.println(nearestPrime);
+        while (!isPrime(nearestPrime)){
             nearestPrime++;
         }
 
         return nearestPrime;
     }
 
-    public HashTable creacionHashTable(int cantidad_usuarios) {
-        int num = primocercano(cantidad_usuarios);
-
+    public HashTable creacionHashTable(double cantidad_usuarios) {
+        
+        
+        int remainder = (int) (cantidad_usuarios * 10) % 10;
+        
+        double nuevovalor = 0;
+        if (remainder == 0) {
+            nuevovalor = Math.ceil(cantidad_usuarios);
+        } else if (remainder < 5) {
+            nuevovalor = Math.floor(cantidad_usuarios);
+        } else {
+            nuevovalor = Math.ceil(cantidad_usuarios);
+        }
+        
+        int num = primocercano((int)nuevovalor);
         HashTable hashtable = new HashTable(num);
         return hashtable;
     }
@@ -160,7 +170,7 @@ public class start_interfaz extends javax.swing.JFrame {
                     File archivo = new File(path);
                     FileReader fr = new FileReader(archivo);
                     BufferedReader br = new BufferedReader(fr);
-                    
+
                     String usuarios;
                     String UsuariosInfo = "";
 
@@ -168,38 +178,37 @@ public class start_interfaz extends javax.swing.JFrame {
 
                         if (!usuarios.isEmpty() && !usuarios.isBlank()) {
                             UsuariosInfo += usuarios + "\n";
-                        
+
                         }
                     }
                     fr.close();
                     br.close();
                     UsuariosInfo = UsuariosInfo.trim();
-                    
+
                     if (!"".equals(UsuariosInfo)) {
-                        
+
                         String[] info1 = UsuariosInfo.split("\n");
                         
-                        for (int i = 0; i < info1.length; i++) {
-                            System.out.println(info1[i]);
-                        }
-                        
-                        int cantidad_usuarios = info1.length - 1;
-                     
+                        double num = 1.3;
+                        double valor = (info1.length - 1);
+                        double cantidad_usuarios = valor * num;
+
                         HashTable hashtable = creacionHashTable(cantidad_usuarios);
-                        System.out.println(hashtable.getSize());
+                       
                         for (int i = 1; i < info1.length; i++) {
                             String[] info2 = info1[i].split(",");
                             Usuario usuario = new Usuario(info2[0], info2[1]);
                             Global.getListaUsuarios().addend(usuario);
                             int hash = hashtable.hash(usuario.getName());
-                            System.out.println(hash);
                             hashtable.Insert_Usuario(hash, usuario);
                         }
-                        
-                        for (int i = 0; i < hashtable.getTable().length; i++) {
-                            hashtable.getTable()[i].print();
-                        }
+
+//                        for (int i = 0; i < hashtable.getTable().length; i++) {
+//                            hashtable.getTable()[i].print();
+//                        } ESTO ES PARA VER QUE ESTÁ GUARDANDO EN EL HASHTABLE POR SI
                     }
+                    
+                    JOptionPane.showMessageDialog(null, "Se cargó exitosamente la información!");
 
                 } catch (Exception e) {
                     JOptionPane.showMessageDialog(null, "Error!!!");
