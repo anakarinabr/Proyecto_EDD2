@@ -3,6 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Main;
+import Estructuras.ListaSimpleUsuarios;
+import Estructuras.MonticuloBinario;
+import Estructuras.Usuario;
 import Interfaces.Global;
 import Interfaces.start_interfaz;
 import java.io.File;
@@ -20,7 +23,9 @@ public class Proyecto_EDD2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Global global = new Global();
+        ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
+        MonticuloBinario monticulo = new MonticuloBinario();
+        Global global = new Global(ListaUsuarios, monticulo);
         start_interfaz inicio = new start_interfaz(global);   
         inicio.setVisible(true);
 

@@ -198,7 +198,7 @@ public class start_interfaz extends javax.swing.JFrame {
                         for (int i = 1; i < info1.length; i++) {
                             String[] info2 = info1[i].split(",");
                             Usuario usuario = new Usuario(info2[0], info2[1]);
-                            Global.getListaUsuarios().addend(usuario);
+                            this.global.getListaUsuarios().addend(usuario);
                             int hash = hashtable.hash(usuario.getName());
                             hashtable.Insert_Usuario(hash, usuario);
                         }
@@ -231,7 +231,7 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        String todo = Global.getListaUsuarios().getAllUsers();
+        String todo = this.global.getListaUsuarios().getAllUsers();
 
         try {
             if (!todo.equalsIgnoreCase("usuario,tipo")) {
