@@ -25,10 +25,11 @@ public class start_interfaz extends javax.swing.JFrame {
     /**
      * Creates new form start_interfaz
      */
-    private String path;
+    public static Global global;
 
-    public start_interfaz() {
+    public start_interfaz(Global global) {
         initComponents();
+        this.global = global;
         this.setLocationRelativeTo(null);
     }
 
@@ -55,7 +56,7 @@ public class start_interfaz extends javax.swing.JFrame {
         int nearestPrime = cantidad_usuario + 1;
 
         // Comprueba si el número primo cercano mayor es primo
-        while (!isPrime(nearestPrime)){
+        while (!isPrime(nearestPrime)) {
             nearestPrime++;
         }
 
@@ -63,10 +64,9 @@ public class start_interfaz extends javax.swing.JFrame {
     }
 
     public HashTable creacionHashTable(double cantidad_usuarios) {
-        
-        
+
         int remainder = (int) (cantidad_usuarios * 10) % 10;
-        
+
         double nuevovalor = 0;
         if (remainder == 0) {
             nuevovalor = Math.ceil(cantidad_usuarios);
@@ -75,8 +75,8 @@ public class start_interfaz extends javax.swing.JFrame {
         } else {
             nuevovalor = Math.ceil(cantidad_usuarios);
         }
-        
-        int num = primocercano((int)nuevovalor);
+
+        int num = primocercano((int) nuevovalor);
         HashTable hashtable = new HashTable(num);
         return hashtable;
     }
@@ -188,13 +188,13 @@ public class start_interfaz extends javax.swing.JFrame {
                     if (!"".equals(UsuariosInfo)) {
 
                         String[] info1 = UsuariosInfo.split("\n");
-                        
+
                         double num = 1.3;
                         double valor = (info1.length - 1);
                         double cantidad_usuarios = valor * num;
 
                         HashTable hashtable = creacionHashTable(cantidad_usuarios);
-                       
+
                         for (int i = 1; i < info1.length; i++) {
                             String[] info2 = info1[i].split(",");
                             Usuario usuario = new Usuario(info2[0], info2[1]);
@@ -203,11 +203,13 @@ public class start_interfaz extends javax.swing.JFrame {
                             hashtable.Insert_Usuario(hash, usuario);
                         }
 
+                        this.global.setHashtable(hashtable);
+
 //                        for (int i = 0; i < hashtable.getTable().length; i++) {
 //                            hashtable.getTable()[i].print();
 //                        } ESTO ES PARA VER QUE ESTÁ GUARDANDO EN EL HASHTABLE POR SI
                     }
-                    
+
                     JOptionPane.showMessageDialog(null, "Se cargó exitosamente la información!");
 
                 } catch (Exception e) {
@@ -219,10 +221,13 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_CargarUsuariosButtonActionPerformed
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
-        this.setVisible(false);
-        Usuarios_interfaz v2 = new Usuarios_interfaz();
-        v2.setVisible(true);
-
+        if (this.global.getHashtable() != null) {
+            this.setVisible(false);
+            Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
+            v2.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
+        }
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -258,15 +263,24 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImpresoraActionPerformed
-        this.setVisible(false);
-        Impresora_interfaz v2 = new Impresora_interfaz();
-        v2.setVisible(true);
+
+        if (this.global.getHashtable() != null) {
+            this.setVisible(false);
+            Impresora_interfaz v2 = new Impresora_interfaz(this.global);
+            v2.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
+        }
     }//GEN-LAST:event_ImpresoraActionPerformed
 
     private void DocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentosActionPerformed
-        this.setVisible(false);
-        Documentos_interfaz v2 = new Documentos_interfaz();
-        v2.setVisible(true);
+        if (this.global.getHashtable() != null) {
+            this.setVisible(false);
+            Documentos_interfaz v2 = new Documentos_interfaz(this.global);
+            v2.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
+        }
     }//GEN-LAST:event_DocumentosActionPerformed
 
     /**
@@ -307,7 +321,7 @@ public class start_interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new start_interfaz().setVisible(true);
+                new start_interfaz(global).setVisible(true);
             }
         });
     }

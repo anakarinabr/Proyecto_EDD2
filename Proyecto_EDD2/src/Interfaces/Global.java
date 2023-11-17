@@ -17,8 +17,11 @@ public class Global {
     
     //Parámetros de la clase Global
     private static ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
-   
-
+    private HashTable hashtable;
+    
+    public Global(){
+        this.hashtable = null;
+    }
     public static ListaSimpleUsuarios<Usuario> getListaUsuarios() {
         return ListaUsuarios;
     }
@@ -26,6 +29,16 @@ public class Global {
     public static void setListaUsuarios(ListaSimpleUsuarios<Usuario> ListaUsuarios) {
         Global.ListaUsuarios = ListaUsuarios;
     }
+
+    public HashTable getHashtable() {
+        return hashtable;
+    }
+
+    public void setHashtable(HashTable hashtable) {
+        this.hashtable = hashtable;
+    }
+    
+    
     
     
 }

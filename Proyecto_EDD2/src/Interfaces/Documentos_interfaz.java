@@ -9,11 +9,13 @@ package Interfaces;
  * @author Ana Blanco
  */
 public class Documentos_interfaz extends javax.swing.JFrame {
-
+    
+    public static Global global;
     /**
      * Creates new form Documentos_interfaz
      */
-    public Documentos_interfaz() {
+    public Documentos_interfaz(Global global) {
+        this.global = global;
         initComponents();
         this.setLocationRelativeTo(null);
     }
@@ -67,7 +69,7 @@ public class Documentos_interfaz extends javax.swing.JFrame {
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
         this.setVisible(false);
-        start_interfaz v2 = new start_interfaz();
+        start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
@@ -101,7 +103,7 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Documentos_interfaz().setVisible(true);
+                new Documentos_interfaz(global).setVisible(true);
             }
         });
     }
