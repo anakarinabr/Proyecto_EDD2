@@ -31,10 +31,16 @@ public class Documentos_interfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         back = new javax.swing.JButton();
+        CrearDocumento = new javax.swing.JButton();
+        ImprimirDocumento = new javax.swing.JButton();
+        EliminarDocumento = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         back.setText("Regresar");
         back.addActionListener(new java.awt.event.ActionListener() {
@@ -42,27 +48,19 @@ public class Documentos_interfaz extends javax.swing.JFrame {
                 backActionPerformed(evt);
             }
         });
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 12, 90, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(14, 14, 14)
-                .addComponent(back)
-                .addContainerGap(511, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(back)
-                .addGap(0, 365, Short.MAX_VALUE))
-        );
+        CrearDocumento.setText("Crear documento");
+        getContentPane().add(CrearDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 350, 40));
+
+        ImprimirDocumento.setText("Mandar a imprimir");
+        getContentPane().add(ImprimirDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 350, 40));
+
+        EliminarDocumento.setText("Eliminar documento");
+        getContentPane().add(EliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 350, 40));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (2).png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -109,7 +107,11 @@ public class Documentos_interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton CrearDocumento;
+    private javax.swing.JButton EliminarDocumento;
+    private javax.swing.JButton ImprimirDocumento;
     private javax.swing.JButton back;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
