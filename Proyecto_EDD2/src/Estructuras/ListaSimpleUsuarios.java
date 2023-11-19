@@ -104,22 +104,61 @@ public class ListaSimpleUsuarios<T> {
         }
         size--;
     }
-    
-     public String getAllUsers() {
-         String todo = "usuario,tipo";
+
+    public String getAllUsers() {
+        String todo = "usuario,tipo";
         if (EsVacia()) {
             return todo;
         }
         NodoSimple<T> pAux = this.pFirst;
 
         while (pAux != null) {
-            Usuario data=(Usuario)pAux.getData();
-            todo +=  "\n" + data.getName() + ","+ data.getPrioridad()+"";
+            Usuario data = (Usuario) pAux.getData();
+            todo += "\n" + data.getName() + "," + data.getPrioridad() + "";
             pAux = pAux.getPnext();
         }
-        
+
         System.out.println(todo);
         return todo;
 
+    }
+
+    public boolean buscar(String referencia) {
+        NodoSimple aux = this.pFirst;
+        boolean encontrado = false;
+        while (aux != null && encontrado != true) {
+            Usuario usuario =(Usuario) aux.getData();
+            if (usuario.getName().equals(referencia)) {
+                encontrado = true;
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+        return encontrado;
+
+    }
+
+    public void EliminarPorReferencia(String referencia) { //FALTA
+        if (buscar(referencia)) {
+            Usuario usuario = (Usuario)this.pFirst.getData();
+            Usuario usuario2 = (Usuario)this.pLast.getData();
+            if (usuario.getName().equals(referencia)) {
+                this.pFirst = this.pFirst.getPnext();
+                
+            }else if(usuario2.getName().equalsIgnoreCase(referencia)){
+               this.pLast = null;
+            } else {
+                NodoSimple aux = this.pFirst;
+                usuario = (Usuario) aux.getData();
+                while (!usuario.getName().equals(referencia)) {
+                    aux = aux.getPnext();
+                    usuario = (Usuario) aux.getData();
+                }
+                NodoSimple siguiente = aux.getPnext().getPnext();
+                aux.setPnext(siguiente);
+            }
+            size--;
+        }     
+        
     }
 }

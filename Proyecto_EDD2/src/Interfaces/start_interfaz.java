@@ -6,7 +6,6 @@ package Interfaces;
 
 import Estructuras.HashTable;
 import Estructuras.Usuario;
-import Funciones.funciones;
 import com.sun.tools.javac.Main;
 import java.io.BufferedReader;
 import java.io.File;
