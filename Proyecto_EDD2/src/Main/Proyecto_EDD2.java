@@ -3,12 +3,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package Main;
+import Estructuras.Cronometro;
 import Estructuras.ListaSimpleUsuarios;
 import Estructuras.MonticuloBinario;
 import Estructuras.Usuario;
 import Interfaces.Global;
 import Interfaces.start_interfaz;
+import java.awt.event.ActionEvent;
 import java.io.File;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,6 +26,8 @@ public class Proyecto_EDD2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
+        Cronometro crono = new Cronometro();
+        crono.Iniciar();
         ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
         MonticuloBinario monticulo = new MonticuloBinario();
         Global global = new Global(ListaUsuarios, monticulo);
