@@ -13,11 +13,13 @@ public class Documento {
     private String titulo;
     private int tamaño;
     private boolean tipo;
+    private boolean encola;
 
     public Documento(String titulo, int tamaño) {
         this.titulo = titulo;
         this.tamaño = tamaño;
         this.tipo = false;
+        this.encola = false;
     }
 
     public String getTitulo() {
@@ -43,7 +45,14 @@ public class Documento {
     public void setTipo(boolean tipo) {
         this.tipo = tipo;
     }
-    
-    
 
+    public boolean isEncola() {
+        return encola;
+    }
+
+    public void setEncola(boolean encola) {
+        this.encola = encola;
+    }
+    
+    
 }

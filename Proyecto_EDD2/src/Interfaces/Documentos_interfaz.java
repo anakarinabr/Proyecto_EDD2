@@ -51,6 +51,11 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 12, 90, -1));
 
         CrearDocumento.setText("Crear documento");
+        CrearDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(CrearDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 350, 40));
 
         ImprimirDocumento.setText("Mandar a imprimir");
@@ -70,6 +75,12 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void CrearDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearDocumentoActionPerformed
+        CrearDocumento crear = new CrearDocumento(this.global);
+        this.setVisible(false);
+        crear.setVisible(true);
+    }//GEN-LAST:event_CrearDocumentoActionPerformed
 
     /**
      * @param args the command line arguments
