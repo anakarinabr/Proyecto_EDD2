@@ -88,7 +88,8 @@ public class ListaSimpleUsuarios<T> {
         NodoSimple<T> pAux = this.pFirst;
 
         while (pAux != null) {
-            System.out.print(pAux.getData() + "->");
+            Usuario usuario = (Usuario)pAux.getData();
+            System.out.print(usuario.getName() + "->");
             pAux = pAux.getPnext();
         }
         System.out.println("");
@@ -138,21 +139,18 @@ public class ListaSimpleUsuarios<T> {
 
     }
 
-    public void EliminarPorReferencia(String referencia) { //FALTA
+    public void EliminarPorReferencia(String referencia) {
         if (buscar(referencia)) {
             Usuario usuario = (Usuario)this.pFirst.getData();
-            Usuario usuario2 = (Usuario)this.pLast.getData();
             if (usuario.getName().equals(referencia)) {
                 this.pFirst = this.pFirst.getPnext();
                 
-            }else if(usuario2.getName().equalsIgnoreCase(referencia)){
-               this.pLast = null;
-            } else {
+            }else {
                 NodoSimple aux = this.pFirst;
-                usuario = (Usuario) aux.getData();
-                while (!usuario.getName().equals(referencia)) {
+                Usuario nextaux = (Usuario) aux.getPnext().getData();
+                while (!nextaux.getName().equals(referencia)) {
                     aux = aux.getPnext();
-                    usuario = (Usuario) aux.getData();
+                    nextaux = (Usuario) aux.getPnext().getData();
                 }
                 NodoSimple siguiente = aux.getPnext().getPnext();
                 aux.setPnext(siguiente);

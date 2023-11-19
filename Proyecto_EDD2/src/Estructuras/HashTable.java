@@ -44,7 +44,6 @@ public class HashTable {
 //        
 //        return hash;
 //    } //Cierre metodo
-
     static long transformaClave(String clave) {
         long d;
         d = 0;
@@ -67,7 +66,7 @@ public class HashTable {
         int v;
         double R = 0.618034;
         t = R * valor - Math.floor(R * valor); // parte decimal
-        v = (int) (this.size* t);
+        v = (int) (this.size * t);
         return v;
     }
 
@@ -80,8 +79,14 @@ public class HashTable {
      * la inserción
      */
     public void Insert_Usuario(int hash, Usuario usuario) {
-        this.getTable()[hash].addend(usuario);
+        this.table[hash].addend(usuario);
     } //Cierre metodo
+    
+    public void delete_usuario(int hash, String referencia){
+        ListaSimpleUsuarios lista = this.table[hash];
+        
+        lista.EliminarPorReferencia(referencia);
+    }
 
     public ListaSimpleUsuarios[] getTable() {
         return table;

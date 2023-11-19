@@ -82,8 +82,16 @@ public class EliminarUsuario extends javax.swing.JFrame {
         
         String usuario = ComboBox.getSelectedItem().toString();
         
+//      Aquí se elimina el usuario de la lista        
         this.global.getListaUsuarios().EliminarPorReferencia(usuario);
         
+       
+//      Acá se elimina del  hashtable
+        int hash = this.global.getHashtable().hash(usuario);
+        this.global.getHashtable().delete_usuario(hash, usuario);
+        
+        JOptionPane.showMessageDialog(null, "El usuario: " + ComboBox.getSelectedItem().toString() + ", fué eliminado");
+
 //      Volvemos a llenar el combobox, sin el usuario que se eliminó
         NodoSimple aux = this.global.getListaUsuarios().getpFirst();
         ComboBox.removeAllItems();
@@ -92,7 +100,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
             ComboBox.addItem(usuario1.getName());
             aux = aux.getPnext();
         }
-        JOptionPane.showMessageDialog(null, "El usuario: " + ComboBox.getSelectedItem().toString() + ", fué eliminado");
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

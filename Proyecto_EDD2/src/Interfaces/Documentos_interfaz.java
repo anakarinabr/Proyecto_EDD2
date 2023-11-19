@@ -59,7 +59,7 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         EliminarDocumento.setText("Eliminar documento");
         getContentPane().add(EliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 350, 40));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (2).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Manejo de documentos.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
