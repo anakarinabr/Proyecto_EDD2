@@ -11,7 +11,7 @@ package Estructuras;
 public class HashTable {
 
     //Campos de la clase 
-    private ListaSimpleUsuarios[] table;
+    private ListaSimpleUsuarios<Usuario>[] table;
     private Integer size;
 
     // Constructor para la creacion de tablas hash  

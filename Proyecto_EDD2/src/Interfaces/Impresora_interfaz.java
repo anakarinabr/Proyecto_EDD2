@@ -4,6 +4,9 @@
  */
 package Interfaces;
 
+import org.graphstream.graph.Graph;
+import org.graphstream.graph.implementations.SingleGraph;
+
 /**
  *
  * @author Ana Blanco
@@ -13,6 +16,8 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Impresora_interfaz
      */
+    
+    public static Graph arbol = new SingleGraph("Monticulo");
     
     public static Global global;
     

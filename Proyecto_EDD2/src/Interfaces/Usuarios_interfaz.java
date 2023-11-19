@@ -53,6 +53,11 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 12, 90, -1));
 
         CrearUsuario.setText("Crear usuarios");
+        CrearUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearUsuarioActionPerformed(evt);
+            }
+        });
         getContentPane().add(CrearUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 170, 160, 150));
 
         EliminarUsuario.setText("Eliminar usuarios");
@@ -69,6 +74,12 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioActionPerformed
+        AgregarUsuarios agregar= new AgregarUsuarios(this.global);
+        this.setVisible(false);
+        agregar.setVisible(true);
+    }//GEN-LAST:event_CrearUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
