@@ -4,17 +4,33 @@
  */
 package Interfaces;
 
+import Estructuras.Documento;
+import Estructuras.ListaSimpleUsuarios;
+import Estructuras.NodoSimple;
+import Estructuras.Usuario;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ana Blanco
  */
 public class EliminarDocumento extends javax.swing.JFrame {
 
+    public static Global global;
+
     /**
      * Creates new form EliminarDocumento
      */
-    public EliminarDocumento() {
+    public EliminarDocumento(Global global) {
+        this.global = global;
         initComponents();
+        this.setLocationRelativeTo(null);
+        NodoSimple aux = global.getListaUsuarios().getpFirst();
+        for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
+            Usuario usuario = (Usuario) aux.getData();
+            ComboBoxUsuarios.addItem(usuario.getName().toString());
+            aux = aux.getPnext();
+        }
     }
 
     /**
@@ -26,21 +42,125 @@ public class EliminarDocumento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
+        ComboBoxUsuarios = new javax.swing.JComboBox<>();
+        ComboBoxDocumentos = new javax.swing.JComboBox<>();
+        SeleccionUsuario = new javax.swing.JButton();
+        Eliminardoc = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
-        );
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jButton1.setText("Regresar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 18, -1, -1));
+
+        getContentPane().add(ComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, -1));
+
+        getContentPane().add(ComboBoxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 230, -1));
+
+        SeleccionUsuario.setText("Seleccionar");
+        SeleccionUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionUsuarioActionPerformed(evt);
+            }
+        });
+        getContentPane().add(SeleccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+
+        Eliminardoc.setText("Eliminar");
+        Eliminardoc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminardocActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Eliminardoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 100, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Eliminar Usuarios.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.setVisible(false);
+        Documentos_interfaz v2 = new Documentos_interfaz(this.global);
+        v2.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void SeleccionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionUsuarioActionPerformed
+
+        ComboBoxDocumentos.removeAllItems();
+        String usuario = ComboBoxUsuarios.getSelectedItem().toString();
+
+        int indice = this.global.getHashtable().hash(usuario);
+
+        ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
+        NodoSimple aux = lista.getpFirst();
+        Usuario auxusuario = (Usuario) aux.getData();
+
+        for (int i = 0; i < lista.getSize(); i++) {
+            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                NodoSimple doc = auxusuario.getDocs().getpFirst();
+                for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
+                    Documento documento = (Documento) doc.getData();
+                    ComboBoxDocumentos.addItem(documento.getTitulo());
+                    doc = doc.getPnext();
+                }
+                break;
+            } else {
+                aux = aux.getPnext();
+                auxusuario = (Usuario) aux.getData();
+            }
+        }
+    }//GEN-LAST:event_SeleccionUsuarioActionPerformed
+
+    private void EliminardocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardocActionPerformed
+
+        String usuario = ComboBoxUsuarios.getSelectedItem().toString();
+        String documento = ComboBoxDocumentos.getSelectedItem().toString();
+        int indice = this.global.getHashtable().hash(usuario);
+
+        ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
+        NodoSimple aux = lista.getpFirst();
+        Usuario auxusuario = (Usuario) aux.getData();
+        for (int i = 0; i < lista.getSize(); i++) {
+            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                auxusuario.getDocs().EliminarPorReferencia(documento);
+                            
+
+                break;
+            } else {
+                aux = aux.getPnext();
+                auxusuario = (Usuario) aux.getData();
+            }
+
+        }
+
+        ComboBoxDocumentos.removeAllItems();
+        for (int i = 0; i < lista.getSize(); i++) {
+            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                NodoSimple doc = auxusuario.getDocs().getpFirst();
+                for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
+                    Documento documento1 = (Documento) doc.getData();
+                    ComboBoxDocumentos.addItem(documento1.getTitulo());
+                    doc = doc.getPnext();
+                }
+                break;
+            } else {
+                aux = aux.getPnext();
+                auxusuario = (Usuario) aux.getData();
+            }
+        }
+    }//GEN-LAST:event_EliminardocActionPerformed
 
     /**
      * @param args the command line arguments
@@ -72,11 +192,18 @@ public class EliminarDocumento extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EliminarDocumento().setVisible(true);
+                new EliminarDocumento(global).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> ComboBoxDocumentos;
+    private javax.swing.JComboBox<String> ComboBoxUsuarios;
+    private javax.swing.JButton Eliminardoc;
+    private javax.swing.JButton SeleccionUsuario;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

@@ -62,6 +62,11 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         getContentPane().add(ImprimirDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 350, 40));
 
         EliminarDocumento.setText("Eliminar documento");
+        EliminarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(EliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 350, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Manejo de documentos.png"))); // NOI18N
@@ -81,6 +86,12 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         this.setVisible(false);
         crear.setVisible(true);
     }//GEN-LAST:event_CrearDocumentoActionPerformed
+
+    private void EliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarDocumentoActionPerformed
+        EliminarDocumento eliminar = new EliminarDocumento(this.global);
+        this.setVisible(false);
+        eliminar.setVisible(true);
+    }//GEN-LAST:event_EliminarDocumentoActionPerformed
 
     /**
      * @param args the command line arguments

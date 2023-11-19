@@ -116,7 +116,7 @@ public class CrearDocumento extends javax.swing.JFrame {
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         this.setVisible(false);
-        Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
+        Documentos_interfaz v2 = new Documentos_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
