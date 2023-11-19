@@ -41,7 +41,7 @@ public class Cronometro {
         if (milisegundos == 65) {
             milisegundos = 0;
             segundos++;
-            System.out.println(hora + " : " + minutos + " : " + segundos);
+//            System.out.println(hora + " : " + minutos + " : " + segundos);
         }
 
         if (segundos == 60) {
@@ -56,4 +56,13 @@ public class Cronometro {
         }
     }
 
+    public int GetHora(){
+        return hora;
+    }
+    public int GetSegundos(){
+        return segundos;
+    }
+    public int GetMinutos(){
+        return minutos;
+    }
 }
