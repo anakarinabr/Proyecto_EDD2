@@ -4,9 +4,10 @@
  */
 package Interfaces;
 
+import Estructuras.Cronometro;
 import Estructuras.HashTable;
 import Estructuras.ListaSimpleUsuarios;
-import Estructuras.BinaryHeap;
+import Estructuras.MonticuloBinario;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
 
@@ -15,18 +16,23 @@ import Estructuras.Usuario;
  * @author Ana Blanco
  */
 public class Global {
-    
+
     //Parámetros de la clase Global
     private ListaSimpleUsuarios<Usuario> ListaUsuarios;
     private HashTable hashtable;
-    private BinaryHeap monticulobinario;
-    
-    public Global(ListaSimpleUsuarios ListaUsuarios, BinaryHeap monticulo){
+
+    private MonticuloBinario monticulobinario;
+
+    private Cronometro cronometro;
+
+    public Global(ListaSimpleUsuarios ListaUsuarios, MonticuloBinario monticulo, Cronometro cronometro) {
+
         this.ListaUsuarios = ListaUsuarios;
         this.monticulobinario = monticulo;
+        this.cronometro = cronometro;
         this.hashtable = null;
     }
-    
+
     public ListaSimpleUsuarios<Usuario> getListaUsuarios() {
         return ListaUsuarios;
     }
@@ -35,14 +41,14 @@ public class Global {
         this.ListaUsuarios = ListaUsuarios;
     }
 
-    public BinaryHeap getMonticulobinario() {
+    public MonticuloBinario getMonticulobinario() {
         return monticulobinario;
     }
 
-    public void setMonticulobinario(BinaryHeap monticulobinario) {
+    public void setMonticulobinario(MonticuloBinario monticulobinario) {
         this.monticulobinario = monticulobinario;
     }
-    
+
     public HashTable getHashtable() {
         return hashtable;
     }
@@ -50,8 +56,13 @@ public class Global {
     public void setHashtable(HashTable hashtable) {
         this.hashtable = hashtable;
     }
-    
-    
-    
-    
+
+    public Cronometro getCronometro() {
+        return cronometro;
+    }
+
+    public void setCronometro(Cronometro cronometro) {
+        this.cronometro = cronometro;
+    }
+
 }

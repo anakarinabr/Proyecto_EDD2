@@ -51,12 +51,22 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 12, 90, -1));
 
         CrearDocumento.setText("Crear documento");
+        CrearDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CrearDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(CrearDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 350, 40));
 
         ImprimirDocumento.setText("Mandar a imprimir");
         getContentPane().add(ImprimirDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 280, 350, 40));
 
         EliminarDocumento.setText("Eliminar documento");
+        EliminarDocumento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarDocumentoActionPerformed(evt);
+            }
+        });
         getContentPane().add(EliminarDocumento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 220, 350, 40));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Manejo de documentos.png"))); // NOI18N
@@ -70,6 +80,18 @@ public class Documentos_interfaz extends javax.swing.JFrame {
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void CrearDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearDocumentoActionPerformed
+        CrearDocumento crear = new CrearDocumento(this.global);
+        this.setVisible(false);
+        crear.setVisible(true);
+    }//GEN-LAST:event_CrearDocumentoActionPerformed
+
+    private void EliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarDocumentoActionPerformed
+        EliminarDocumento eliminar = new EliminarDocumento(this.global);
+        this.setVisible(false);
+        eliminar.setVisible(true);
+    }//GEN-LAST:event_EliminarDocumentoActionPerformed
 
     /**
      * @param args the command line arguments

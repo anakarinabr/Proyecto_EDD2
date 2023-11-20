@@ -123,6 +123,24 @@ public class ListaSimpleUsuarios<T> {
         return todo;
 
     }
+    
+    public boolean buscarDocumento(String referencia) {
+        NodoSimple aux = this.pFirst;
+        boolean encontrado = false;
+        while (aux != null && encontrado != true) {
+            Usuario usuario =(Usuario) aux.getData();
+            ListaSimpleDocumentos docs = usuario.getDocs();
+            boolean exits = docs.buscar(referencia);
+            if (exits) {
+                encontrado = true;
+                return encontrado;
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+        return encontrado;
+
+    }
 
     public boolean buscar(String referencia) {
         NodoSimple aux = this.pFirst;

@@ -4,6 +4,8 @@
  */
 package Estructuras;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Ana Blanco
@@ -116,6 +118,48 @@ public class ListaSimpleDocumentos<T> {
             invertirlista();
             this.addend((Documento) pAux.getData());
         }
+    }
+    
+    public boolean buscar(String referencia) {
+        NodoSimple aux = this.pFirst;
+        boolean encontrado = false;
+        while (aux != null && encontrado != true) {
+            Documento usuario =(Documento) aux.getData();
+            if (usuario.getTitulo().equalsIgnoreCase(referencia)) {
+                encontrado = true;
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+        return encontrado;
+
+    }
+
+    public boolean EliminarPorReferencia(String referencia) {
+        boolean esta = buscar(referencia);
+        if (esta) {
+            Documento documento = (Documento)this.pFirst.getData();
+            if (documento.getTitulo().equalsIgnoreCase(referencia)) {
+                this.pFirst = this.pFirst.getPnext();
+                
+            }else {
+                NodoSimple aux = this.pFirst;
+                Documento nextaux = (Documento) aux.getPnext().getData();
+                while (!nextaux.getTitulo().equalsIgnoreCase(referencia)) {
+                    aux = aux.getPnext();
+                    nextaux = (Documento) aux.getPnext().getData();
+                }
+                NodoSimple siguiente = aux.getPnext().getPnext();
+                aux.setPnext(siguiente);
+            }
+            size--;
+            return esta;
+           
+        }else{
+            JOptionPane.showMessageDialog(null, "Ese documento no es perteneciente al usuario, debe hacer click en el botón de seleccionar");
+            return esta;
+        }     
+        
     }
 }
 

@@ -32,18 +32,7 @@ public class HashTable {
      * índice
      * @return Integer que es el índice a donde será ingresado en la tabla hash
      */
-//    public int hash(String clave) {
-//        
-//        int hash = 0;
-//        
-//        for (int i = 1; i < clave.length()+1; i++) {
-//            hash += (int)clave.charAt(i-1) * i;
-//        }
-//        
-//        hash = hash % this.size;
-//        
-//        return hash;
-//    } //Cierre metodo
+
     static long transformaClave(String clave) {
         long d;
         d = 0;

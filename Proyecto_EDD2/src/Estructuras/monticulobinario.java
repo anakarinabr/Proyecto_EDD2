@@ -8,7 +8,7 @@ package Estructuras;
  *
  * @author Ana Blanco
  */
-public class BinaryHeap {
+public class MonticuloBinario {
 
     BinaryNode raiz;
 
