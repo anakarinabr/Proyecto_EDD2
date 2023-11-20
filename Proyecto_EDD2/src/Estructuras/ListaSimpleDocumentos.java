@@ -135,8 +135,9 @@ public class ListaSimpleDocumentos<T> {
 
     }
 
-    public void EliminarPorReferencia(String referencia) {
-        if (buscar(referencia)) {
+    public boolean EliminarPorReferencia(String referencia) {
+        boolean esta = buscar(referencia);
+        if (esta) {
             Documento documento = (Documento)this.pFirst.getData();
             if (documento.getTitulo().equalsIgnoreCase(referencia)) {
                 this.pFirst = this.pFirst.getPnext();
@@ -152,8 +153,11 @@ public class ListaSimpleDocumentos<T> {
                 aux.setPnext(siguiente);
             }
             size--;
+            return esta;
+           
         }else{
             JOptionPane.showMessageDialog(null, "Ese documento no es perteneciente al usuario, debe hacer click en el botón de seleccionar");
+            return esta;
         }     
         
     }

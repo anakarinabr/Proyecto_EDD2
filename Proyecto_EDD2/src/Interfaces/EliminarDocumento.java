@@ -28,7 +28,9 @@ public class EliminarDocumento extends javax.swing.JFrame {
         NodoSimple aux = global.getListaUsuarios().getpFirst();
         for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
             Usuario usuario = (Usuario) aux.getData();
-            ComboBoxUsuarios.addItem(usuario.getName().toString());
+            if (!usuario.getDocs().EsVacia()) {
+                ComboBoxUsuarios.addItem(usuario.getName().toString());
+            }
             aux = aux.getPnext();
         }
     }
@@ -97,68 +99,90 @@ public class EliminarDocumento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SeleccionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionUsuarioActionPerformed
-
         ComboBoxDocumentos.removeAllItems();
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
+        if (usuario == null) {
+            JOptionPane.showMessageDialog(null, "No hay usuarios con documentos creados");
+        } else {
+            int indice = this.global.getHashtable().hash(usuario);
 
-        int indice = this.global.getHashtable().hash(usuario);
+            ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
+            NodoSimple aux = lista.getpFirst();
+            Usuario auxusuario = (Usuario) aux.getData();
 
-        ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
-        NodoSimple aux = lista.getpFirst();
-        Usuario auxusuario = (Usuario) aux.getData();
-
-        for (int i = 0; i < lista.getSize(); i++) {
-            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-                NodoSimple doc = auxusuario.getDocs().getpFirst();
-                for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
-                    Documento documento = (Documento) doc.getData();
-                    ComboBoxDocumentos.addItem(documento.getTitulo());
-                    doc = doc.getPnext();
+            for (int i = 0; i < lista.getSize(); i++) {
+                if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                    NodoSimple doc = auxusuario.getDocs().getpFirst();
+                    for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
+                        Documento documento = (Documento) doc.getData();
+                        ComboBoxDocumentos.addItem(documento.getTitulo());
+                        doc = doc.getPnext();
+                    }
+                    break;
+                } else {
+                    aux = aux.getPnext();
+                    auxusuario = (Usuario) aux.getData();
                 }
-                break;
-            } else {
-                aux = aux.getPnext();
-                auxusuario = (Usuario) aux.getData();
             }
         }
     }//GEN-LAST:event_SeleccionUsuarioActionPerformed
 
     private void EliminardocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardocActionPerformed
 
-        String usuario = ComboBoxUsuarios.getSelectedItem().toString();
-        String documento = ComboBoxDocumentos.getSelectedItem().toString();
-        int indice = this.global.getHashtable().hash(usuario);
+        try {
+            String usuario = (String) ComboBoxUsuarios.getSelectedItem();
+            String documento = (String) ComboBoxDocumentos.getSelectedItem();
 
-        ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
-        NodoSimple aux = lista.getpFirst();
-        Usuario auxusuario = (Usuario) aux.getData();
-        for (int i = 0; i < lista.getSize(); i++) {
-            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-                auxusuario.getDocs().EliminarPorReferencia(documento);
-                            
+            if (usuario != null || documento != null) {
 
-                break;
-            } else {
-                aux = aux.getPnext();
-                auxusuario = (Usuario) aux.getData();
-            }
+                int indice = this.global.getHashtable().hash(usuario);
+                usuario = usuario.trim();
+                ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
+                NodoSimple aux = lista.getpFirst();
+                Usuario auxusuario = (Usuario) aux.getData();
+                for (int i = 0; i < lista.getSize(); i++) {
+                    if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                        boolean esta = auxusuario.getDocs().EliminarPorReferencia(documento);
+                        if (esta) {
+                            JOptionPane.showMessageDialog(null, "El archivo: " + documento + ", fué eliminado exitosamente");
+                        }
+                        break;
+                    } else {
+                        aux = aux.getPnext();
+                        auxusuario = (Usuario) aux.getData();
+                    }
 
-        }
-
-        ComboBoxDocumentos.removeAllItems();
-        for (int i = 0; i < lista.getSize(); i++) {
-            if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-                NodoSimple doc = auxusuario.getDocs().getpFirst();
-                for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
-                    Documento documento1 = (Documento) doc.getData();
-                    ComboBoxDocumentos.addItem(documento1.getTitulo());
-                    doc = doc.getPnext();
                 }
-                break;
+
+                ComboBoxDocumentos.removeAllItems();
+                for (int i = 0; i < lista.getSize(); i++) {
+                    if (auxusuario.getName().equalsIgnoreCase(usuario)) {
+                        NodoSimple doc = auxusuario.getDocs().getpFirst();
+                        for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
+                            Documento documento1 = (Documento) doc.getData();
+                            ComboBoxDocumentos.addItem(documento1.getTitulo());
+                            doc = doc.getPnext();
+                        }
+                        break;
+                    } else {
+                        aux = aux.getPnext();
+                        auxusuario = (Usuario) aux.getData();
+                    }
+                }
+                ComboBoxUsuarios.removeAllItems();
+                NodoSimple aux3 = this.global.getListaUsuarios().getpFirst();
+                for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
+                    Usuario usuario3 = (Usuario) aux3.getData();
+                    if (!usuario3.getDocs().EsVacia()) {
+                        ComboBoxUsuarios.addItem(usuario3.getName().toString());
+                    }
+                    aux3 = aux3.getPnext();
+                }
             } else {
-                aux = aux.getPnext();
-                auxusuario = (Usuario) aux.getData();
+                JOptionPane.showMessageDialog(null, "No exiten los campos para eliminar");
             }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Ups. Algo salió mal.\nLuego de elegir el usuario debes hacer click en seleccionar para actualizar los documentos");
         }
     }//GEN-LAST:event_EliminardocActionPerformed
 

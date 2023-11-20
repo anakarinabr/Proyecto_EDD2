@@ -85,9 +85,10 @@ public class CrearDocumento extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String name = " ";
         name += Titulo.getText().trim();
-        int tamano = (int)num.getValue();
+        int tamano = (int) num.getValue();
 
-        if (!name.equals(" ") && tamano != 0) {
+        if (!name.equals(" ") && tamano > 0) {
+            name = name.trim();
             Documento nuevo = new Documento(name, tamano);
 
             String usuario = ComboBox.getSelectedItem().toString();
@@ -100,18 +101,23 @@ public class CrearDocumento extends javax.swing.JFrame {
 
             for (int i = 0; i < lista.getSize(); i++) {
                 if (data.getName().equalsIgnoreCase(usuario)) {
-                    data.getDocs().addend(nuevo);
-                    JOptionPane.showMessageDialog(null, "El documento se ha creado exitosamente");
-                    break;
+                    if (!this.global.getListaUsuarios().buscarDocumento(name)) {
+                        data.getDocs().addend(nuevo);
+                        JOptionPane.showMessageDialog(null, "El documento se ha creado exitosamente");
+                        break;
+                    }else{
+                        JOptionPane.showMessageDialog(null, "El nombre del documento no está disponible");
+                        break;
+                    }
                 } else {
                     aux = aux.getPnext();
                     data = (Usuario) aux.getData();
                 }
             }
-        }else{
-            JOptionPane.showMessageDialog(null, "Debe llenar los campos de título y cantidad de páginas");
+        } else {
+            JOptionPane.showMessageDialog(null, "Debe llenar los campos de título y la cantidad de páginas mayor que cero");
         }
-       
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
