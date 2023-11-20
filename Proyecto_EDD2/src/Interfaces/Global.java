@@ -6,7 +6,7 @@ package Interfaces;
 
 import Estructuras.HashTable;
 import Estructuras.ListaSimpleUsuarios;
-import Estructuras.MonticuloBinario;
+import Estructuras.BinaryHeap;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
 
@@ -19,9 +19,9 @@ public class Global {
     //Parámetros de la clase Global
     private ListaSimpleUsuarios<Usuario> ListaUsuarios;
     private HashTable hashtable;
-    private MonticuloBinario monticulobinario;
+    private BinaryHeap monticulobinario;
     
-    public Global(ListaSimpleUsuarios ListaUsuarios, MonticuloBinario monticulo){
+    public Global(ListaSimpleUsuarios ListaUsuarios, BinaryHeap monticulo){
         this.ListaUsuarios = ListaUsuarios;
         this.monticulobinario = monticulo;
         this.hashtable = null;
@@ -35,11 +35,11 @@ public class Global {
         this.ListaUsuarios = ListaUsuarios;
     }
 
-    public MonticuloBinario getMonticulobinario() {
+    public BinaryHeap getMonticulobinario() {
         return monticulobinario;
     }
 
-    public void setMonticulobinario(MonticuloBinario monticulobinario) {
+    public void setMonticulobinario(BinaryHeap monticulobinario) {
         this.monticulobinario = monticulobinario;
     }
     

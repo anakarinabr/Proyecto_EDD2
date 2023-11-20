@@ -4,7 +4,7 @@
  */
 package Main;
 import Estructuras.ListaSimpleUsuarios;
-import Estructuras.MonticuloBinario;
+import Estructuras.BinaryHeap;
 import Estructuras.Usuario;
 import Interfaces.Global;
 import Interfaces.start_interfaz;
@@ -24,7 +24,7 @@ public class Proyecto_EDD2 {
     public static void main(String[] args) {
         // TODO code application logic here
         ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
-        MonticuloBinario monticulo = new MonticuloBinario();
+        BinaryHeap monticulo = new BinaryHeap();
         Global global = new Global(ListaUsuarios, monticulo);
         start_interfaz inicio = new start_interfaz(global);   
         inicio.setVisible(true);

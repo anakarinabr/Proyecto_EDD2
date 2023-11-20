@@ -6,8 +6,17 @@ package Estructuras;
 
 /**
  *
- * @author Ana Blanco
+ * @author Artur
  */
-public class MonticuloBinario {
+public class BinaryNode {
     
+     int valor;
+    BinaryNode izquierda;
+    BinaryNode derecha;
+
+    public BinaryNode(int valor) {
+        this.valor = valor;
+        this.izquierda = null;
+        this.derecha = null;
+    }
 }
