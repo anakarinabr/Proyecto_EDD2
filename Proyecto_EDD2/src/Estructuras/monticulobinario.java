@@ -6,7 +6,7 @@ package Estructuras;
 
 /**
  *
- * @author Ana Blanco
+ * @author luisr
  */
 public class MonticuloBinario<T> {
 
