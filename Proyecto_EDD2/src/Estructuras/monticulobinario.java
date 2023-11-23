@@ -8,114 +8,104 @@ package Estructuras;
  *
  * @author Ana Blanco
  */
-public class MonticuloBinario {
+public class MonticuloBinario<T> {
 
-    BinaryNode raiz;
+    private NodoMonticuloBi<T> root;
+    private int size;
 
-    public void insertar(int valor) {
-        BinaryNode nuevoNodo = new BinaryNode(valor);
-        if (raiz == null) {
-            raiz = nuevoNodo;
+    public MonticuloBinario() {
+        this.root = null;
+        this.size = 0;
+    }
+
+    public NodoMonticuloBi<T> getRoot() {
+        return root;
+    }
+
+    public void setRoot(NodoMonticuloBi<T> root) {
+        this.root = root;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    public boolean isEmpty() {
+        return this.root == null;
+    }
+
+    public void Ingresar(T data) {       //NodoMonticuloBi Documento
+        NodoMonticuloBi<T> nodo = new NodoMonticuloBi(data);
+        if (isEmpty() == true) {
+            this.root = nodo;
         } else {
-            BinaryNode actual = raiz;
-            BinaryNode padre = null;
-            while (actual != null) {
-                padre = actual;
-                if (valor < actual.valor) {
-                    actual = actual.izquierda;
+            Queue<NodoMonticuloBi> cola = new Queue();
+            cola.add(root);
+            while (!cola.isEmpty()) {
+                NodoMonticuloBi temp = cola.getpHead().getData();
+                if (temp.getHijoIzq() == null) {
+                    temp.setHijoIzq(nodo);
+                    temp.getHijoIzq().setPadre(cola.getpHead().getData());
+                    subir(nodo);
+                    break;
                 } else {
-                    actual = actual.derecha;
+                    cola.add(temp.getHijoIzq());
                 }
+                if (temp.getHijoDer() == null) {
+                    temp.setHijoDer(nodo);
+                    temp.getHijoDer().setPadre(cola.getpHead().getData());
+                    subir(nodo);
+                    break;
+                } else {
+                    cola.add(temp.getHijoDer());
+                }
+                cola.poll();
+
             }
-            if (valor < padre.valor) {
-                padre.izquierda = nuevoNodo;
-            } else {
-                padre.derecha = nuevoNodo;
+        }
+
+    }
+
+    public void subir(NodoMonticuloBi nodo) {
+        NodoMonticuloBi padre = nodo.getPadre();
+        if (padre != null) {
+            int aux = (int) padre.getDato();
+            if ((int) nodo.getDato() < (int) padre.getDato()) {
+                padre.setDato(nodo.getDato());
+                nodo.setDato(aux);
+                nodo = nodo.getPadre();
+                subir(nodo);
             }
+
         }
     }
 
-    private void subir(BinaryNode actual, BinaryNode padre) {
-        int valorPadre = padre.valor;
-        padre.valor = actual.valor;
-        actual.valor = valorPadre;
-    }
-
-    private void heapify(BinaryNode actual) {
-        BinaryNode izquierda = actual.izquierda;
-        BinaryNode derecha = actual.derecha;
-        BinaryNode mayor = actual;
-        if (izquierda != null && izquierda.valor > mayor.valor) {
-            mayor = izquierda;
-        }
-        if (derecha != null && derecha.valor > mayor.valor) {
-            mayor = derecha;
-        }
-        if (mayor != actual) {
-            subir(mayor, actual);
-            heapify(mayor);
-        }
-    }
 
     public void preOrden() {
-        preOrden(raiz);
+        this.preorder(this.getRoot());
     }
 
-    private void preOrden(BinaryNode actual) {
-        if (actual != null) {
-            System.out.print(actual.valor + " ");
-            preOrden(actual.izquierda);
-            preOrden(actual.derecha);
-        }
-    }
-
-    public void postOrden() {
-        postOrden(raiz);
-    }
-
-    private void postOrden(BinaryNode actual) {
-        if (actual != null) {
-            postOrden(actual.izquierda);
-            postOrden(actual.derecha);
-            System.out.print(actual.valor + " ");
+    private void preorder(NodoMonticuloBi root) {
+        if (root != null) {
+            System.out.println(root.getDato().toString());
+            this.preorder(root.getHijoIzq());
+            this.preorder(root.getHijoDer());
         }
     }
 
     public void inOrden() {
-        inOrden(raiz);
+        this.inorder(this.getRoot());
     }
 
-    private void inOrden(BinaryNode actual) {
-        if (actual != null) {
-            inOrden(actual.izquierda);
-            System.out.print(actual.valor + " ");
-            inOrden(actual.derecha);
+    private void inorder(NodoMonticuloBi root) {
+        if (root != null) {
+            this.inorder(root.getHijoIzq());
+            System.out.println(root.getDato().toString());
+            this.inorder(root.getHijoDer());
         }
-    }
-
-    public int getMaximo() {
-        return getMaximo(raiz);
-    }
-
-    private int getMaximo(BinaryNode actual) {
-        if (actual == null) {
-            return Integer.MIN_VALUE;
-        }
-        int maximoIzquierda = getMaximo(actual.izquierda);
-        int maximoDerecha = getMaximo(actual.derecha);
-        return Math.max(Math.max(maximoIzquierda, maximoDerecha), actual.valor);
-    }
-
-    public int getMinimo() {
-        return getMinimo(raiz);
-    }
-
-    private int getMinimo(BinaryNode actual) {
-        if (actual == null) {
-            return Integer.MAX_VALUE;
-        }
-        int minimoIzquierda = getMinimo(actual.izquierda);
-        int minimoDerecha = getMinimo(actual.derecha);
-        return Math.min(Math.min(minimoIzquierda, minimoDerecha), actual.valor);
     }
 }
