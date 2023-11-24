@@ -7,6 +7,7 @@ package Estructuras;
 /**
  *
  * @author luisr
+ * @param <T>
  */
 public class MonticuloBinario<T> {
 
@@ -49,16 +50,16 @@ public class MonticuloBinario<T> {
                 NodoMonticuloBi temp = cola.getpHead().getData();
                 if (temp.getHijoIzq() == null) {
                     temp.setHijoIzq(nodo);
-                    temp.getHijoIzq().setPadre(cola.getpHead().getData());
-                    subir(nodo);
+                    temp.getHijoIzq().setPadre(temp);
+                    this.subir(nodo);
                     break;
                 } else {
                     cola.add(temp.getHijoIzq());
                 }
                 if (temp.getHijoDer() == null) {
                     temp.setHijoDer(nodo);
-                    temp.getHijoDer().setPadre(cola.getpHead().getData());
-                    subir(nodo);
+                    temp.getHijoDer().setPadre(temp);
+                    this.subir(nodo);
                     break;
                 } else {
                     cola.add(temp.getHijoDer());
@@ -70,7 +71,7 @@ public class MonticuloBinario<T> {
 
     }
 
-    public void subir(NodoMonticuloBi nodo) {
+    private void subir(NodoMonticuloBi nodo) {
         NodoMonticuloBi padre = nodo.getPadre();
         if (padre != null) {
             int aux = (int) padre.getDato();
