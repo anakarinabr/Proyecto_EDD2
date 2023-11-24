@@ -68,7 +68,7 @@ public class AgregarUsuarios extends javax.swing.JFrame {
         });
         getContentPane().add(Add, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 130, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (4).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/5.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

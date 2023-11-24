@@ -38,8 +38,8 @@ public class Impresora_interfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         back = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        Liberar = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -58,11 +58,21 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(14, 12, -1, -1));
 
-        jButton1.setText("Liberar ");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 350, 30));
+        Liberar.setText("Liberar ");
+        Liberar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                LiberarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Liberar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 160, 350, 30));
 
-        jButton2.setText("Eliminar documento");
-        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 350, 30));
+        Eliminar.setText("Eliminar documento de la impresora");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EliminarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 350, 30));
 
         jButton3.setText("Ver documentos en forma de cola");
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
@@ -81,6 +91,16 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
+
+    private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
+        this.global.getMonticulobinario().eliminarprimero();
+    }//GEN-LAST:event_LiberarActionPerformed
+
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        EliminarDocumento_cola doc = new EliminarDocumento_cola(this.global);
+        this.setVisible(false);
+        doc.setVisible(true);
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,9 +138,9 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Eliminar;
+    private javax.swing.JButton Liberar;
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;

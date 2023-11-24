@@ -115,7 +115,9 @@ public class EliminarDocumento extends javax.swing.JFrame {
                     NodoSimple doc = auxusuario.getDocs().getpFirst();
                     for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
                         Documento documento = (Documento) doc.getData();
-                        ComboBoxDocumentos.addItem(documento.getTitulo());
+                        if (!documento.isEncola()) {
+                            ComboBoxDocumentos.addItem(documento.getTitulo());
+                        }
                         doc = doc.getPnext();
                     }
                     break;
@@ -155,20 +157,6 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
 
                 ComboBoxDocumentos.removeAllItems();
-//                for (int i = 0; i < lista.getSize(); i++) {
-//                    if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-//                        NodoSimple doc = auxusuario.getDocs().getpFirst();
-//                        for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
-//                            Documento documento1 = (Documento) doc.getData();
-//                            ComboBoxDocumentos.addItem(documento1.getTitulo());
-//                            doc = doc.getPnext();
-//                        }
-//                        break;
-//                    } else {
-//                        aux = aux.getPnext();
-//                        auxusuario = (Usuario) aux.getData();
-//                    }
-//                }
                 ComboBoxUsuarios.removeAllItems();
                 NodoSimple aux3 = this.global.getListaUsuarios().getpFirst();
                 for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {

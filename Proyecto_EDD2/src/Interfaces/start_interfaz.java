@@ -296,6 +296,8 @@ public class start_interfaz extends javax.swing.JFrame {
             BasedeDatos_interfaz ventana = new BasedeDatos_interfaz(this.global);
             this.setVisible(false);
             ventana.setVisible(true);
+        }else{
+            JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
