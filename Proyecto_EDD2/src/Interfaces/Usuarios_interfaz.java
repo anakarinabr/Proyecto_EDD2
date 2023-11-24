@@ -68,7 +68,7 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(EliminarUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 170, 156, 150));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Manejo usuarios.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/2.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();

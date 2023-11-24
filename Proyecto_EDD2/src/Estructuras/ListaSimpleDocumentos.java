@@ -119,12 +119,12 @@ public class ListaSimpleDocumentos<T> {
             this.addend((Documento) pAux.getData());
         }
     }
-    
+
     public boolean buscar(String referencia) {
         NodoSimple aux = this.pFirst;
         boolean encontrado = false;
         while (aux != null && encontrado != true) {
-            Documento usuario =(Documento) aux.getData();
+            Documento usuario = (Documento) aux.getData();
             if (usuario.getTitulo().equalsIgnoreCase(referencia)) {
                 encontrado = true;
             } else {
@@ -138,11 +138,11 @@ public class ListaSimpleDocumentos<T> {
     public boolean EliminarPorReferencia(String referencia) {
         boolean esta = buscar(referencia);
         if (esta) {
-            Documento documento = (Documento)this.pFirst.getData();
+            Documento documento = (Documento) this.pFirst.getData();
             if (documento.getTitulo().equalsIgnoreCase(referencia)) {
                 this.pFirst = this.pFirst.getPnext();
-                
-            }else {
+
+            } else {
                 NodoSimple aux = this.pFirst;
                 Documento nextaux = (Documento) aux.getPnext().getData();
                 while (!nextaux.getTitulo().equalsIgnoreCase(referencia)) {
@@ -154,12 +154,34 @@ public class ListaSimpleDocumentos<T> {
             }
             size--;
             return esta;
-           
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Ese documento no es perteneciente al usuario, debe hacer click en el botón de seleccionar");
             return esta;
-        }     
-        
+        }
+
+    }
+
+    public Documento BuscarDocumento(String referencia) {
+        if (buscar(referencia)) {
+            Documento documento = (Documento) this.pFirst.getData();
+            if (documento.getTitulo().equalsIgnoreCase(referencia)) {
+                return documento;
+
+            } else {
+                NodoSimple aux = this.pFirst;
+                Documento nextaux = (Documento) aux.getData();
+                while (!nextaux.getTitulo().equalsIgnoreCase(referencia)) {
+                    aux = aux.getPnext();
+                    nextaux = (Documento) aux.getData();
+                }
+
+                return nextaux;
+
+            }
+        } else {
+            return null;
+        }
+
     }
 }
-

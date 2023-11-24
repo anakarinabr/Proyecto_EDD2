@@ -2,14 +2,13 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Estructuras;
+package monticulobinario;
 
 /**
  *
  * @author Ana Blanco
  */
 public class Documento {
-
     private String titulo;
     private int tamaño;
     private boolean tipo;
@@ -23,6 +22,16 @@ public class Documento {
         this.encola = false;
         this.time = 0;
     }
+
+    public int getTime() {
+        return time;
+    }
+
+    public void setTime(int time) {
+        this.time = time;
+    }
+    
+    
 
     public String getTitulo() {
         return titulo;
@@ -55,39 +64,6 @@ public class Documento {
     public void setEncola(boolean encola) {
         this.encola = encola;
     }
-
-    public int getTime() {
-        return time;
-    }
-
-    public void setTime(int time) {
-        this.time = time;
-    }
     
-    
-    public void ActualizarTime(String prioridad,int hora, int minuto, int segundos ){
-        this.time = hora*3600 + minuto*60 + segundos;
-        if (this.tipo){
-            if (prioridad.equalsIgnoreCase("Prioridad_alta")){
-                if(this.time >= 30){
-                    this.time -= 30;
-                }else{
-                    this.time = 0;
-                } 
-            }else if(prioridad.equalsIgnoreCase("Prioridad_media")){
-                if(this.time >= 20){
-                    this.time -= 20;
-                }else{
-                    this.time = 0;
-                }
-            }else if(prioridad.equalsIgnoreCase("Prioridad_baja")){
-                if(this.time >= 10){
-                    this.time -= 10;
-                }else{
-                    this.time = 0;
-                }
-            }
-        }    
-    }
     
 }

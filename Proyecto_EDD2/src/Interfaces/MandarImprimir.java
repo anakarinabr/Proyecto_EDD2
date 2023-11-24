@@ -8,20 +8,21 @@ import Estructuras.Documento;
 import Estructuras.ListaSimpleUsuarios;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
+import static Interfaces.EliminarDocumento.global;
+import java.util.HashSet;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Ana Blanco
  */
-public class EliminarDocumento extends javax.swing.JFrame {
-
+public class MandarImprimir extends javax.swing.JFrame {
+    
     public static Global global;
-
     /**
-     * Creates new form EliminarDocumento
+     * Creates new form MandarImprimir
      */
-    public EliminarDocumento(Global global) {
+    public MandarImprimir(Global global) {
         this.global = global;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -45,12 +46,13 @@ public class EliminarDocumento extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         ComboBoxUsuarios = new javax.swing.JComboBox<>();
         ComboBoxDocumentos = new javax.swing.JComboBox<>();
-        SeleccionUsuario = new javax.swing.JButton();
-        Eliminardoc = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        Selection = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
+        prioritario = new javax.swing.JToggleButton();
+        ComboBoxUsuario = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -58,47 +60,50 @@ public class EliminarDocumento extends javax.swing.JFrame {
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        getContentPane().add(ComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 150, 180, -1));
+
+        getContentPane().add(ComboBoxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 290, 180, -1));
+
         jButton1.setText("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 18, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 15, -1, -1));
 
-        getContentPane().add(ComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, 200, -1));
-
-        getContentPane().add(ComboBoxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, 230, -1));
-
-        SeleccionUsuario.setText("Seleccionar");
-        SeleccionUsuario.addActionListener(new java.awt.event.ActionListener() {
+        Selection.setText("Seleccionar");
+        Selection.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SeleccionUsuarioActionPerformed(evt);
+                SelectionActionPerformed(evt);
             }
         });
-        getContentPane().add(SeleccionUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, -1, -1));
+        getContentPane().add(Selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 110, -1));
 
-        Eliminardoc.setText("Eliminar");
-        Eliminardoc.addActionListener(new java.awt.event.ActionListener() {
+        jButton3.setText("Imprimir");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EliminardocActionPerformed(evt);
+                jButton3ActionPerformed(evt);
             }
         });
-        getContentPane().add(Eliminardoc, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 320, 100, -1));
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 130, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/8.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        prioritario.setText("Prioritario");
+        getContentPane().add(prioritario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, -1));
+
+        ComboBoxUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/9.png"))); // NOI18N
+        getContentPane().add(ComboBoxUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       Documentos_interfaz imprimir = new Documentos_interfaz(this.global);
         this.setVisible(false);
-        Documentos_interfaz v2 = new Documentos_interfaz(this.global);
-        v2.setVisible(true);
+        imprimir.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void SeleccionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionUsuarioActionPerformed
+    private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
         ComboBoxDocumentos.removeAllItems();
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         if (usuario == null) {
@@ -115,7 +120,9 @@ public class EliminarDocumento extends javax.swing.JFrame {
                     NodoSimple doc = auxusuario.getDocs().getpFirst();
                     for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
                         Documento documento = (Documento) doc.getData();
-                        ComboBoxDocumentos.addItem(documento.getTitulo());
+                        if(!documento.isEncola()){
+                                 ComboBoxDocumentos.addItem(documento.getTitulo());
+                        }
                         doc = doc.getPnext();
                     }
                     break;
@@ -125,10 +132,9 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
             }
         }
-    }//GEN-LAST:event_SeleccionUsuarioActionPerformed
+    }//GEN-LAST:event_SelectionActionPerformed
 
-    private void EliminardocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardocActionPerformed
-
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         try {
             String usuario = (String) ComboBoxUsuarios.getSelectedItem();
             String documento = (String) ComboBoxDocumentos.getSelectedItem();
@@ -142,9 +148,16 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 Usuario auxusuario = (Usuario) aux.getData();
                 for (int i = 0; i < lista.getSize(); i++) {
                     if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-                        boolean esta = auxusuario.getDocs().EliminarPorReferencia(documento);
-                        if (esta) {
-                            JOptionPane.showMessageDialog(null, "El archivo: " + documento + ", fué eliminado exitosamente");
+                        Documento esta = auxusuario.getDocs().BuscarDocumento(documento);
+                        if (documento != null) {
+                            esta.setEncola(true);
+                            esta.setTipo(prioritario.isSelected());
+                            int hora = this.global.getCronometro().GetHora();
+                            int min = this.global.getCronometro().GetMinutos();
+                            int seg = this.global.getCronometro().GetSegundos();
+                            esta.ActualizarTime(auxusuario.getPrioridad(),hora, min, seg);
+//                          this.global.getMonticulobinario().Ingresar(esta); falta esto, pero luis esta modificando el documento de monticulo
+                            JOptionPane.showMessageDialog(null, "Eldocumento: "+esta.getTitulo()+ " fué enviado a la cola de impresión");
                         }
                         break;
                     } else {
@@ -155,26 +168,26 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
 
                 ComboBoxDocumentos.removeAllItems();
-//                for (int i = 0; i < lista.getSize(); i++) {
-//                    if (auxusuario.getName().equalsIgnoreCase(usuario)) {
-//                        NodoSimple doc = auxusuario.getDocs().getpFirst();
-//                        for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
-//                            Documento documento1 = (Documento) doc.getData();
-//                            ComboBoxDocumentos.addItem(documento1.getTitulo());
-//                            doc = doc.getPnext();
-//                        }
-//                        break;
-//                    } else {
-//                        aux = aux.getPnext();
-//                        auxusuario = (Usuario) aux.getData();
-//                    }
-//                }
+                
                 ComboBoxUsuarios.removeAllItems();
                 NodoSimple aux3 = this.global.getListaUsuarios().getpFirst();
                 for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
                     Usuario usuario3 = (Usuario) aux3.getData();
                     if (!usuario3.getDocs().EsVacia()) {
-                        ComboBoxUsuarios.addItem(usuario3.getName().toString());
+                        boolean print = false;
+                        NodoSimple aux5 = usuario3.getDocs().getpFirst();
+                        for (int j = 0; j < usuario3.getDocs().getSize(); j++) {
+                            Documento doc = (Documento)aux5.getData();
+                            if(doc.isEncola()){
+                                aux5 = aux5.getPnext();
+                            }else{
+                                print = true;
+                                break;
+                            }
+                        }
+                        if(print){
+                            ComboBoxUsuarios.addItem(usuario3.getName().toString());
+                        }
                     }
                     aux3 = aux3.getPnext();
                 }
@@ -184,7 +197,7 @@ public class EliminarDocumento extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Ups. Algo salió mal.\nLuego de elegir el usuario debes hacer click en seleccionar para actualizar los documentos");
         }
-    }//GEN-LAST:event_EliminardocActionPerformed
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -203,31 +216,32 @@ public class EliminarDocumento extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MandarImprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MandarImprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MandarImprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EliminarDocumento.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MandarImprimir.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EliminarDocumento(global).setVisible(true);
+                new MandarImprimir(global).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBoxDocumentos;
+    private javax.swing.JLabel ComboBoxUsuario;
     private javax.swing.JComboBox<String> ComboBoxUsuarios;
-    private javax.swing.JButton Eliminardoc;
-    private javax.swing.JButton SeleccionUsuario;
+    private javax.swing.JButton Selection;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JToggleButton prioritario;
     // End of variables declaration//GEN-END:variables
 }
