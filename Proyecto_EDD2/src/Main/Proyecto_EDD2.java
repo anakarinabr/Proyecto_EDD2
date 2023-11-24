@@ -31,7 +31,6 @@ public class Proyecto_EDD2 {
         crono.Iniciar();
         System.out.println(crono.GetHora() + " : " + crono.GetMinutos() + " : " + crono.GetSegundos());
         ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios();
-
         MonticuloBinario monticulo = new MonticuloBinario();
         Global global = new Global(ListaUsuarios, monticulo, crono);
         start_interfaz inicio = new start_interfaz(global);

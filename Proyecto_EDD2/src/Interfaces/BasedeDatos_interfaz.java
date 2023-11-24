@@ -4,20 +4,55 @@
  */
 package Interfaces;
 
+import Estructuras.Documento;
+import Estructuras.ListaSimpleDocumentos;
+import Estructuras.ListaSimpleUsuarios;
+import Estructuras.NodoSimple;
+import Estructuras.Usuario;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ana Blanco
  */
 public class BasedeDatos_interfaz extends javax.swing.JFrame {
     
-    
+    DefaultTableModel tabla = new DefaultTableModel();
     public static Global global;
+    private int filas;
+
     /**
      * Creates new form BasedeDatos_interfaz
      */
     public BasedeDatos_interfaz(Global global) {
+        this.filas= 0;
         this.global = global;
         initComponents();
+        this.setLocationRelativeTo(null);
+        NodoSimple aux = global.getListaUsuarios().getpFirst();
+        for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
+            Usuario usuario = (Usuario) aux.getData();
+            ComboBoxUsuarios.addItem(usuario.getName().toString());
+            aux = aux.getPnext();
+        }
+        
+        String[] titulos= {"Título", "Páginas", "Mandado a imprimir"};
+        tabla.setColumnIdentifiers(titulos);
+        tabla1.setModel(tabla);
+    }
+    
+    
+    public void borrar(){
+    
+        int contador = 0;
+        int variable =0;
+        
+        while(this.filas!= 0 && this.filas!=contador){
+            tabla.removeRow(variable);
+            contador ++;
+        }
+       
     }
 
     /**
@@ -31,10 +66,17 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         Back = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tabla1 = new javax.swing.JTable();
+        ComboBoxUsuarios = new javax.swing.JComboBox<>();
+        selected = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         Back.setText("Regresar");
         Back.addActionListener(new java.awt.event.ActionListener() {
@@ -42,27 +84,41 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
                 BackActionPerformed(evt);
             }
         });
+        getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(19, 19, 19)
-                .addComponent(Back)
-                .addContainerGap(506, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Back)
-                .addGap(0, 365, Short.MAX_VALUE))
-        );
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Título", "Páginas", "Mandado a imprimir"
+            }
+        ));
+        jScrollPane1.setViewportView(tabla1);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 50, 410, 330));
+
+        getContentPane().add(ComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 146, -1));
+
+        selected.setText("Seleccionar");
+        selected.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                selectedActionPerformed(evt);
+            }
+        });
+        getContentPane().add(selected, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/10.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -72,6 +128,36 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         this.setVisible(false);
         back.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
+
+    private void selectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedActionPerformed
+        
+        this.borrar();
+        
+        
+        String usuario = (String) ComboBoxUsuarios.getSelectedItem();
+        int num = this.global.getHashtable().hash(usuario);
+        ListaSimpleUsuarios usuarios = this.global.getHashtable().getTable()[num];
+        NodoSimple aux = usuarios.getpFirst();
+        for (int i = 0; i < usuarios.getSize(); i++) {
+            Usuario user = (Usuario) aux.getData();
+            if (user.getName().equalsIgnoreCase(usuario)) {
+                ListaSimpleDocumentos docs = user.getDocs();
+                if (docs.EsVacia()) {
+                    JOptionPane.showMessageDialog(null, "Este usuario no tiene documentos");
+                } else {
+                    NodoSimple doc =docs.getpFirst();
+                    for (int j = 0; j < docs.getSize(); j++) {
+                        Documento docu = (Documento)doc.getData();
+                        tabla.addRow(new Object[]{docu.getTitulo(), docu.getTamaño(), docu.isEncola()});
+                        doc = doc.getPnext();
+                    }
+                    this.filas = docs.getSize();
+                }
+            } else {
+                aux = aux.getPnext();
+            }
+        }
+    }//GEN-LAST:event_selectedActionPerformed
 
     /**
      * @param args the command line arguments
@@ -110,6 +196,11 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
+    private javax.swing.JComboBox<String> ComboBoxUsuarios;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton selected;
+    private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
 }
