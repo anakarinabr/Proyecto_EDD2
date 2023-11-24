@@ -85,7 +85,6 @@ public class MonticuloBinario<T> {
         }
     }
 
-
     public void preOrden() {
         this.preorder(this.getRoot());
     }
@@ -107,6 +106,59 @@ public class MonticuloBinario<T> {
             this.inorder(root.getHijoIzq());
             System.out.println(root.getDato().toString());
             this.inorder(root.getHijoDer());
+        }
+    }
+
+    public void ImprimirComoCola() {
+        Queue<NodoMonticuloBi> cola = new Queue();
+        Queue<NodoMonticuloBi> cola2 = new Queue();
+        cola.add(root);
+        while (!cola.isEmpty()) {
+            NodoMonticuloBi temp = cola.getpHead().getData();
+            if (temp.getHijoIzq() != null) {
+                cola.add(temp.getHijoIzq());
+            }
+            if (temp.getHijoDer() != null) {
+                cola.add(temp.getHijoDer());
+
+            }
+            cola2.add(temp);
+            cola.poll();
+        }
+        for (int i = 0; i < cola2.getSize(); i++) {
+            NodoMonticuloBi aux = cola2.getpHead().getData();
+            System.out.print("->" + aux.getDato());
+            cola2.poll();
+            cola2.add(aux);
+        }
+
+    }
+
+    public void eliminarprimero() {
+        Queue<NodoMonticuloBi> cola = new Queue();
+        Queue<NodoMonticuloBi> cola2 = new Queue();
+        cola.add(root);
+        while (!cola.isEmpty()) {
+            NodoMonticuloBi temp = cola.getpHead().getData();
+            if (temp.getHijoIzq() != null) {
+                cola.add(temp.getHijoIzq());
+            }
+            if (temp.getHijoDer() != null) {
+                cola.add(temp.getHijoDer());
+
+            }
+            cola2.add(temp);
+            cola.poll();
+        }
+        cola2.poll();
+        this.root = null;
+        while (!cola2.isEmpty()) {
+            if (cola2.getpHead() != null) {
+                NodoMonticuloBi<T> aux = cola2.getpHead().getData();
+                Ingresar(aux.getDato());
+                cola2.poll();
+            }
+
         }
     }
 }
