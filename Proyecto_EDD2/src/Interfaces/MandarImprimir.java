@@ -17,8 +17,9 @@ import javax.swing.JOptionPane;
  * @author Ana Blanco
  */
 public class MandarImprimir extends javax.swing.JFrame {
-    
+
     public static Global global;
+
     /**
      * Creates new form MandarImprimir
      */
@@ -50,7 +51,7 @@ public class MandarImprimir extends javax.swing.JFrame {
         ComboBoxDocumentos = new javax.swing.JComboBox<>();
         jButton1 = new javax.swing.JButton();
         Selection = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        Imprimir = new javax.swing.JButton();
         prioritario = new javax.swing.JToggleButton();
         ComboBoxUsuario = new javax.swing.JLabel();
 
@@ -80,13 +81,13 @@ public class MandarImprimir extends javax.swing.JFrame {
         });
         getContentPane().add(Selection, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 150, 110, -1));
 
-        jButton3.setText("Imprimir");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        Imprimir.setText("Imprimir");
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                ImprimirActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 130, -1));
+        getContentPane().add(Imprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 350, 130, -1));
 
         prioritario.setText("Prioritario");
         getContentPane().add(prioritario, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 280, 130, -1));
@@ -98,7 +99,7 @@ public class MandarImprimir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-       Documentos_interfaz imprimir = new Documentos_interfaz(this.global);
+        Documentos_interfaz imprimir = new Documentos_interfaz(this.global);
         this.setVisible(false);
         imprimir.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
@@ -120,8 +121,8 @@ public class MandarImprimir extends javax.swing.JFrame {
                     NodoSimple doc = auxusuario.getDocs().getpFirst();
                     for (int j = 0; j < auxusuario.getDocs().getSize(); j++) {
                         Documento documento = (Documento) doc.getData();
-                        if(!documento.isEncola()){
-                                 ComboBoxDocumentos.addItem(documento.getTitulo());
+                        if (!documento.isEncola()) {
+                            ComboBoxDocumentos.addItem(documento.getTitulo());
                         }
                         doc = doc.getPnext();
                     }
@@ -134,7 +135,7 @@ public class MandarImprimir extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SelectionActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
         try {
             String usuario = (String) ComboBoxUsuarios.getSelectedItem();
             String documento = (String) ComboBoxDocumentos.getSelectedItem();
@@ -155,9 +156,11 @@ public class MandarImprimir extends javax.swing.JFrame {
                             int hora = this.global.getCronometro().GetHora();
                             int min = this.global.getCronometro().GetMinutos();
                             int seg = this.global.getCronometro().GetSegundos();
-                            esta.ActualizarTime(auxusuario.getPrioridad(),hora, min, seg);
-//                          this.global.getMonticulobinario().Ingresar(esta); falta esto, pero luis esta modificando el documento de monticulo
-                            JOptionPane.showMessageDialog(null, "Eldocumento: "+esta.getTitulo()+ " fué enviado a la cola de impresión");
+                            esta.ActualizarTime(auxusuario.getPrioridad(), hora, min, seg);
+                            System.out.println(esta.getTitulo()+ ": "+esta.getTime());
+                            this.global.getMonticulobinario().Ingresar(esta);
+                            JOptionPane.showMessageDialog(null, "Eldocumento: " + esta.getTitulo() + " fué enviado a la cola de impresión");
+                  
                         }
                         break;
                     } else {
@@ -168,7 +171,7 @@ public class MandarImprimir extends javax.swing.JFrame {
                 }
 
                 ComboBoxDocumentos.removeAllItems();
-                
+
                 ComboBoxUsuarios.removeAllItems();
                 NodoSimple aux3 = this.global.getListaUsuarios().getpFirst();
                 for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
@@ -177,15 +180,15 @@ public class MandarImprimir extends javax.swing.JFrame {
                         boolean print = false;
                         NodoSimple aux5 = usuario3.getDocs().getpFirst();
                         for (int j = 0; j < usuario3.getDocs().getSize(); j++) {
-                            Documento doc = (Documento)aux5.getData();
-                            if(doc.isEncola()){
+                            Documento doc = (Documento) aux5.getData();
+                            if (doc.isEncola()) {
                                 aux5 = aux5.getPnext();
-                            }else{
+                            } else {
                                 print = true;
                                 break;
                             }
                         }
-                        if(print){
+                        if (print) {
                             ComboBoxUsuarios.addItem(usuario3.getName().toString());
                         }
                     }
@@ -197,7 +200,7 @@ public class MandarImprimir extends javax.swing.JFrame {
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Ups. Algo salió mal.\nLuego de elegir el usuario debes hacer click en seleccionar para actualizar los documentos");
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_ImprimirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -238,9 +241,9 @@ public class MandarImprimir extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> ComboBoxDocumentos;
     private javax.swing.JLabel ComboBoxUsuario;
     private javax.swing.JComboBox<String> ComboBoxUsuarios;
+    private javax.swing.JButton Imprimir;
     private javax.swing.JButton Selection;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton prioritario;
     // End of variables declaration//GEN-END:variables

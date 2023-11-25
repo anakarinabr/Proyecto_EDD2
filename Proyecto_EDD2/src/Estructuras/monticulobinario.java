@@ -68,15 +68,19 @@ public class MonticuloBinario<T> {
 
             }
         }
+        
+        size++;
 
     }
 
     private void subir(NodoMonticuloBi nodo) {
-        NodoMonticuloBi padre = nodo.getPadre();
-        if (padre != null) {
-            int aux = (int) padre.getDato();
-            if ((int) nodo.getDato() < (int) padre.getDato()) {
-                padre.setDato(nodo.getDato());
+        Documento documentonodo = (Documento) nodo.getDato();
+        NodoMonticuloBi padrenodo = nodo.getPadre();
+        Documento padredocumento = (Documento)padrenodo.getDato();
+        if (padrenodo != null) {
+            Documento aux = (Documento) padrenodo.getDato();
+            if ((documentonodo.getTime() < padredocumento.getTime())) {
+                padrenodo.setDato(documentonodo);
                 nodo.setDato(aux);
                 nodo = nodo.getPadre();
                 subir(nodo);
@@ -91,7 +95,8 @@ public class MonticuloBinario<T> {
 
     private void preorder(NodoMonticuloBi root) {
         if (root != null) {
-            System.out.println(root.getDato().toString());
+            Documento doc = (Documento) root.getDato();
+            System.out.println(doc.getTitulo()+ doc.getTime());
             this.preorder(root.getHijoIzq());
             this.preorder(root.getHijoDer());
         }
@@ -138,7 +143,7 @@ public class MonticuloBinario<T> {
         NodoMonticuloBi padre = root;
         NodoMonticuloBi izq = root.getHijoIzq();
         NodoMonticuloBi der = root.getHijoDer();
-        while (true) {//padre.getHijoIzq() != null && padre.getHijoDer() != null  while (izq != null && der != null)
+        while (true) {
             if (padre.getHijoIzq() == null && padre.getHijoDer() == null) {
                 this.setRoot(null);
                 System.out.println(root);
@@ -146,21 +151,25 @@ public class MonticuloBinario<T> {
             }
 
             if (der == null) {
-                padre.setDato(izq.getDato());
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null || (int) padre.getDato() == (int) padre.getHijoIzq().getDato()) {
+                Documento doc= (Documento)izq.getDato();
+                padre.setDato(doc);
+                Documento dochijo= (Documento)padre.getHijoIzq().getDato();
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null || doc.getTime() == dochijo.getTime()) {
                     padre.setHijoIzq(null);
                     break;
                 }
             }
-            if ((int) izq.getDato() < (int) der.getDato()) {
-                padre.setDato(izq.getDato());
+            Documento docizq = (Documento)izq.getDato();
+            Documento docder = (Documento) der.getDato();
+            if (docizq.getTime() < docder.getTime()) {
+                padre.setDato(docizq);
                 padre = izq;
                 izq = izq.getHijoIzq();
                 der = padre.getHijoDer();
                 if (izq == null) {
                     izq = der;
                 }
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null) { //&& (int) padre.getDato() == (int) padre.getPadre().getDato()) {
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null) { 
                     NodoMonticuloBi abuelo = padre.getPadre();
                     abuelo.setHijoIzq(null);
                     padre.setPadre(null);
@@ -168,11 +177,13 @@ public class MonticuloBinario<T> {
                     break;
                 }
             } else {
-                padre.setDato(der.getDato());
+                padre.setDato(docder);
                 padre = der;
                 der = der.getHijoDer();
                 izq = padre.getHijoIzq();
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null && (int) padre.getDato() == (int) padre.getPadre().getDato()) {
+                Documento docpadre = (Documento)padre.getDato();
+                Documento docabuelo = (Documento)padre.getPadre().getDato();
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null && docpadre.getTime() == docabuelo.getTime()) {
                     NodoMonticuloBi abuelo = padre.getPadre();
                     abuelo.setHijoDer(null);
                     padre.setPadre(null);

@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import javax.swing.JOptionPane;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.implementations.SingleGraph;
 
@@ -98,7 +99,9 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
-        this.global.getMonticulobinario().eliminarprimero();
+        this.global.getMonticulobinario().Eliminarprimero();
+        JOptionPane.showMessageDialog(null, "Se ha impreso el primer documento");
+        this.global.getMonticulobinario().preOrden();
     }//GEN-LAST:event_LiberarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
