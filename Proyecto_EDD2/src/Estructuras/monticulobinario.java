@@ -134,31 +134,54 @@ public class MonticuloBinario<T> {
 
     }
 
-    public void eliminarprimero() {
-        Queue<NodoMonticuloBi> cola = new Queue();
-        Queue<NodoMonticuloBi> cola2 = new Queue();
-        cola.add(root);
-        while (!cola.isEmpty()) {
-            NodoMonticuloBi temp = cola.getpHead().getData();
-            if (temp.getHijoIzq() != null) {
-                cola.add(temp.getHijoIzq());
-            }
-            if (temp.getHijoDer() != null) {
-                cola.add(temp.getHijoDer());
-
-            }
-            cola2.add(temp);
-            cola.poll();
-        }
-        cola2.poll();
-        this.root = null;
-        while (!cola2.isEmpty()) {
-            if (cola2.getpHead() != null) {
-                NodoMonticuloBi<T> aux = cola2.getpHead().getData();
-                Ingresar(aux.getDato());
-                cola2.poll();
+    public void Eliminarprimero() {
+        NodoMonticuloBi padre = root;
+        NodoMonticuloBi izq = root.getHijoIzq();
+        NodoMonticuloBi der = root.getHijoDer();
+        while (true) {//padre.getHijoIzq() != null && padre.getHijoDer() != null  while (izq != null && der != null)
+            if (padre.getHijoIzq() == null && padre.getHijoDer() == null) {
+                this.setRoot(null);
+                System.out.println(root);
+                break;
             }
 
+            if (der == null) {
+                padre.setDato(izq.getDato());
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null || (int) padre.getDato() == (int) padre.getHijoIzq().getDato()) {
+                    padre.setHijoIzq(null);
+                    break;
+                }
+            }
+            if ((int) izq.getDato() < (int) der.getDato()) {
+                padre.setDato(izq.getDato());
+                padre = izq;
+                izq = izq.getHijoIzq();
+                der = padre.getHijoDer();
+                if (izq == null) {
+                    izq = der;
+                }
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null) { //&& (int) padre.getDato() == (int) padre.getPadre().getDato()) {
+                    NodoMonticuloBi abuelo = padre.getPadre();
+                    abuelo.setHijoIzq(null);
+                    padre.setPadre(null);
+                    padre.setHijoIzq(null);
+                    break;
+                }
+            } else {
+                padre.setDato(der.getDato());
+                padre = der;
+                der = der.getHijoDer();
+                izq = padre.getHijoIzq();
+                if (padre.getHijoIzq() == null && padre.getHijoDer() == null && (int) padre.getDato() == (int) padre.getPadre().getDato()) {
+                    NodoMonticuloBi abuelo = padre.getPadre();
+                    abuelo.setHijoDer(null);
+                    padre.setPadre(null);
+                    padre.setHijoIzq(null);
+                    break;
+                }
+            }
+
         }
+        size--;
     }
 }
