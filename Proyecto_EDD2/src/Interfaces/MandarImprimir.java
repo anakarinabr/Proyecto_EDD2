@@ -158,7 +158,7 @@ public class MandarImprimir extends javax.swing.JFrame {
                             int seg = this.global.getCronometro().GetSegundos();
                             esta.ActualizarTime(auxusuario.getPrioridad(), hora, min, seg);
                             System.out.println(esta.getTitulo()+ ": "+esta.getTime());
-                            this.global.getMonticulobinario().Ingresar(esta);
+                            this.global.getMonticulobinario().insertar(esta);
                             JOptionPane.showMessageDialog(null, "Eldocumento: " + esta.getTitulo() + " fué enviado a la cola de impresión");
                   
                         }

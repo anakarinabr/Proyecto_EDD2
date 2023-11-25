@@ -11,191 +11,147 @@ package Estructuras;
  */
 public class MonticuloBinario<T> {
 
-    private NodoMonticuloBi<T> root;
-    private int size;
+//    AQUI COMIENZA EL ARRAY
+    static final int TAMINI = 20;
+    private int numElem;
+    private Documento[] v;
 
     public MonticuloBinario() {
-        this.root = null;
-        this.size = 0;
+        numElem = 0;
+        v = new Documento[TAMINI];
     }
 
-    public NodoMonticuloBi<T> getRoot() {
-        return root;
+    public static int padre(int i) {
+        return (i - 1) / 2;
     }
 
-    public void setRoot(NodoMonticuloBi<T> root) {
-        this.root = root;
+    public static int hijoIzq(int i) {
+        return (2 * i + 1);
     }
 
-    public int getSize() {
-        return size;
+    public static int hijoDer(int i) {
+
+        return (2 * i + 1) + 1;
     }
 
-    public void setSize(int size) {
-        this.size = size;
-    }
-
-    public boolean isEmpty() {
-        return this.root == null;
-    }
-
-    public void Ingresar(T data) {       //NodoMonticuloBi Documento
-        NodoMonticuloBi<T> nodo = new NodoMonticuloBi(data);
-        if (isEmpty() == true) {
-            this.root = nodo;
-        } else {
-            Queue<NodoMonticuloBi> cola = new Queue();
-            cola.add(root);
-            while (!cola.isEmpty()) {
-                NodoMonticuloBi temp = cola.getpHead().getData();
-                if (temp.getHijoIzq() == null) {
-                    temp.setHijoIzq(nodo);
-                    temp.getHijoIzq().setPadre(temp);
-                    this.subir(nodo);
-                    break;
-                } else {
-                    cola.add(temp.getHijoIzq());
-                }
-                if (temp.getHijoDer() == null) {
-                    temp.setHijoDer(nodo);
-                    temp.getHijoDer().setPadre(temp);
-                    this.subir(nodo);
-                    break;
-                } else {
-                    cola.add(temp.getHijoDer());
-                }
-                cola.poll();
-
-            }
+    private void flotar(int i) {
+        Documento nuevaClave = v[i];
+        while ((i > 0) && (v[padre(i)].getTime() >= nuevaClave.getTime())) {
+            v[i] = v[padre(i)]; // baja el padre al hueco
+            i = padre(i); // sube un nivel en el árbol
         }
 
-        size++;
-
+        v[i] = nuevaClave; // sitúa la clave en su posición
     }
 
-    private void subir(NodoMonticuloBi nodo) {
-        Documento documentonodo = (Documento) nodo.getDato();
-        NodoMonticuloBi padrenodo = nodo.getPadre();
-        Documento padredocumento = (Documento) padrenodo.getDato();
-        if (padrenodo != null) {
-            Documento aux = (Documento) padrenodo.getDato();
-            if ((documentonodo.getTime() < padredocumento.getTime())) {
-                padrenodo.setDato(documentonodo);
-                nodo.setDato(aux);
-                nodo = nodo.getPadre();
-                subir(nodo);
-            }
+    private boolean monticuloLleno() {
+        return (numElem == v.length);
+    }
 
+    private void ampliar() {
+        Documento[] anteriorV = v;
+        v = new Documento[numElem + TAMINI];
+        for (int j = 0; j > numElem; j++) {
+            v[j] = anteriorV[j];
         }
     }
 
-    public void preOrden() {
-        this.preorder(this.getRoot());
-    }
-
-    private void preorder(NodoMonticuloBi root) {
-        if (root != null) {
-            Documento doc = (Documento) root.getDato();
-            System.out.println(doc.getTitulo() + doc.getTime());
-            this.preorder(root.getHijoIzq());
-            this.preorder(root.getHijoDer());
+    public void insertar(Documento clave) {
+        if (monticuloLleno()) {
+            ampliar();
         }
+        v[numElem] = clave;
+        flotar(numElem);
+
+        numElem++;
     }
 
-    public void inOrden() {
-        this.inorder(this.getRoot());
-    }
-
-    private void inorder(NodoMonticuloBi root) {
-        if (root != null) {
-            this.inorder(root.getHijoIzq());
-            System.out.println(root.getDato().toString());
-            this.inorder(root.getHijoDer());
+    public Documento buscarMinimo() throws Exception {
+        if (esVacio()) {
+            throw new Exception("Acceso a montículo vacío");
         }
+        return v[0];
     }
 
-    public void ImprimirComoCola() {
-        Queue<NodoMonticuloBi> cola = new Queue();
-        Queue<NodoMonticuloBi> cola2 = new Queue();
-        cola.add(root);
-        while (!cola.isEmpty()) {
-            NodoMonticuloBi temp = cola.getpHead().getData();
-            if (temp.getHijoIzq() != null) {
-                cola.add(temp.getHijoIzq());
-            }
-            if (temp.getHijoDer() != null) {
-                cola.add(temp.getHijoDer());
+    public void criba(int raiz) {
+        boolean esMonticulo;
+        int hijo;
+        esMonticulo = false;
+        while ((raiz < (numElem / 2) - 1) && !esMonticulo) {
 
-            }
-            cola2.add(temp);
-            cola.poll();
-        }
-        for (int i = 0; i < cola2.getSize(); i++) {
-            NodoMonticuloBi aux = cola2.getpHead().getData();
-            System.out.print("->" + aux.getDato());
-            cola2.poll();
-            cola2.add(aux);
-        }
-
-    }
-
-    public void Eliminarprimero() {
-        NodoMonticuloBi padre = root;
-        NodoMonticuloBi izq = root.getHijoIzq();
-        NodoMonticuloBi der = root.getHijoDer();
-        while (true) {
-            if (padre.getHijoIzq() == null && padre.getHijoDer() == null) {
-                this.setRoot(null);
-                System.out.println(root);
-                break;
-            }
-
-            if (izq == null) {
-                izq = der;
-            }
-
-            if (der == null) {
-                Documento doc = (Documento) izq.getDato();
-                padre.setDato(doc);
-                Documento dochijo = (Documento) padre.getHijoIzq().getDato();
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null || doc.getTime() == dochijo.getTime()) {
-                    padre.setHijoIzq(null);
-                    break;
-                }
-            }
-
-            Documento docizq = (Documento) izq.getDato();
-            Documento docder = (Documento) der.getDato();
-            if (docizq.getTime() < docder.getTime()) {
-                padre.setDato(docizq);
-                padre = izq;
-                izq = izq.getHijoIzq();
-                der = padre.getHijoDer();
-
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null) {
-                    NodoMonticuloBi abuelo = padre.getPadre();
-                    abuelo.setHijoIzq(null);
-                    padre.setPadre(null);
-                    padre.setHijoIzq(null);
-                    break;
-                }
+// determina el índice del hijo menor
+            if (hijoIzq(raiz) == (numElem - 1)) // único descendiente
+            {
+                hijo = hijoIzq(raiz);
             } else {
-                padre.setDato(docder);
-                padre = der;
-                der = der.getHijoDer();
-                izq = padre.getHijoIzq();
-                Documento docpadre = (Documento) padre.getDato();
-                Documento docabuelo = (Documento) padre.getPadre().getDato();
-                if (padre.getHijoIzq() == null && padre.getHijoDer() == null && docpadre.getTime() == docabuelo.getTime()) {
-                    NodoMonticuloBi abuelo = padre.getPadre();
-                    abuelo.setHijoDer(null);
-                    padre.setPadre(null);
-                    padre.setHijoIzq(null);
-                    break;
+                if (v[hijoIzq(raiz)].getTime() < v[hijoDer(raiz)].getTime()) {
+                    hijo = hijoIzq(raiz);
+                } else {
+                    hijo = hijoDer(raiz);
                 }
             }
 
+// compara raiz con el menor de los hijos
+            if (v[hijo] != null) {
+                if (v[hijo].getTime() < v[raiz].getTime()) {
+                    Documento t = v[raiz];
+                    v[raiz] = v[hijo];
+                    v[hijo] = t;
+                    raiz = hijo;
+                    /* continua por la rama de claves mínimas */
+                } else {
+                    esMonticulo = true;
+                }
+            }
         }
-        size--;
     }
+
+    public Documento eliminarMinimo() throws Exception {
+        if (esVacio()) {
+            throw new Exception("Acceso a montículo vacío");
+        }
+        Documento menor;
+        menor = v[0];
+        v[0] = v[numElem - 1];
+        v[numElem - 1] = null;
+        criba(0);
+        numElem--;
+        return menor;
+    }
+
+    public boolean esVacio() {
+        return numElem == 0;
+    }
+
+    public void print() {
+        String cola = "";
+
+        for (int i = 0; i < v.length; i++) {
+            if (v[i] != null) {
+                String time = Integer.toString(v[i].getTime());
+                cola += time + " - ";
+            }
+        }
+
+        System.out.println(cola);
+    }
+
+    public int getNumElem() {
+        return numElem;
+    }
+
+    public void setNumElem(int numElem) {
+        this.numElem = numElem;
+    }
+
+    public Documento[] getV() {
+        return v;
+    }
+
+    public void setV(Documento[] v) {
+        this.v = v;
+    }
+    
+    
+    
 }
