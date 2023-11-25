@@ -24,6 +24,7 @@ public class Global {
     private MonticuloBinario monticulobinario;
 
     private Cronometro cronometro;
+    private String path;
 
     public Global(ListaSimpleUsuarios ListaUsuarios, MonticuloBinario monticulo, Cronometro cronometro) {
 
@@ -31,6 +32,7 @@ public class Global {
         this.monticulobinario = monticulo;
         this.cronometro = cronometro;
         this.hashtable = null;
+        this.path = null;
     }
 
     public ListaSimpleUsuarios<Usuario> getListaUsuarios() {
@@ -63,6 +65,14 @@ public class Global {
 
     public void setCronometro(Cronometro cronometro) {
         this.cronometro = cronometro;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
 }

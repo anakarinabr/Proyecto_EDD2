@@ -75,6 +75,11 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 350, 30));
 
         jButton3.setText("Ver documentos en forma de cola");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
 
         jButton4.setText("Ver documentos en forma de arbol");
@@ -101,6 +106,12 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         this.setVisible(false);
         doc.setVisible(true);
     }//GEN-LAST:event_EliminarActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        MostrarEnCola mostrar = new MostrarEnCola(this.global);
+        this.setVisible(false);
+        mostrar.setVisible(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments

@@ -9,6 +9,7 @@ import Estructuras.ListaSimpleDocumentos;
 import Estructuras.ListaSimpleUsuarios;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,8 +29,7 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         NodoSimple aux = global.getListaUsuarios().getpFirst();
         for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
-            
-            
+
             boolean tiene = false;
             Usuario usuario = (Usuario) aux.getData();
             ListaSimpleDocumentos docs = (ListaSimpleDocumentos) usuario.getDocs();
@@ -143,18 +143,29 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
     }//GEN-LAST:event_SelectionActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         int indice = this.global.getHashtable().hash(usuario);
 
         ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
         NodoSimple aux = lista.getpFirst();
-        Usuario auxusuario = (Usuario) aux.getData();
+
+        for (int i = 0; i < lista.getSize(); i++) {
+            Usuario auxusuario = (Usuario) aux.getData();
+            ListaSimpleDocumentos docs = auxusuario.getDocs();
+            NodoSimple doc = docs.getpFirst();
+            for (int j = 0; j < docs.getSize(); j++) {
+                Documento doc1 = (Documento) doc.getData();
+                if(doc1.getTitulo().equals(ComboBoxDocumentos.getSelectedItem())){
+                    doc1.setTime(0);
+                    break;
+                }else{
+                    doc = doc.getPnext();
+                }
+            }
+            aux = aux.getPnext();
         
-//        for (int i = 0; i < lista.getSize(); i++) {
-//        
-//        
-//        }
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

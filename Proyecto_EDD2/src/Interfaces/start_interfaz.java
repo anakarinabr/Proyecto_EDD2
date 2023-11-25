@@ -11,6 +11,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.PrintWriter;
+import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -170,6 +171,8 @@ public class start_interfaz extends javax.swing.JFrame {
 
             File archive = file.getSelectedFile();
             String path = archive.getAbsolutePath();
+            this.global.setPath(path);
+            
 
             if (!path.contains("csv")) {
                 JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo csv");
@@ -242,25 +245,14 @@ public class start_interfaz extends javax.swing.JFrame {
         String todo = this.global.getListaUsuarios().getAllUsers();
 
         try {
-            if (!todo.equalsIgnoreCase("usuario,tipo")) {
-                JFileChooser file = new JFileChooser();
-                FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
-                file.setFileSelectionMode(JFileChooser.FILES_ONLY);
-                file.setFileFilter(filter);
-                int selection = file.showOpenDialog(this);
+            if (this.global.getPath()!= null) {
 
-                if (selection == JFileChooser.APPROVE_OPTION) {
-
-                    File archive = file.getSelectedFile();
-                    String path = archive.getAbsolutePath();
-
-                    PrintWriter pw = new PrintWriter(path);
+                    PrintWriter pw = new PrintWriter(this.global.getPath());
                     pw.print(todo);
                     pw.close();
                     JOptionPane.showMessageDialog(null, "Guardado exitoso");
 
-                }
-            } else {
+                } else {
                 JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo csv");
             }
 
