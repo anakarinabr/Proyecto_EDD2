@@ -122,9 +122,14 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_EliminarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        MostrarEnCola mostrar = new MostrarEnCola(this.global);
-        this.setVisible(false);
+        MostrarEnCola mostrar;
+        try {
+            mostrar = new MostrarEnCola(this.global);
+            this.setVisible(false);
         mostrar.setVisible(true);
+        } catch (Exception ex) {
+            Logger.getLogger(Impresora_interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton3ActionPerformed
 
     /**

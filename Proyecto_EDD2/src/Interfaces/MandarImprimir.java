@@ -105,11 +105,12 @@ public class MandarImprimir extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
+        
         ComboBoxDocumentos.removeAllItems();
-        String usuario = ComboBoxUsuarios.getSelectedItem().toString();
-        if (usuario == null) {
-            JOptionPane.showMessageDialog(null, "No hay usuarios con documentos creados");
+        if (ComboBoxUsuarios.getSelectedItem() == null) {
+            JOptionPane.showMessageDialog(null, "No hay usuarios con documentos que se puedan mandar a imprimir");
         } else {
+                String usuario = ComboBoxUsuarios.getSelectedItem().toString();
             int indice = this.global.getHashtable().hash(usuario);
 
             ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];

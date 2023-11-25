@@ -4,20 +4,54 @@
  */
 package Interfaces;
 
+import Estructuras.Documento;
+import Estructuras.NodeCola;
+import Estructuras.Queue;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Ana Blanco
  */
 public class MostrarEnCola extends javax.swing.JFrame {
-    
+    DefaultTableModel tabla = new DefaultTableModel();
     public static Global global;
     /**
      * Creates new form MostrarEnCola
      */
-    public MostrarEnCola(Global global) {
+    public MostrarEnCola(Global global) throws Exception {
         this.global = global;
         initComponents();
         this.setLocationRelativeTo(null);
+        String[] titulos= {"Título", "Prioridad", "En cola", "Tiempo (s)"};
+        tabla.setColumnIdentifiers(titulos);
+        tabla1.setModel(tabla);
+        Queue cola = new Queue();
+        
+        while(!global.getMonticulobinario().esVacio()){
+            Documento doc = global.getMonticulobinario().eliminarMinimo();
+            cola.add(doc);
+        }
+        int contador = 0;
+        while(contador < cola.getSize()){
+            
+            NodeCola nodecola = cola.poll();
+            Documento doc1 = (Documento)nodecola.getData();
+            boolean tamano =doc1.isTipo();
+            String time = Integer.toString(doc1.getTime());
+            tabla.addRow(new Object[]{doc1.getTitulo(),tamano ,doc1.isEncola(),time});
+            cola.add(doc1);
+            contador++;
+        }
+        
+        while(!cola.isEmpty()){
+           
+            NodeCola nodecola = cola.poll();
+            Documento doc1 = (Documento)nodecola.getData();
+            global.getMonticulobinario().insertar(doc1);
+        }
     }
 
     /**
@@ -32,7 +66,7 @@ public class MostrarEnCola extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tabla1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -49,18 +83,18 @@ public class MostrarEnCola extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, -1, -1));
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Título", "Prioridad"
+                "Título", "Prioridad", "En cola", "Tiempo (s)"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tabla1);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 90, -1, 300));
 
@@ -106,7 +140,11 @@ public class MostrarEnCola extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MostrarEnCola(global).setVisible(true);
+                try {
+                    new MostrarEnCola(global).setVisible(true);
+                } catch (Exception ex) {
+                    Logger.getLogger(MostrarEnCola.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -116,6 +154,6 @@ public class MostrarEnCola extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables
 }
