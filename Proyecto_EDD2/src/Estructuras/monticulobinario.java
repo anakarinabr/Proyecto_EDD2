@@ -115,7 +115,7 @@ public class MonticuloBinario<T> {
         v[0] = v[numElem - 1];
         v[numElem - 1] = null;
         criba(0);
-        numElem--;
+        this.numElem--;
         return menor;
     }
 

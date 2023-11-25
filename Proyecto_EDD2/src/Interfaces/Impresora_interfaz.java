@@ -4,6 +4,7 @@
  */
 package Interfaces;
 
+import Estructuras.Documento;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -101,14 +102,14 @@ public class Impresora_interfaz extends javax.swing.JFrame {
 
     private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
 
-        if (this.global.getMonticulobinario().getNumElem() != 0) {
+        if (!this.global.getMonticulobinario().esVacio()) {
             try {
-                this.global.getMonticulobinario().eliminarMinimo();
+                Documento doc = (Documento)this.global.getMonticulobinario().eliminarMinimo();
+                JOptionPane.showMessageDialog(null, "Se ha impreso el documento: "+ doc.getTitulo());
             } catch (Exception ex) {
                 Logger.getLogger(Impresora_interfaz.class.getName()).log(Level.SEVERE, null, ex);
             }
-            JOptionPane.showMessageDialog(null, "Se ha impreso el primer documento");
-            System.out.println("-----------");
+            
         } else {
             JOptionPane.showMessageDialog(null, "La impresora esta vacía");
         }
