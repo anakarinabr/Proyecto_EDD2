@@ -17,11 +17,10 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Impresora_interfaz
      */
-    
     public static Graph arbol = new SingleGraph("Monticulo");
-    
+
     public static Global global;
-    
+
     public Impresora_interfaz(Global global) {
         this.global = global;
         initComponents();
@@ -99,9 +98,14 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_backActionPerformed
 
     private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
-        this.global.getMonticulobinario().Eliminarprimero();
-        JOptionPane.showMessageDialog(null, "Se ha impreso el primer documento");
-        this.global.getMonticulobinario().preOrden();
+
+        if (this.global.getMonticulobinario().getSize() != 0) {
+            this.global.getMonticulobinario().Eliminarprimero();
+            JOptionPane.showMessageDialog(null, "Se ha impreso el primer documento");
+            this.global.getMonticulobinario().preOrden();
+        } else {
+            JOptionPane.showMessageDialog(null, "La impresora esta vacía");
+        }
     }//GEN-LAST:event_LiberarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed

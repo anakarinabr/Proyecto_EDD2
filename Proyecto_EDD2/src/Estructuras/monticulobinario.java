@@ -159,6 +159,7 @@ public class MonticuloBinario<T> {
                     break;
                 }
             }
+           
             Documento docizq = (Documento)izq.getDato();
             Documento docder = (Documento) der.getDato();
             if (docizq.getTime() < docder.getTime()) {
