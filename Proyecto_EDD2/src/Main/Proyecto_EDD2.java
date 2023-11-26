@@ -7,7 +7,7 @@ package Main;
 import Estructuras.Cronometro;
 import Estructuras.Documento;
 import Estructuras.ListaSimpleUsuarios;
-import Estructuras.MonticuloBinario;
+import Estructuras.MontículoBinario;
 import Estructuras.Usuario;
 import Interfaces.Global;
 import Interfaces.start_interfaz;
@@ -30,7 +30,7 @@ public class Proyecto_EDD2 {
         Cronometro crono = new Cronometro();
         crono.Iniciar();
         ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios<Usuario>();
-        MonticuloBinario<Documento> monticulo = new MonticuloBinario<Documento>();
+        MontículoBinario<Documento> monticulo = new MontículoBinario<Documento>();
         Global global = new Global(ListaUsuarios, monticulo, crono);
         start_interfaz inicio = new start_interfaz(global);
         inicio.setVisible(true);

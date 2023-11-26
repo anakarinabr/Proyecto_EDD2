@@ -8,7 +8,7 @@ import Estructuras.Cronometro;
 import Estructuras.Documento;
 import Estructuras.HashTable;
 import Estructuras.ListaSimpleUsuarios;
-import Estructuras.MonticuloBinario;
+import Estructuras.MontículoBinario;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
 
@@ -21,12 +21,12 @@ public class Global {
     //Parámetros de la clase Global
     private ListaSimpleUsuarios<Usuario> ListaUsuarios;
     private HashTable hashtable;
-    private MonticuloBinario<Documento> monticulobinario;
+    private MontículoBinario<Documento> monticulobinario;
     private Cronometro cronometro;
     private String path;
     
     //Constructor
-    public Global(ListaSimpleUsuarios ListaUsuarios, MonticuloBinario monticulo, Cronometro cronometro) {
+    public Global(ListaSimpleUsuarios ListaUsuarios, MontículoBinario monticulo, Cronometro cronometro) {
 
         this.ListaUsuarios = ListaUsuarios;
         this.monticulobinario = monticulo;
@@ -44,11 +44,11 @@ public class Global {
         this.ListaUsuarios = ListaUsuarios;
     }
 
-    public MonticuloBinario getMonticulobinario() {
+    public MontículoBinario getMonticulobinario() {
         return monticulobinario;
     }
 
-    public void setMonticulobinario(MonticuloBinario monticulobinario) {
+    public void setMonticulobinario(MontículoBinario monticulobinario) {
         this.monticulobinario = monticulobinario;
     }
 
