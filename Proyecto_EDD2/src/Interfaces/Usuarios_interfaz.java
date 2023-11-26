@@ -75,18 +75,37 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         this.setVisible(false);
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     private void CrearUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearUsuarioActionPerformed
+        
+        /**
+         * Método que abre la interfaz de AgregarUsuarios
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         AgregarUsuarios agregar= new AgregarUsuarios(this.global);
         this.setVisible(false);
         agregar.setVisible(true);
     }//GEN-LAST:event_CrearUsuarioActionPerformed
 
     private void EliminarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarUsuarioActionPerformed
+        /**
+         * Método que abre la interfaz de EliminarUsuarios
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         EliminarUsuario eliminar= new EliminarUsuario(this.global);
         this.setVisible(false);
         eliminar.setVisible(true);

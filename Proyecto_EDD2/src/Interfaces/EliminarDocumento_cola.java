@@ -65,7 +65,7 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
 
         Back = new javax.swing.JButton();
         ComboBoxUsuarios = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         ComboBoxDocumentos = new javax.swing.JComboBox<>();
         Selection = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
@@ -83,13 +83,13 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
 
         getContentPane().add(ComboBoxUsuarios, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 200, -1));
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
 
         getContentPane().add(ComboBoxDocumentos, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 210, 200, -1));
 
@@ -108,12 +108,27 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         Impresora_interfaz impresora = new Impresora_interfaz(this.global);
         this.setVisible(false);
         impresora.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
     private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
+        
+        
+        /**
+         * Método que llena el ComboBox de documentos de forma clasificada
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         ComboBoxDocumentos.removeAllItems();
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         if (usuario == null) {
@@ -144,8 +159,15 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SelectionActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
+        
+        /**
+         * Método que elimina un documento por referencia del monticulo, sin haber sido impreso
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         int indice = this.global.getHashtable().hash(usuario);
 
@@ -176,7 +198,7 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
             aux = aux.getPnext();
         
         }
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,8 +239,8 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
     private javax.swing.JButton Back;
     private javax.swing.JComboBox<String> ComboBoxDocumentos;
     private javax.swing.JComboBox<String> ComboBoxUsuarios;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton Selection;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
 }

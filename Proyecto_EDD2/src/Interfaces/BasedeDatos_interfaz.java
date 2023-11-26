@@ -50,7 +50,7 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         int contador = 0;
         int variable =0;
         
-        while(this.filas!= 0 && this.filas!=contador){
+        while(this.filas != 0 && this.filas !=contador){
             tabla.removeRow(variable);
             contador ++;
         }
@@ -134,13 +134,24 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         start_interfaz back = new start_interfaz(this.global);
         this.setVisible(false);
         back.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
     private void selectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedActionPerformed
-        
+        /**
+         * Método que se encarga de mostrar los datos de los usuarios y todos los documentos 
+         * que tiene el usuario creados.
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         this.borrar();
         String info ="";
         
@@ -150,6 +161,7 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         NodoSimple aux = usuarios.getpFirst();
         for (int i = 0; i < usuarios.getSize(); i++) {
             Usuario user = (Usuario) aux.getData();
+            boolean entra = true;
             if (user.getName().equalsIgnoreCase(usuario)) {
                 info += "Nombre: "+user.getName()+"\n"+"Tipo: "+ user.getPrioridad();
                 TextArea.setText(info);
@@ -163,9 +175,11 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
                         tabla.addRow(new Object[]{docu.getTitulo(), docu.getTamaño(), docu.isEncola()});
                         doc = doc.getPnext();
                     }
-                    this.filas = docs.getSize();
+              
                 }
-            } else {
+                this.filas = docs.getSize();
+                
+            } else if(entra){
                 aux = aux.getPnext();
             }
         }

@@ -15,13 +15,15 @@ public class ListaSimpleDocumentos<T> {
     private NodoSimple pFirst;
     private NodoSimple pLast;
     private int size;
-
+    
+    //Constructor
     public ListaSimpleDocumentos() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
-
+    
+    //Getters and Setters
     public NodoSimple<T> getpFirst() {
         return pFirst;
     }
@@ -50,23 +52,12 @@ public class ListaSimpleDocumentos<T> {
         return this.pFirst == null;
 
     }
-
-    public void addFirst(Documento documento) {
-
-        NodoSimple nodo = new NodoSimple(documento);
-        if (EsVacia() == true) {
-            this.pFirst = nodo;
-            this.pLast = nodo;
-
-        } else {
-            nodo.setPnext(this.pFirst);
-            this.setpFirst(nodo);
-
-        }
-        this.size++;
-
-    }
-
+    
+    /**
+         * Método que se encarga de ingresar al final de la lista
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void addend(Documento documento) {
 
         NodoSimple nodo = new NodoSimple(documento);
@@ -82,43 +73,12 @@ public class ListaSimpleDocumentos<T> {
         this.size++;
     }
 
-    public void print() {
-        if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        }
-        NodoSimple<T> pAux = this.pFirst;
-
-        while (pAux != null) {
-            System.out.print(pAux.getData() + "->");
-//            JOptionPane.showMessageDialog(null, pAux.getData());
-            pAux = pAux.getPnext();
-        }
-        System.out.println("");
-//        System.out.println(this.size);
-
-    }
-
-    public void eliminaralinicio() {
-        if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        } else {
-            this.pFirst = this.pFirst.getPnext();
-
-        }
-        size--;
-    }
-
-    public void invertirlista() {
-
-        if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        } else {
-            NodoSimple<T> pAux = this.pFirst;
-            eliminaralinicio();
-            invertirlista();
-            this.addend((Documento) pAux.getData());
-        }
-    }
+    
+     /**
+         * Método que se encarga de comprobar que existe un valor
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
 
     public boolean buscar(String referencia) {
         NodoSimple aux = this.pFirst;
@@ -134,7 +94,12 @@ public class ListaSimpleDocumentos<T> {
         return encontrado;
 
     }
-
+    
+     /**
+         * Método que se encarga deeliminar dado un String de refeencia
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public boolean EliminarPorReferencia(String referencia) {
         boolean esta = buscar(referencia);
         if (esta) {
@@ -161,7 +126,13 @@ public class ListaSimpleDocumentos<T> {
         }
 
     }
-
+    
+    
+     /**
+         * Método que se encarga de buscar los documentos dado un string de referencia
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public Documento BuscarDocumento(String referencia) {
         if (buscar(referencia)) {
             Documento documento = (Documento) this.pFirst.getData();

@@ -15,7 +15,8 @@ public class Documento {
     private boolean tipo;
     private boolean encola;
     private int time;
-
+    
+    //Constructor
     public Documento(String titulo, int tamaño) {
         this.titulo = titulo;
         this.tamaño = tamaño;
@@ -23,7 +24,8 @@ public class Documento {
         this.encola = false;
         this.time = 0;
     }
-
+    
+    //Getters and Setters
     public String getTitulo() {
         return titulo;
     }
@@ -64,6 +66,13 @@ public class Documento {
         this.time = time;
     }
     
+    
+     /**
+         * Método que se encarga de actualizar el tiempo de los documentos
+         * para el manejo dentro del monticulo
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     
     public void ActualizarTime(String prioridad,int hora, int minuto, int segundos ){
         this.time = hora*3600 + minuto*60 + segundos;

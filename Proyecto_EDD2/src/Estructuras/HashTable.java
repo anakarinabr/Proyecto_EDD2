@@ -48,6 +48,12 @@ public class HashTable {
         }
         return d;
     }
+    
+    /**
+         * Método que se encarga de asignar un indice a partir de un nombre
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
 
     public int hash(String name) {
         long valor = transformaClave(name);
@@ -60,23 +66,26 @@ public class HashTable {
     }
 
     /**
-     * Método de inserción de un Objeto Usuario en una tabla Hash
-     *
-     * @param Hash Integer que es el índice a donde será ingresado en la tabla
-     * hash
-     * @param usuario Objeto Usuario que será el objeto al que se le realizará
-     * la inserción
-     */
+         * Método que se encarga de insertar el usuario en el hashtable
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void Insert_Usuario(int hash, Usuario usuario) {
         this.table[hash].addend(usuario);
-    } //Cierre metodo
+    } 
     
+    /**
+         * Método que se encarga de eliminar un usuario
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */    
     public void delete_usuario(int hash, String referencia){
         ListaSimpleUsuarios lista = this.table[hash];
         
         lista.EliminarPorReferencia(referencia);
     }
-
+    
+    //Getters and Setters
     public ListaSimpleUsuarios[] getTable() {
         return table;
     }

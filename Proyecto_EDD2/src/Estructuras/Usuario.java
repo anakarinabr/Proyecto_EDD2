@@ -13,13 +13,15 @@ public class Usuario {
     private String name;
     private String priority;
     private ListaSimpleDocumentos docs;
-
+    
+    //Constructor
     public Usuario(String name, String priority) {
         this.name = name;
         this.priority = priority;
         this.docs = new ListaSimpleDocumentos();
     }
-
+    
+    //Getters and Setters
     public String getName() {
         return name;
     }

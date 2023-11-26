@@ -83,6 +83,14 @@ public class CrearDocumento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /**
+         * Método que se encarga de crear los objetos documentos e ingresarlo a la lista de documentos
+         * del usuario correspondiente
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         String name = " ";
         name += Titulo.getText().trim();
         int tamano = (int) num.getValue();
@@ -121,6 +129,12 @@ public class CrearDocumento extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         this.setVisible(false);
         Documentos_interfaz v2 = new Documentos_interfaz(this.global);
         v2.setVisible(true);

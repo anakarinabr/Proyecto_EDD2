@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Estructuras.Cronometro;
+import Estructuras.Documento;
 import Estructuras.HashTable;
 import Estructuras.ListaSimpleUsuarios;
 import Estructuras.MonticuloBinario;
@@ -20,12 +21,11 @@ public class Global {
     //Parámetros de la clase Global
     private ListaSimpleUsuarios<Usuario> ListaUsuarios;
     private HashTable hashtable;
-
-    private MonticuloBinario monticulobinario;
-
+    private MonticuloBinario<Documento> monticulobinario;
     private Cronometro cronometro;
     private String path;
-
+    
+    //Constructor
     public Global(ListaSimpleUsuarios ListaUsuarios, MonticuloBinario monticulo, Cronometro cronometro) {
 
         this.ListaUsuarios = ListaUsuarios;
@@ -34,7 +34,8 @@ public class Global {
         this.hashtable = null;
         this.path = null;
     }
-
+    
+    //Getters and Setters
     public ListaSimpleUsuarios<Usuario> getListaUsuarios() {
         return ListaUsuarios;
     }

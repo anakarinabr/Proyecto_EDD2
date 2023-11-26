@@ -13,7 +13,8 @@ public class NodoMonticuloBi<T> {
     private NodoMonticuloBi Padre;
     private NodoMonticuloBi HijoDer;
     private NodoMonticuloBi HijoIzq;
-
+    
+    //Constructor
     public NodoMonticuloBi(T dato) {
         this.dato = dato;
         this.Padre = null;
@@ -21,6 +22,7 @@ public class NodoMonticuloBi<T> {
         this.HijoIzq = null;
     }
 
+    // Getters and Setters
     public T getDato() {
         return dato;
     }

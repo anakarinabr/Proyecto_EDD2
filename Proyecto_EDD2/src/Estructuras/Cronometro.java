@@ -18,7 +18,8 @@ public class Cronometro {
     private int minutos;
     private int segundos;
     private int milisegundos;
-
+    
+    //Constructor
     public Cronometro() {
         this.hora = 0;
         this.minutos = 0;
@@ -29,12 +30,25 @@ public class Cronometro {
         });
 
     }
+    
+     /**
+         * Método que se encarga de inicializar el cronometro
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
 
     public void Iniciar() {
         crono.start();
         ActualizaTiempo();
 
     }
+    
+    
+     /**
+         * Método que se encarga de ir actualizando el tiempo del cronometro
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
 
     private void ActualizaTiempo() {
         milisegundos++;
@@ -55,7 +69,8 @@ public class Cronometro {
 
         }
     }
-
+    
+    //Getters and Setters
     public int GetHora(){
         return hora;
     }

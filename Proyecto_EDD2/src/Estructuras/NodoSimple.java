@@ -13,12 +13,14 @@ public class NodoSimple<T> {
     
     private T data;
     private NodoSimple pnext;
-
+    
+    //Constructor
     public NodoSimple(T data) {
         this.data = data;
         this.pnext = null;
     }
-
+    
+    //Getters and Setters
     public T getData() {
         return data;
     }

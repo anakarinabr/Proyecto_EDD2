@@ -93,12 +93,26 @@ public class EliminarDocumento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /**
+         * Método que abre la interfaz de Usuarios
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         this.setVisible(false);
         Documentos_interfaz v2 = new Documentos_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SeleccionUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionUsuarioActionPerformed
+
+        /**
+         * Método que se encarga de llenar el ComboBox de documentos que se pueden eliminar
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         ComboBoxDocumentos.removeAllItems();
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         if (usuario == null) {
@@ -130,7 +144,13 @@ public class EliminarDocumento extends javax.swing.JFrame {
     }//GEN-LAST:event_SeleccionUsuarioActionPerformed
 
     private void EliminardocActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminardocActionPerformed
-
+        
+        /**
+         * Método que se encarga de eliminar los documentos que no han sido enviados a la impresora
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         try {
             String usuario = (String) ComboBoxUsuarios.getSelectedItem();
             String documento = (String) ComboBoxDocumentos.getSelectedItem();

@@ -15,13 +15,15 @@ public class ListaSimpleUsuarios<T> {
     private NodoSimple<T> pFirst;
     private NodoSimple<T> pLast;
     private int size;
-
+    
+    //Constructor
     public ListaSimpleUsuarios() {
         this.pFirst = null;
         this.pLast = null;
         this.size = 0;
     }
-
+    
+    //Getters and Setters
     public NodoSimple<T> getpFirst() {
         return pFirst;
     }
@@ -50,7 +52,12 @@ public class ListaSimpleUsuarios<T> {
         return this.pFirst == null;
 
     }
-
+    
+    /**
+         * Método que se encarga de posicionar al inicio de la lista
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void addFirst(Usuario usuario) {
         NodoSimple nodo = new NodoSimple(usuario);
         if (EsVacia() == true) {
@@ -65,7 +72,12 @@ public class ListaSimpleUsuarios<T> {
         this.size++;
 
     }
-
+    
+    /**
+         * Método que se encarga de ingresar al final de la lista
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void addend(Usuario usuario) {
 
         NodoSimple nodo = new NodoSimple(usuario);
@@ -80,32 +92,12 @@ public class ListaSimpleUsuarios<T> {
         }
         this.size++;
     }
-
-    public void print() {
-        if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        }
-        NodoSimple<T> pAux = this.pFirst;
-
-        while (pAux != null) {
-            Usuario usuario = (Usuario)pAux.getData();
-            System.out.print(usuario.getName() + "->");
-            pAux = pAux.getPnext();
-        }
-        System.out.println("");
-
-    }
-
-    public void eliminaralinicio() {
-        if (EsVacia()) {
-            System.out.println("La lista esta vacia");
-        } else {
-            this.pFirst = this.pFirst.getPnext();
-
-        }
-        size--;
-    }
-
+    
+    /**
+         * Método que se encarga de hacer un String que contega la información de todo los usuarios
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public String getAllUsers() {
         String todo = "usuario,tipo";
         if (EsVacia()) {
@@ -124,6 +116,11 @@ public class ListaSimpleUsuarios<T> {
 
     }
     
+    /**
+         * Método que se encarga de buscar los documentos
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public boolean buscarDocumento(String referencia) {
         NodoSimple aux = this.pFirst;
         boolean encontrado = false;
@@ -141,7 +138,12 @@ public class ListaSimpleUsuarios<T> {
         return encontrado;
 
     }
-
+    
+    /**
+         * Método que se encarga de comprobar que existe un valor dentro de la lista
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public boolean buscar(String referencia) {
         NodoSimple aux = this.pFirst;
         boolean encontrado = false;
@@ -156,7 +158,12 @@ public class ListaSimpleUsuarios<T> {
         return encontrado;
 
     }
-
+    
+    /**
+         * Método que se encarga de eliminar dado un usuario
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void EliminarPorReferencia(String referencia) {
         if (buscar(referencia)) {
             Usuario usuario = (Usuario)this.pFirst.getData();

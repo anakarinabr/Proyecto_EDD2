@@ -14,17 +14,28 @@ public class Queue<T> {
     private NodeCola<T> pHead;
     private NodeCola<T> pTail;
     private int size;
-
+    
+    //Constructor
     public Queue() {
         this.pHead = null;
         this.pTail = null;
         this.size = 0;
     }
-
+    
+    /**
+         * Método que se comprobar si está vacia la cola
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public boolean isEmpty() {
         return this.pHead == null;
     }
-
+    
+    /**
+         * Método que se encarga de ingresar datos a la cola
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public void add(T data) {
         NodeCola<T> node = new NodeCola(data);
         if (this.isEmpty()) {
@@ -36,7 +47,12 @@ public class Queue<T> {
         }
         this.size++;
     }
-
+    
+    /**
+         * Método que se encarga de el primer objeto de la cola
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public NodeCola<T> poll() {
         NodeCola<T> node = this.pHead;
         if (!this.isEmpty()) {
@@ -45,46 +61,12 @@ public class Queue<T> {
         }
         return node;
     }
-
-    public boolean exists(T valor) {
-        boolean b = false;
-        for (int i = 0; i < this.size; i++) {
-            T data = this.pHead.getData();
-            if(valor == data){
-                b = true;
-            }
-            this.poll();
-            this.add(data);
-        }
-        
-        return b;
-    }
-
-    public void colearDePrimero(T data) {
-        NodeCola<T> node = new NodeCola(data);
-        if (this.isEmpty()) {
-            this.pHead = node;
-            this.pTail = node;
-            this.size++;
-        } else {
-            this.add(data);
-            for (int i = 0; i < this.size - 1; i++) {
-                T auxData = this.pHead.getData();
-                this.poll();
-                this.add(auxData);
-            }
-        }
-    }
-
-    public void reverse() {
-        if (!this.isEmpty()) {
-            T data = this.pHead.getData();
-            this.poll();
-            this.reverse();
-            this.add(data);
-        }
-    }
-
+    
+    /**
+         * Método que se encarga de imprimir la cola
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
     public String print() {
         String output = "";
         for (int i = 0; i < this.size; i++) {
@@ -95,7 +77,9 @@ public class Queue<T> {
         }
         return output + "//";
     }
-
+    
+    
+    // Getters and Setters
     public NodeCola<T> getpHead() {
         return pHead;
     }

@@ -75,13 +75,26 @@ public class AgregarUsuarios extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         Usuarios_interfaz agregar = new Usuarios_interfaz(this.global);
         this.setVisible(false);
         agregar.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
     private void AddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddActionPerformed
-
+        
+        /**
+         * Método que se encarga de crear los objetos usuarios,ingresarlo a la lista de usuarios
+         * y al hashtable 
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         String username = "";
         username += User.getText().trim();
         String prioridad = "Prioridad_";

@@ -13,7 +13,8 @@ public class NodeCola<T> {
     
     private T data;
     private NodeCola<T> pNext;
-
+    
+    //Constructor
     public NodeCola(T data) {
         this.data = data;
         this.pNext = null;
@@ -23,7 +24,8 @@ public class NodeCola<T> {
         this.data = data;
         this.pNext = pNext;
     }
-
+    
+    // Getters and Setters
     public T getData() {
         return data;
     }

@@ -42,7 +42,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
 
         back = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
-        jButton1 = new javax.swing.JButton();
+        Eliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,13 +58,13 @@ public class EliminarUsuario extends javax.swing.JFrame {
 
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 250, 20));
 
-        jButton1.setText("Eliminar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Eliminar.setText("Eliminar");
+        Eliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 110, 30));
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 110, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (5).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -73,12 +73,25 @@ public class EliminarUsuario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         this.setVisible(false);
         Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        
+        /**
+         * Método que elimina los usuarios en la lista de usuarios y en el hashtable
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         
         String usuario = ComboBox.getSelectedItem().toString();
         
@@ -101,7 +114,7 @@ public class EliminarUsuario extends javax.swing.JFrame {
             aux = aux.getPnext();
         }
         
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_EliminarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -143,8 +156,8 @@ public class EliminarUsuario extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> ComboBox;
+    private javax.swing.JButton Eliminar;
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     // End of variables declaration//GEN-END:variables
 }

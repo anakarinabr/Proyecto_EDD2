@@ -43,7 +43,7 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         back = new javax.swing.JButton();
         Liberar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        MostrarEnCola = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
@@ -77,13 +77,13 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 210, 350, 30));
 
-        jButton3.setText("Ver documentos en forma de cola");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        MostrarEnCola.setText("Ver documentos en forma de cola");
+        MostrarEnCola.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                MostrarEnColaActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
+        getContentPane().add(MostrarEnCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
 
         jButton4.setText("Ver documentos en forma de arbol");
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 350, 30));
@@ -95,13 +95,26 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         this.setVisible(false);
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     private void LiberarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_LiberarActionPerformed
-
+        
+        /**
+         * Método que elimina el elemento minimo del monticulo, simulando el avance de la impresora
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         if (!this.global.getMonticulobinario().esVacio()) {
             try {
                 Documento doc = (Documento)this.global.getMonticulobinario().eliminarMinimo();
@@ -116,12 +129,24 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_LiberarActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        /**
+         * Método que abre la interfaz de EliminarDocumentos_cola
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         EliminarDocumento_cola doc = new EliminarDocumento_cola(this.global);
         this.setVisible(false);
         doc.setVisible(true);
     }//GEN-LAST:event_EliminarActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void MostrarEnColaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MostrarEnColaActionPerformed
+        
+        /**
+         * Método que abre la interfaz de mostrar el monticulo en forma de cola
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         MostrarEnCola mostrar;
         try {
             mostrar = new MostrarEnCola(this.global);
@@ -130,7 +155,7 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         } catch (Exception ex) {
             Logger.getLogger(Impresora_interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_MostrarEnColaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -170,8 +195,8 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Eliminar;
     private javax.swing.JButton Liberar;
+    private javax.swing.JButton MostrarEnCola;
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

@@ -99,12 +99,25 @@ public class MandarImprimir extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         Documentos_interfaz imprimir = new Documentos_interfaz(this.global);
         this.setVisible(false);
         imprimir.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
+        
+        /**
+         * Método que permite llenar el ComboBox para ver los documentos que le pueden
+         * mandar a imprimir
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         
         ComboBoxDocumentos.removeAllItems();
         if (ComboBoxUsuarios.getSelectedItem() == null) {
@@ -137,6 +150,12 @@ public class MandarImprimir extends javax.swing.JFrame {
     }//GEN-LAST:event_SelectionActionPerformed
 
     private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        
+        /**
+         * Método que permite incluir los documentos al monticulo.
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         try {
             String usuario = (String) ComboBoxUsuarios.getSelectedItem();
             String documento = (String) ComboBoxDocumentos.getSelectedItem();

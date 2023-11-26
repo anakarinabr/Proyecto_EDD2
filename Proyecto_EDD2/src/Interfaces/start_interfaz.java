@@ -33,6 +33,12 @@ public class start_interfaz extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Método que el numero sea primo
+     *
+     * @param number el parametro number es un entero que es el que se verifica
+     * @return true si el numero es primo
+     */
     private static boolean isPrime(int number) {
 
         // Un número es primo si solo es divisible por 1 y por sí mismo
@@ -45,6 +51,13 @@ public class start_interfaz extends javax.swing.JFrame {
         return true;
     }
 
+    /**
+     * Método que busca el nro primo más cercano para crear el array
+     *
+     * @param cantidad_usuarios el parametro es la cantidad de usuarios que
+     * tiene la base de datos.
+     * @return un entero que será el tamaño de la hashtable.
+     */
     public int primocercano(int cantidad_usuario) {
 
         // Comprueba si el número dado es primo
@@ -63,6 +76,12 @@ public class start_interfaz extends javax.swing.JFrame {
         return nearestPrime;
     }
 
+    /**
+     * Método que se encarga de la creación del hashtable
+     *
+     * @param cantidad_usuarios el parametro es la cantidad de usuarios de la
+     * database
+     */
     public HashTable creacionHashTable(double cantidad_usuarios) {
 
         int remainder = (int) (cantidad_usuarios * 10) % 10;
@@ -153,7 +172,7 @@ public class start_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 170, 30));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs..png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
@@ -161,6 +180,11 @@ public class start_interfaz extends javax.swing.JFrame {
 
     private void CargarUsuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarUsuariosButtonActionPerformed
 
+        /**
+         * Método que permite leer el csv
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         JFileChooser file = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
         file.setFileSelectionMode(JFileChooser.FILES_ONLY);
@@ -172,7 +196,6 @@ public class start_interfaz extends javax.swing.JFrame {
             File archive = file.getSelectedFile();
             String path = archive.getAbsolutePath();
             this.global.setPath(path);
-            
 
             if (!path.contains("csv")) {
                 JOptionPane.showMessageDialog(null, "Por favor elija un archivo del tipo csv");
@@ -232,27 +255,40 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_CargarUsuariosButtonActionPerformed
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
+        /**
+         * Método que abre la interfaz de usuarios
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
             v2.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
+        /**
+         * Método que escribe en el csv los usuarios de la database
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         String todo = this.global.getListaUsuarios().getAllUsers();
 
         try {
-            if (this.global.getPath()!= null) {
+            if (this.global.getPath() != null) {
 
-                    PrintWriter pw = new PrintWriter(this.global.getPath());
-                    pw.print(todo);
-                    pw.close();
-                    JOptionPane.showMessageDialog(null, "Guardado exitoso");
+                PrintWriter pw = new PrintWriter(this.global.getPath());
+                pw.print(todo);
+                pw.close();
+                JOptionPane.showMessageDialog(null, "Guardado exitoso");
 
-                } else {
+            } else {
                 JOptionPane.showMessageDialog(null, "Error!! Primero debe cargar un archivo csv");
             }
 
@@ -263,32 +299,50 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImpresoraActionPerformed
-
+        
+        /**
+         * Método que abre la interfaz de la impresora
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Impresora_interfaz v2 = new Impresora_interfaz(this.global);
             v2.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_ImpresoraActionPerformed
 
     private void DocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentosActionPerformed
+        /**
+         * Método que abre la interfaz de documentos
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Documentos_interfaz v2 = new Documentos_interfaz(this.global);
             v2.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_DocumentosActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        if (this.global.getHashtable() != null){
+        
+        /**
+         * Método que abre la interfaz de database
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        if (this.global.getHashtable() != null) {
             BasedeDatos_interfaz ventana = new BasedeDatos_interfaz(this.global);
             this.setVisible(false);
             ventana.setVisible(true);
-        }else{
+        } else {
             JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_jButton2ActionPerformed

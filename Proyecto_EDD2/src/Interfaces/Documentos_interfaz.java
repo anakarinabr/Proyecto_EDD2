@@ -81,24 +81,51 @@ public class Documentos_interfaz extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        /**
+         * Método que abre la interfaz principal
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         this.setVisible(false);
         start_interfaz v2 = new start_interfaz(this.global);
         v2.setVisible(true);
     }//GEN-LAST:event_backActionPerformed
 
     private void CrearDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearDocumentoActionPerformed
+        
+        /**
+         * Método que abre la interfaz de crear documentos
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         CrearDocumento crear = new CrearDocumento(this.global);
         this.setVisible(false);
         crear.setVisible(true);
     }//GEN-LAST:event_CrearDocumentoActionPerformed
 
     private void EliminarDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarDocumentoActionPerformed
+        
+        /**
+         * Método que abre la interfaz de eliminar documentos
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         EliminarDocumento eliminar = new EliminarDocumento(this.global);
         this.setVisible(false);
         eliminar.setVisible(true);
     }//GEN-LAST:event_EliminarDocumentoActionPerformed
 
     private void ImprimirDocumentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirDocumentoActionPerformed
+        
+        /**
+         * Método que abre la interfaz de mandar a imprimir documentos
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
+        
         MandarImprimir imprimir = new MandarImprimir(this.global);
         this.setVisible(false);
         imprimir.setVisible(true);

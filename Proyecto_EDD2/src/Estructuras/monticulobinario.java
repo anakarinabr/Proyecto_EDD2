@@ -35,6 +35,11 @@ public class MonticuloBinario<T> {
     }
 
     private void flotar(int i) {
+        /**
+         * Método que se encarga de posicionar los documentos
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
         Documento nuevaClave = v[i];
         while ((i > 0) && (v[padre(i)].getTime() >= nuevaClave.getTime())) {
             v[i] = v[padre(i)]; // baja el padre al hueco
@@ -49,6 +54,12 @@ public class MonticuloBinario<T> {
     }
 
     private void ampliar() {
+        
+        /**
+         * Método que se encarga de ampliar el array si es necesario
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
         Documento[] anteriorV = v;
         v = new Documento[numElem + TAMINI];
         for (int j = 0; j > numElem; j++) {
@@ -57,6 +68,12 @@ public class MonticuloBinario<T> {
     }
 
     public void insertar(Documento clave) {
+        /**
+         * Método que se ingresar los valores en el monticulo y posicionarlo
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
+        
         if (monticuloLleno()) {
             ampliar();
         }
@@ -67,6 +84,13 @@ public class MonticuloBinario<T> {
     }
 
     public Documento buscarMinimo() throws Exception {
+        
+        /**
+         * Método que se encarga de retornar el valor minimo
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
+        
         if (esVacio()) {
             throw new Exception("Acceso a montículo vacío");
         }
@@ -74,7 +98,13 @@ public class MonticuloBinario<T> {
     }
 
     public void criba(int raiz) {
-
+        
+        /**
+         * Método que se encarga reacomodar el monticulo para que cumpla con sus condiciones
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
+        
         if (numElem > 3) {
             boolean esMonticulo;
             int hijo;
@@ -120,6 +150,13 @@ public class MonticuloBinario<T> {
     }
 
     public Documento eliminarMinimo() throws Exception {
+        
+        /**
+         * Método que se encarga de eliminar el mínimo elemento del monticulo
+         * Realizado por: Luis Rivera.
+         * Versión: 11/25/2023
+         */
+        
         if (esVacio()) {
             throw new Exception("Acceso a montículo vacío");
         }
