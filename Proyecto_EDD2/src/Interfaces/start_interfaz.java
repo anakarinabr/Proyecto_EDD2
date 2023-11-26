@@ -4,9 +4,11 @@
  */
 package Interfaces;
 
+import Estructuras.Cronometro;
 import Estructuras.HashTable;
 import Estructuras.Usuario;
 import com.sun.tools.javac.Main;
+import java.awt.event.ActionEvent;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,6 +16,7 @@ import java.io.PrintWriter;
 import java.util.Set;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -22,6 +25,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  */
 public class start_interfaz extends javax.swing.JFrame {
 
+    private Timer crono;
     /**
      * Creates new form start_interfaz
      */
@@ -31,6 +35,10 @@ public class start_interfaz extends javax.swing.JFrame {
         initComponents();
         this.global = global;
         this.setLocationRelativeTo(null);
+        crono = new Timer(10, (ActionEvent e) -> {
+            ActualizarLable();
+        });
+        crono.start();
     }
 
     /**
@@ -109,6 +117,8 @@ public class start_interfaz extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         CargarUsuariosButton = new javax.swing.JButton();
         Usuarios = new javax.swing.JButton();
@@ -116,7 +126,12 @@ public class start_interfaz extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         Impresora = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        lb4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+
+        jLabel1.setText("jLabel1");
+
+        jLabel3.setText("jLabel3");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -172,6 +187,10 @@ public class start_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 300, 170, 30));
 
+        lb4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
+        lb4.setText("0 : 0 : 0");
+        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 140, 60));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
@@ -181,9 +200,8 @@ public class start_interfaz extends javax.swing.JFrame {
     private void CargarUsuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarUsuariosButtonActionPerformed
 
         /**
-         * Método que permite leer el csv
-         * Realizado por: Ana Blanco.
-         * Versión: 11/25/2023
+         * Método que permite leer el csv Realizado por: Ana Blanco. Versión:
+         * 11/25/2023
          */
         JFileChooser file = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter(".csv", "csv");
@@ -256,11 +274,10 @@ public class start_interfaz extends javax.swing.JFrame {
 
     private void UsuariosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_UsuariosActionPerformed
         /**
-         * Método que abre la interfaz de usuarios
-         * Realizado por: Ana Blanco.
+         * Método que abre la interfaz de usuarios Realizado por: Ana Blanco.
          * Versión: 11/25/2023
          */
-        
+
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
@@ -271,13 +288,11 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_UsuariosActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        
+
         /**
-         * Método que escribe en el csv los usuarios de la database
-         * Realizado por: Ana Blanco.
-         * Versión: 11/25/2023
+         * Método que escribe en el csv los usuarios de la database Realizado
+         * por: Ana Blanco. Versión: 11/25/2023
          */
-        
         String todo = this.global.getListaUsuarios().getAllUsers();
 
         try {
@@ -299,13 +314,11 @@ public class start_interfaz extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void ImpresoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImpresoraActionPerformed
-        
+
         /**
-         * Método que abre la interfaz de la impresora
-         * Realizado por: Ana Blanco.
-         * Versión: 11/25/2023
+         * Método que abre la interfaz de la impresora Realizado por: Ana
+         * Blanco. Versión: 11/25/2023
          */
-        
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Impresora_interfaz v2 = new Impresora_interfaz(this.global);
@@ -317,11 +330,10 @@ public class start_interfaz extends javax.swing.JFrame {
 
     private void DocumentosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DocumentosActionPerformed
         /**
-         * Método que abre la interfaz de documentos
-         * Realizado por: Ana Blanco.
+         * Método que abre la interfaz de documentos Realizado por: Ana Blanco.
          * Versión: 11/25/2023
          */
-        
+
         if (this.global.getHashtable() != null) {
             this.setVisible(false);
             Documentos_interfaz v2 = new Documentos_interfaz(this.global);
@@ -330,12 +342,16 @@ public class start_interfaz extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe cargar los usuarios primero!");
         }
     }//GEN-LAST:event_DocumentosActionPerformed
+    private void ActualizarLable() {
+
+        String cronometro = global.getCronometro().GetHora() + " : " + global.getCronometro().GetMinutos() + " : " + global.getCronometro().GetSegundos();
+        lb4.setText(cronometro);
+    }
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        
+
         /**
-         * Método que abre la interfaz de database
-         * Realizado por: Ana Blanco.
+         * Método que abre la interfaz de database Realizado por: Ana Blanco.
          * Versión: 11/25/2023
          */
         if (this.global.getHashtable() != null) {
@@ -397,7 +413,10 @@ public class start_interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Usuarios;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel lb4;
     // End of variables declaration//GEN-END:variables
 }
