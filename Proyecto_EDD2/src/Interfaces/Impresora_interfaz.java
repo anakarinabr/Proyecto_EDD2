@@ -86,6 +86,11 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         getContentPane().add(MostrarEnCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
 
         jButton4.setText("Ver documentos en forma de arbol");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 350, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/4.png"))); // NOI18N
@@ -156,6 +161,10 @@ public class Impresora_interfaz extends javax.swing.JFrame {
             Logger.getLogger(Impresora_interfaz.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_MostrarEnColaActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        this.global.getMonticulobinario().visualizarMonticulo();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

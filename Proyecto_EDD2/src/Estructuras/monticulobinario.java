@@ -4,6 +4,12 @@
  */
 package Estructuras;
 
+import com.mxgraph.swing.mxGraphComponent;
+import com.mxgraph.view.mxGraph;
+import java.awt.event.MouseEvent;
+import javax.swing.JFrame;
+import javax.swing.SwingUtilities;
+
 /**
  *
  * @author luisr
@@ -36,9 +42,8 @@ public class MonticuloBinario<T> {
 
     private void flotar(int i) {
         /**
-         * Método que se encarga de posicionar los documentos
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Método que se encarga de posicionar los documentos Realizado por:
+         * Luis Rivera. Versión: 11/25/2023
          */
         Documento nuevaClave = v[i];
         while ((i > 0) && (v[padre(i)].getTime() >= nuevaClave.getTime())) {
@@ -54,11 +59,10 @@ public class MonticuloBinario<T> {
     }
 
     private void ampliar() {
-        
+
         /**
-         * Método que se encarga de ampliar el array si es necesario
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Método que se encarga de ampliar el array si es necesario Realizado
+         * por: Luis Rivera. Versión: 11/25/2023
          */
         Documento[] anteriorV = v;
         v = new Documento[numElem + TAMINI];
@@ -70,10 +74,9 @@ public class MonticuloBinario<T> {
     public void insertar(Documento clave) {
         /**
          * Método que se ingresar los valores en el monticulo y posicionarlo
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Realizado por: Luis Rivera. Versión: 11/25/2023
          */
-        
+
         if (monticuloLleno()) {
             ampliar();
         }
@@ -84,13 +87,11 @@ public class MonticuloBinario<T> {
     }
 
     public Documento buscarMinimo() throws Exception {
-        
+
         /**
-         * Método que se encarga de retornar el valor minimo
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Método que se encarga de retornar el valor minimo Realizado por: Luis
+         * Rivera. Versión: 11/25/2023
          */
-        
         if (esVacio()) {
             throw new Exception("Acceso a montículo vacío");
         }
@@ -98,13 +99,11 @@ public class MonticuloBinario<T> {
     }
 
     public void criba(int raiz) {
-        
+
         /**
-         * Método que se encarga reacomodar el monticulo para que cumpla con sus condiciones
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Método que se encarga reacomodar el monticulo para que cumpla con sus
+         * condiciones Realizado por: Luis Rivera. Versión: 11/25/2023
          */
-        
         if (numElem > 3) {
             boolean esMonticulo;
             int hijo;
@@ -150,13 +149,11 @@ public class MonticuloBinario<T> {
     }
 
     public Documento eliminarMinimo() throws Exception {
-        
+
         /**
          * Método que se encarga de eliminar el mínimo elemento del monticulo
-         * Realizado por: Luis Rivera.
-         * Versión: 11/25/2023
+         * Realizado por: Luis Rivera. Versión: 11/25/2023
          */
-        
         if (esVacio()) {
             throw new Exception("Acceso a montículo vacío");
         }
@@ -202,4 +199,98 @@ public class MonticuloBinario<T> {
         this.v = v;
     }
 
+    public void visualizarMonticulo() {
+        SwingUtilities.invokeLater(() -> {
+            mxGraph graph = new mxGraph() {
+                // Desactivar la interacción del ratón
+                public boolean isCellMovable(Object cell) {
+                    return true;
+                }
+
+                public boolean isCellConnectable(Object cell) {
+                    return false;
+                }
+
+            };
+            Object parent = graph.getDefaultParent();
+
+            graph.getModel().beginUpdate();
+            try {
+                dibujarMonticulo(graph, parent, 270, 100, 30, 30);
+            } finally {
+                graph.getModel().endUpdate();
+            }
+
+            mxGraphComponent graphComponent = new mxGraphComponent(graph) {
+                // Desactivar la interacción del ratón
+                public boolean isForceMarqueeEvent(MouseEvent e) {
+                    return false;
+                }
+            };
+            JFrame frame = new JFrame("Visualizador de Montículo Binario");
+            frame.getContentPane().add(graphComponent);
+            frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+
+            // Ajustes para el tamaño de la ventana
+            frame.setSize(900, 900);
+            frame.setLocationRelativeTo(null);  // Centrar en la pantalla
+
+            frame.setVisible(true);
+        }
+        );
+    }
+
+    private void dibujarMonticulo(mxGraph graph, Object parent, int x, int y, int ancho, int alto) {
+        graph.setCellsSelectable(true);
+        graph.setConnectableEdges(false);
+        int nivel = 1;
+        int nivelAnterior = 0;
+        int yOffset = alto * 2;
+
+        Object[] vertices = new Object[numElem];
+
+        int anchoVentana = 900;
+        int anchoMonticulo = numElem * (ancho * 2);
+
+        int ajusteX = (anchoVentana - anchoMonticulo) / 2;
+
+        for (int i = 0; i < numElem; i++) {
+            int actualX;
+            int actualY;
+
+            if (i == 0) {
+                actualX = x + ajusteX;
+                actualY = y;
+            } else {
+                if (nivel != nivelAnterior) {
+                    nivelAnterior = nivel;
+                }
+                int padreIndice = padre(i);
+                int ejeXPadre = (int) graph.getCellGeometry(vertices[padreIndice]).getCenterX();
+
+                if (hijoIzq(padreIndice) == i) {
+                    // El nodo actual es el hijo izquierdo del padre
+                    actualX = ejeXPadre - ancho * 2 - ajusteX;
+                } else {
+                    // El nodo actual es el hijo derecho del padre
+                    int anchoPadre = (int) graph.getCellGeometry(vertices[padreIndice]).getWidth();
+                    ajusteX /= 2;
+                    actualX = ejeXPadre - anchoPadre + ancho * 2 + ajusteX;
+                }
+                actualY = y + nivel * yOffset;
+
+            }
+
+            vertices[i] = graph.insertVertex(parent, null, v[i].getTitulo(), actualX, actualY, ancho, alto);
+
+            if (i != 0) {
+                int padreIndice = padre(i);
+                graph.insertEdge(parent, null, "", vertices[padreIndice], vertices[i], "startArrow=none");
+            }
+
+            if (i == Math.pow(2, nivel) - 2) {
+                nivel++;
+            }
+        }
+    }
 }
