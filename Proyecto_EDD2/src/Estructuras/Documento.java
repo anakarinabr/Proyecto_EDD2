@@ -12,15 +12,17 @@ public class Documento {
 
     private String titulo;
     private int tamaño;
-    private boolean tipo;
+    private boolean prioridad;
     private boolean encola;
     private int time;
+    private String tipo;
     
     //Constructor
-    public Documento(String titulo, int tamaño) {
+    public Documento(String titulo, int tamaño, String tipo) {
         this.titulo = titulo;
         this.tamaño = tamaño;
-        this.tipo = false;
+        this.tipo = tipo;
+        this.prioridad = false;
         this.encola = false;
         this.time = 0;
     }
@@ -42,12 +44,12 @@ public class Documento {
         this.tamaño = tamaño;
     }
 
-    public boolean isTipo() {
-        return tipo;
+    public boolean isPrioridad() {
+        return prioridad;
     }
 
-    public void setTipo(boolean tipo) {
-        this.tipo = tipo;
+    public void setPrioridad(boolean prioridad) {
+        this.prioridad = prioridad;
     }
 
     public boolean isEncola() {
@@ -65,6 +67,14 @@ public class Documento {
     public void setTime(int time) {
         this.time = time;
     }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
     
     
      /**
@@ -76,7 +86,7 @@ public class Documento {
     
     public void ActualizarTime(String prioridad,int hora, int minuto, int segundos ){
         this.time = hora*3600 + minuto*60 + segundos;
-        if (this.tipo){
+        if (this.prioridad){
             if (prioridad.equalsIgnoreCase("Prioridad_alta")){
                 if(this.time >= 30){
                     this.time -= 30;

@@ -172,14 +172,13 @@ public class MandarImprimir extends javax.swing.JFrame {
                         Documento esta = auxusuario.getDocs().BuscarDocumento(documento);
                         if (documento != null) {
                             esta.setEncola(true);
-                            esta.setTipo(prioritario.isSelected());
+                            esta.setPrioridad(prioritario.isSelected());
                             int hora = this.global.getCronometro().GetHora();
                             int min = this.global.getCronometro().GetMinutos();
                             int seg = this.global.getCronometro().GetSegundos();
                             esta.ActualizarTime(auxusuario.getPrioridad(), hora, min, seg);
-                            System.out.println(esta.getTitulo()+ ": "+esta.getTime());
                             this.global.getMonticulobinario().insertar(esta);
-                            JOptionPane.showMessageDialog(null, "Eldocumento: " + esta.getTitulo() + " fué enviado a la cola de impresión");
+                            JOptionPane.showMessageDialog(null, "El documento: " + esta.getTitulo() + " fué enviado a la cola de impresión");
                   
                         }
                         break;

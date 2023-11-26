@@ -27,7 +27,6 @@ public class Proyecto_EDD2 {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
         Cronometro crono = new Cronometro();
         crono.Iniciar();
         ListaSimpleUsuarios<Usuario> ListaUsuarios = new ListaSimpleUsuarios<Usuario>();

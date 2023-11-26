@@ -25,14 +25,13 @@ public class MostrarEnCola extends javax.swing.JFrame {
         this.global = global;
         initComponents();
         this.setLocationRelativeTo(null);
-        String[] titulos= {"Título", "Prioridad", "En cola", "Tiempo (s)"};
+        String[] titulos= {"Título", "Tipo", "Prioridad", "Tiempo (s)"};
         tabla.setColumnIdentifiers(titulos);
         tabla1.setModel(tabla);
         Queue cola = new Queue();
         
         while(!global.getMonticulobinario().esVacio()){
             Documento doc = global.getMonticulobinario().eliminarMinimo();
-            System.out.println(doc.getTitulo() +":"+ doc.getTime());
             cola.add(doc);
         }
         int contador = 0;
@@ -40,9 +39,9 @@ public class MostrarEnCola extends javax.swing.JFrame {
             
             NodeCola nodecola = cola.poll();
             Documento doc1 = (Documento)nodecola.getData();
-            boolean tamano =doc1.isTipo();
+            boolean prioridad =doc1.isPrioridad();
             String time = Integer.toString(doc1.getTime());
-            tabla.addRow(new Object[]{doc1.getTitulo(),tamano ,doc1.isEncola(),time});
+            tabla.addRow(new Object[]{doc1.getTitulo(),doc1.getTipo(),prioridad,time});
             cola.add(doc1);
             contador++;
         }
@@ -92,7 +91,7 @@ public class MostrarEnCola extends javax.swing.JFrame {
                 {null, null, null, null}
             },
             new String [] {
-                "Título", "Prioridad", "En cola", "Tiempo (s)"
+                "Título", "Tipo", "Prioridad", "Tiempo (s)"
             }
         ));
         jScrollPane1.setViewportView(tabla1);

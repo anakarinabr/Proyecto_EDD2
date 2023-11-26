@@ -48,7 +48,8 @@ public class CrearDocumento extends javax.swing.JFrame {
         Titulo = new javax.swing.JTextField();
         num = new javax.swing.JSpinner();
         jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        Tipo = new javax.swing.JComboBox<>();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -66,7 +67,7 @@ public class CrearDocumento extends javax.swing.JFrame {
 
         getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 200, -1));
         getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 230, 40));
-        getContentPane().add(num, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 310, 110, -1));
+        getContentPane().add(num, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 110, -1));
 
         jButton1.setText("Crear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -76,8 +77,11 @@ public class CrearDocumento extends javax.swing.JFrame {
         });
         getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 100, 30));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/7.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PDF", "PNG", "TXT", "CSV" }));
+        getContentPane().add(Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 110, -1));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/7.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -92,12 +96,14 @@ public class CrearDocumento extends javax.swing.JFrame {
          */
         
         String name = " ";
+        String tipo = "";
         name += Titulo.getText().trim();
         int tamano = (int) num.getValue();
 
         if (!name.equals(" ") && tamano > 0) {
             name = name.trim();
-            Documento nuevo = new Documento(name, tamano);
+            tipo += Tipo.getSelectedItem();
+            Documento nuevo = new Documento(name, tamano, tipo);
 
             String usuario = ComboBox.getSelectedItem().toString();
 
@@ -178,9 +184,10 @@ public class CrearDocumento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JComboBox<String> ComboBox;
+    private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JTextField Titulo;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner num;
     // End of variables declaration//GEN-END:variables

@@ -39,7 +39,7 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
             aux = aux.getPnext();
         }
         
-        String[] titulos= {"Título", "Páginas", "Mandado a imprimir"};
+        String[] titulos= {"Título","Tipo", "Páginas", "Mandado a imprimir"};
         tabla.setColumnIdentifiers(titulos);
         tabla1.setModel(tabla);
     }
@@ -92,19 +92,19 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
 
         tabla1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
-                "Título", "Páginas", "Mandado a imprimir"
+                "Título", "Tipo", "Páginas", "Mandado a imprimir"
             }
         ));
         jScrollPane1.setViewportView(tabla1);
@@ -172,12 +172,14 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
                     NodoSimple doc =docs.getpFirst();
                     for (int j = 0; j < docs.getSize(); j++) {
                         Documento docu = (Documento)doc.getData();
-                        tabla.addRow(new Object[]{docu.getTitulo(), docu.getTamaño(), docu.isEncola()});
+                        tabla.addRow(new Object[]{docu.getTitulo(), docu.getTipo(),docu.getTamaño(), docu.isEncola()});
                         doc = doc.getPnext();
+                    
                     }
               
                 }
                 this.filas = docs.getSize();
+                break;
                 
             } else if(entra){
                 aux = aux.getPnext();

@@ -165,14 +165,6 @@ public class MonticuloBinario<T> {
         this.numElem--;
         return menor;
     }
-    
-      public void eliminarDocumento(Documento documento) throws Exception {
-         documento.setTime(0);
-        Documento temp = this.buscarMinimo();
-        this.eliminarMinimo();
-        this.insertar(temp);
-        this.eliminarMinimo();
-    }
 
     public boolean esVacio() {
         return numElem == 0;
@@ -246,7 +238,7 @@ public class MonticuloBinario<T> {
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // Ajustes para el tamaño de la ventana
-            frame.setSize(600, 400);
+            frame.setSize(900, 900);
             frame.setLocationRelativeTo(null);  // Centrar en la pantalla
 
             frame.setVisible(true);
