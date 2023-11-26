@@ -106,7 +106,7 @@ public class Usuarios_interfaz extends javax.swing.JFrame {
          * Versión: 11/25/2023
          */
         
-        EliminarUsuario eliminar= new EliminarUsuario(this.global);
+        EliminarUsuarios eliminar= new EliminarUsuarios(this.global);
         this.setVisible(false);
         eliminar.setVisible(true);
     }//GEN-LAST:event_EliminarUsuarioActionPerformed

@@ -8,8 +8,6 @@ import Estructuras.Documento;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import org.graphstream.graph.Graph;
-import org.graphstream.graph.implementations.SingleGraph;
 
 /**
  *
@@ -20,7 +18,6 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     /**
      * Creates new form Impresora_interfaz
      */
-    public static Graph arbol = new SingleGraph("Monticulo");
 
     public static Global global;
 
