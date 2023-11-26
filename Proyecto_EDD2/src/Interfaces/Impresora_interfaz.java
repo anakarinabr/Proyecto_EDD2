@@ -5,6 +5,7 @@
 package Interfaces;
 
 import Estructuras.Documento;
+import Estructuras.NodoSimple;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -120,6 +121,7 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         if (!this.global.getMonticulobinario().esVacio()) {
             try {
                 Documento doc = (Documento)this.global.getMonticulobinario().eliminarMinimo();
+                doc.setEncola(false);
                 JOptionPane.showMessageDialog(null, "Se ha impreso el documento: "+ doc.getTitulo());
             } catch (Exception ex) {
                 Logger.getLogger(Impresora_interfaz.class.getName()).log(Level.SEVERE, null, ex);
