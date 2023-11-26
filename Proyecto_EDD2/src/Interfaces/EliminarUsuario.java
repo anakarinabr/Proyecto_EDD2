@@ -12,13 +12,14 @@ import javax.swing.JOptionPane;
  *
  * @author Ana Blanco
  */
-public class EliminarUsuarios extends javax.swing.JFrame {
-    
-    static public Global global;
+public class EliminarUsuario extends javax.swing.JFrame {
+
+    public static Global global;
+
     /**
-     * Creates new form EliminarUsuarios
+     * Creates new form AgregarUsuario
      */
-    public EliminarUsuarios(Global global) {
+    public EliminarUsuario(Global global) {
         this.global = global;
         initComponents();
         this.setLocationRelativeTo(null);
@@ -39,25 +40,23 @@ public class EliminarUsuarios extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
-        Back = new javax.swing.JButton();
-        Eliminar = new javax.swing.JButton();
+        back = new javax.swing.JButton();
         ComboBox = new javax.swing.JComboBox<>();
+        Eliminar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
-
-        Back.setText("Regresar");
-        Back.addActionListener(new java.awt.event.ActionListener() {
+        back.setText("Regresar");
+        back.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BackActionPerformed(evt);
+                backActionPerformed(evt);
             }
         });
-        getContentPane().add(Back, new org.netbeans.lib.awtextra.AbsoluteConstraints(16, 12, -1, -1));
+        getContentPane().add(back, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, 100, -1));
+
+        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 250, 20));
 
         Eliminar.setText("Eliminar");
         Eliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,18 +64,17 @@ public class EliminarUsuarios extends javax.swing.JFrame {
                 EliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 100, -1));
+        getContentPane().add(Eliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 330, 110, 30));
 
-        getContentPane().add(ComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 260, -1));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/6.png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Print docs (5).png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-         /**
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backActionPerformed
+        
+        /**
          * Método que abre la interfaz principal
          * Realizado por: Ana Blanco.
          * Versión: 11/25/2023
@@ -85,9 +83,10 @@ public class EliminarUsuarios extends javax.swing.JFrame {
         this.setVisible(false);
         Usuarios_interfaz v2 = new Usuarios_interfaz(this.global);
         v2.setVisible(true);
-    }//GEN-LAST:event_BackActionPerformed
+    }//GEN-LAST:event_backActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
+        
         /**
          * Método que elimina los usuarios en la lista de usuarios y en el hashtable
          * Realizado por: Ana Blanco.
@@ -134,29 +133,31 @@ public class EliminarUsuarios extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(EliminarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(EliminarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(EliminarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(EliminarUsuarios.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(EliminarUsuario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new EliminarUsuarios(global).setVisible(true);
+                new EliminarUsuario(global).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton Back;
     private javax.swing.JComboBox<String> ComboBox;
     private javax.swing.JButton Eliminar;
+    private javax.swing.JButton back;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

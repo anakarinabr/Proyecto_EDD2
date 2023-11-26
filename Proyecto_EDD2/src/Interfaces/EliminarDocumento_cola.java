@@ -181,12 +181,9 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
                         try {
                             doc1.setTime(0);
                             this.global.getMonticulobinario().criba(0);
-                            if (!this.global.getMonticulobinario().esVacio()) {
-                                Documento doc3 = this.global.getMonticulobinario().eliminarMinimo();
-                                doc3.setEncola(false);
-                                JOptionPane.showMessageDialog(null, "Se ha sacado el documento " + doc3.getTitulo() + " de la cola de impresión");
-                            }
-
+                            Documento doc3 = this.global.getMonticulobinario().eliminarMinimo();
+                            doc3.setEncola(false);
+                            JOptionPane.showMessageDialog(null, "Se ha sacado el documento " + doc3.getTitulo() + " de la cola de impresión");
                             break;
                         } catch (Exception ex) {
                             Logger.getLogger(EliminarDocumento_cola.class.getName()).log(Level.SEVERE, null, ex);
@@ -199,8 +196,8 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
                 contador++;
                 if (contador != lista.getSize()) {
                     aux = aux.getPnext();
-
-                } else {
+                   
+                }else{
                     break;
                 }
 
