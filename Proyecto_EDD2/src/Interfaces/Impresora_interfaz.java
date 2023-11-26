@@ -44,7 +44,7 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         Liberar = new javax.swing.JButton();
         Eliminar = new javax.swing.JButton();
         MostrarEnCola = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
+        Árbol = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,13 +85,13 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(MostrarEnCola, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 350, 30));
 
-        jButton4.setText("Ver documentos en forma de arbol");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        Árbol.setText("Ver documentos en forma de arbol");
+        Árbol.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                ÁrbolActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 350, 30));
+        getContentPane().add(Árbol, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 350, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/4.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
@@ -162,9 +162,9 @@ public class Impresora_interfaz extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_MostrarEnColaActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        this.global.getMonticulobinario().visualizarMonticulo();
-    }//GEN-LAST:event_jButton4ActionPerformed
+    private void ÁrbolActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ÁrbolActionPerformed
+        this.global.getMonticulobinario().MostrarComoArbol();
+    }//GEN-LAST:event_ÁrbolActionPerformed
 
     /**
      * @param args the command line arguments
@@ -206,8 +206,8 @@ public class Impresora_interfaz extends javax.swing.JFrame {
     private javax.swing.JButton Liberar;
     private javax.swing.JButton MostrarEnCola;
     private javax.swing.JButton back;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton Árbol;
     // End of variables declaration//GEN-END:variables
 }

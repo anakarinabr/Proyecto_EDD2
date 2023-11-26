@@ -200,7 +200,8 @@ public class start_interfaz extends javax.swing.JFrame {
     private void CargarUsuariosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CargarUsuariosButtonActionPerformed
 
         /**
-         * Método que permite leer el csv Realizado por: Ana Blanco. Versión:
+         * Método que permite leer el csv 
+         * Realizado por: Ana Blanco. Versión:
          * 11/25/2023
          */
         JFileChooser file = new JFileChooser();
@@ -256,10 +257,6 @@ public class start_interfaz extends javax.swing.JFrame {
                         }
 
                         this.global.setHashtable(hashtable);
-
-//                        for (int i = 0; i < hashtable.getTable().length; i++) {
-//                            hashtable.getTable()[i].print();
-//                        } ESTO ES PARA VER QUE ESTÁ GUARDANDO EN EL HASHTABLE POR SI
                     }
 
                     JOptionPane.showMessageDialog(null, "Se cargó exitosamente la información!");

@@ -199,7 +199,13 @@ public class MonticuloBinario<T> {
         this.v = v;
     }
 
-    public void visualizarMonticulo() {
+    public void MostrarComoArbol() {
+        
+        /**
+         * Método que se encarga de abrir la pestaña del visualizador
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         SwingUtilities.invokeLater(() -> {
             mxGraph graph = new mxGraph() {
                 // Desactivar la interacción del ratón
@@ -227,12 +233,12 @@ public class MonticuloBinario<T> {
                     return false;
                 }
             };
-            JFrame frame = new JFrame("Visualizador de Montículo Binario");
+            JFrame frame = new JFrame("MinHeap");
             frame.getContentPane().add(graphComponent);
             frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
             // Ajustes para el tamaño de la ventana
-            frame.setSize(900, 900);
+            frame.setSize(600, 400);
             frame.setLocationRelativeTo(null);  // Centrar en la pantalla
 
             frame.setVisible(true);
@@ -241,6 +247,12 @@ public class MonticuloBinario<T> {
     }
 
     private void dibujarMonticulo(mxGraph graph, Object parent, int x, int y, int ancho, int alto) {
+        
+        /**
+         * Método que se encarga de dibujar el monticulo en la consola.
+         * Realizado por: Ana Blanco.
+         * Versión: 11/25/2023
+         */
         graph.setCellsSelectable(true);
         graph.setConnectableEdges(false);
         int nivel = 1;
