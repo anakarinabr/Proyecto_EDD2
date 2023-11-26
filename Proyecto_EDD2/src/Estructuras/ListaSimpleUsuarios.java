@@ -110,8 +110,6 @@ public class ListaSimpleUsuarios<T> {
             todo += "\n" + data.getName() + "," + data.getPrioridad() + "";
             pAux = pAux.getPnext();
         }
-
-        System.out.println(todo);
         return todo;
 
     }

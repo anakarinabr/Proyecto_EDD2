@@ -189,7 +189,7 @@ public class start_interfaz extends javax.swing.JFrame {
 
         lb4.setFont(new java.awt.Font("Dialog", 0, 18)); // NOI18N
         lb4.setText("0 : 0 : 0");
-        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 320, 140, 60));
+        getContentPane().add(lb4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 320, 140, 60));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/1.png"))); // NOI18N
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));

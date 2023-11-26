@@ -108,27 +108,22 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
-        
+
         /**
-         * Método que abre la interfaz principal
-         * Realizado por: Ana Blanco.
+         * Método que abre la interfaz principal Realizado por: Ana Blanco.
          * Versión: 11/25/2023
          */
-        
         Impresora_interfaz impresora = new Impresora_interfaz(this.global);
         this.setVisible(false);
         impresora.setVisible(true);
     }//GEN-LAST:event_BackActionPerformed
 
     private void SelectionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SelectionActionPerformed
-        
-        
+
         /**
          * Método que llena el ComboBox de documentos de forma clasificada
-         * Realizado por: Ana Blanco.
-         * Versión: 11/25/2023
+         * Realizado por: Ana Blanco. Versión: 11/25/2023
          */
-        
         ComboBoxDocumentos.removeAllItems();
         String usuario = ComboBoxUsuarios.getSelectedItem().toString();
         if (usuario == null) {
@@ -157,46 +152,87 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
                 }
             }
         }
+
+
     }//GEN-LAST:event_SelectionActionPerformed
 
     private void EliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EliminarActionPerformed
 
-        
         /**
-         * Método que elimina un documento por referencia del monticulo, sin haber sido impreso
-         * Realizado por: Ana Blanco.
-         * Versión: 11/25/2023
+         * Método que elimina un documento por referencia del monticulo, sin
+         * haber sido impreso Realizado por: Ana Blanco. Versión: 11/25/2023
          */
-        
-        String usuario = ComboBoxUsuarios.getSelectedItem().toString();
-        int indice = this.global.getHashtable().hash(usuario);
+        try {
+            String usuario = ComboBoxUsuarios.getSelectedItem().toString();
+            int indice = this.global.getHashtable().hash(usuario);
 
-        ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
-        NodoSimple aux = lista.getpFirst();
+            ListaSimpleUsuarios lista = this.global.getHashtable().getTable()[indice];
+            NodoSimple aux = lista.getpFirst();
+            int contador = 0;
 
-        for (int i = 0; i < lista.getSize(); i++) {
-            Usuario auxusuario = (Usuario) aux.getData();
-            ListaSimpleDocumentos docs = auxusuario.getDocs();
-            NodoSimple doc = docs.getpFirst();
-            for (int j = 0; j < docs.getSize(); j++) {
-                Documento doc1 = (Documento) doc.getData();
-                if(doc1.getTitulo().equals(ComboBoxDocumentos.getSelectedItem())){
-                    try {
-                        doc1.setTime(0);
-                        this.global.getMonticulobinario().criba(0);
-                        Documento doc3 = this.global.getMonticulobinario().eliminarMinimo();
-                        doc3.setEncola(false);
-                        JOptionPane.showMessageDialog(null,"Se ha sacado el documento "+ doc3.getTitulo()+ " de la cola de impresión");
-                        break;
-                    } catch (Exception ex) {
-                        Logger.getLogger(EliminarDocumento_cola.class.getName()).log(Level.SEVERE, null, ex);
+            while (contador != lista.getSize()) {
+                Usuario auxusuario = (Usuario) aux.getData();
+                ListaSimpleDocumentos docs = auxusuario.getDocs();
+                NodoSimple doc = docs.getpFirst();
+                int contador2 = 0;
+                while (contador != docs.getSize()) {
+                    Documento doc1 = (Documento) doc.getData();
+                    if (doc1.getTitulo().equals(ComboBoxDocumentos.getSelectedItem())) {
+                        try {
+                            doc1.setTime(0);
+                            this.global.getMonticulobinario().criba(0);
+                            Documento doc3 = this.global.getMonticulobinario().eliminarMinimo();
+                            doc3.setEncola(false);
+                            JOptionPane.showMessageDialog(null, "Se ha sacado el documento " + doc3.getTitulo() + " de la cola de impresión");
+                            break;
+                        } catch (Exception ex) {
+                            Logger.getLogger(EliminarDocumento_cola.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+
                     }
-                }else{
                     doc = doc.getPnext();
+                    contador2++;
                 }
+                contador++;
+                if (contador != lista.getSize()) {
+                    aux = aux.getPnext();
+                   
+                }else{
+                    break;
+                }
+
             }
-            aux = aux.getPnext();
-        
+
+            ComboBoxDocumentos.removeAllItems();
+            ComboBoxUsuarios.removeAllItems();
+
+            NodoSimple aux5 = global.getListaUsuarios().getpFirst();
+            for (int i = 0; i < global.getListaUsuarios().getSize(); i++) {
+
+                boolean tiene = false;
+                Usuario usuario3 = (Usuario) aux5.getData();
+                ListaSimpleDocumentos docs = (ListaSimpleDocumentos) usuario3.getDocs();
+                NodoSimple aux1 = docs.getpFirst();
+                for (int j = 0; j < docs.getSize(); j++) {
+                    Documento doc = (Documento) aux1.getData();
+                    if (doc.isEncola()) {
+                        tiene = true;
+                        break;
+                    }
+                    aux1 = aux1.getPnext();
+                }
+
+                if (!usuario3.getDocs().EsVacia()) {
+                    if (tiene) {
+                        ComboBoxUsuarios.addItem(usuario3.getName().toString());
+                    }
+                }
+                aux5 = aux5.getPnext();
+            }
+
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Ups. Algo salió mal");
+
         }
     }//GEN-LAST:event_EliminarActionPerformed
 
