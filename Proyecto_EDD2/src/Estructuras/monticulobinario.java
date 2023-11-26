@@ -165,6 +165,14 @@ public class MonticuloBinario<T> {
         this.numElem--;
         return menor;
     }
+    
+      public void eliminarDocumento(Documento documento) throws Exception {
+         documento.setTime(0);
+        Documento temp = this.buscarMinimo();
+        this.eliminarMinimo();
+        this.insertar(temp);
+        this.eliminarMinimo();
+    }
 
     public boolean esVacio() {
         return numElem == 0;
