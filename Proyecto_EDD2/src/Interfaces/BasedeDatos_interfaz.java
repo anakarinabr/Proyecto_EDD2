@@ -9,6 +9,8 @@ import Estructuras.ListaSimpleDocumentos;
 import Estructuras.ListaSimpleUsuarios;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
+import java.util.HashSet;
+import java.util.Set;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -70,7 +72,9 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         tabla1 = new javax.swing.JTable();
         ComboBoxUsuarios = new javax.swing.JComboBox<>();
         selected = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        TextArea = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -117,8 +121,14 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         });
         getContentPane().add(selected, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 320, 120, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/10.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
+        TextArea.setColumns(20);
+        TextArea.setRows(5);
+        jScrollPane2.setViewportView(TextArea);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 130, 190));
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/10.png"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, -1, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -132,7 +142,7 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
     private void selectedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_selectedActionPerformed
         
         this.borrar();
-        
+        String info ="";
         
         String usuario = (String) ComboBoxUsuarios.getSelectedItem();
         int num = this.global.getHashtable().hash(usuario);
@@ -141,6 +151,8 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
         for (int i = 0; i < usuarios.getSize(); i++) {
             Usuario user = (Usuario) aux.getData();
             if (user.getName().equalsIgnoreCase(usuario)) {
+                info += "Nombre: "+user.getName()+"\n"+"Tipo: "+ user.getPrioridad();
+                TextArea.setText(info);
                 ListaSimpleDocumentos docs = user.getDocs();
                 if (docs.EsVacia()) {
                     JOptionPane.showMessageDialog(null, "Este usuario no tiene documentos");
@@ -197,9 +209,11 @@ public class BasedeDatos_interfaz extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JComboBox<String> ComboBoxUsuarios;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextArea TextArea;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JButton selected;
     private javax.swing.JTable tabla1;
     // End of variables declaration//GEN-END:variables

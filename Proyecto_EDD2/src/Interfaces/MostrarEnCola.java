@@ -32,6 +32,7 @@ public class MostrarEnCola extends javax.swing.JFrame {
         
         while(!global.getMonticulobinario().esVacio()){
             Documento doc = global.getMonticulobinario().eliminarMinimo();
+            System.out.println(doc.getTitulo() +":"+ doc.getTime());
             cola.add(doc);
         }
         int contador = 0;

@@ -10,6 +10,8 @@ import Estructuras.ListaSimpleUsuarios;
 import Estructuras.NodoSimple;
 import Estructuras.Usuario;
 import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -157,8 +159,16 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
             for (int j = 0; j < docs.getSize(); j++) {
                 Documento doc1 = (Documento) doc.getData();
                 if(doc1.getTitulo().equals(ComboBoxDocumentos.getSelectedItem())){
-                    doc1.setTime(0);
-                    break;
+                    try {
+                        doc1.setTime(0);
+                        this.global.getMonticulobinario().criba(0);
+                        Documento doc3 = this.global.getMonticulobinario().eliminarMinimo();
+                        doc3.setEncola(false);
+                        JOptionPane.showMessageDialog(null,"Se ha sacado el documento "+ doc3.getTitulo()+ " de la cola de impresión");
+                        break;
+                    } catch (Exception ex) {
+                        Logger.getLogger(EliminarDocumento_cola.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }else{
                     doc = doc.getPnext();
                 }

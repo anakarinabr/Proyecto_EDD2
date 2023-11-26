@@ -74,33 +74,46 @@ public class MonticuloBinario<T> {
     }
 
     public void criba(int raiz) {
-        boolean esMonticulo;
-        int hijo;
-        esMonticulo = false;
-        while ((raiz < (numElem / 2) - 1) && !esMonticulo) {
+
+        if (numElem > 3) {
+            boolean esMonticulo;
+            int hijo;
+            esMonticulo = false;
+            while ((raiz < (numElem / 2) - 1) && !esMonticulo) {
 
 // determina el índice del hijo menor
-            if (hijoIzq(raiz) == (numElem - 1)) // único descendiente
-            {
-                hijo = hijoIzq(raiz);
-            } else {
-                if (v[hijoIzq(raiz)].getTime() < v[hijoDer(raiz)].getTime()) {
+                if (hijoIzq(raiz) == (numElem - 1)) // único descendiente
+                {
                     hijo = hijoIzq(raiz);
                 } else {
-                    hijo = hijoDer(raiz);
+                    if (v[hijoIzq(raiz)].getTime() < v[hijoDer(raiz)].getTime()) {
+                        hijo = hijoIzq(raiz);
+                    } else {
+                        hijo = hijoDer(raiz);
+                    }
+                }
+
+// compara raiz con el menor de los hijos
+                if (v[hijo] != null) {
+                    if (v[hijo].getTime() < v[raiz].getTime()) {
+                        Documento t = v[raiz];
+                        v[raiz] = v[hijo];
+                        v[hijo] = t;
+                        raiz = hijo;
+                        /* continua por la rama de claves mínimas */
+                    } else {
+                        esMonticulo = true;
+                    }
                 }
             }
 
-// compara raiz con el menor de los hijos
-            if (v[hijo] != null) {
-                if (v[hijo].getTime() < v[raiz].getTime()) {
-                    Documento t = v[raiz];
-                    v[raiz] = v[hijo];
-                    v[hijo] = t;
-                    raiz = hijo;
+        } else {
+            if (v[1] != null) {
+                if (v[1].getTime() < v[0].getTime()) {
+                    Documento t = v[0];
+                    v[0] = v[1];
+                    v[1] = t;
                     /* continua por la rama de claves mínimas */
-                } else {
-                    esMonticulo = true;
                 }
             }
         }
@@ -151,7 +164,5 @@ public class MonticuloBinario<T> {
     public void setV(Documento[] v) {
         this.v = v;
     }
-    
-    
-    
+
 }
