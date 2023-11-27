@@ -47,7 +47,7 @@ public class CrearDocumento extends javax.swing.JFrame {
         ComboBox = new javax.swing.JComboBox<>();
         Titulo = new javax.swing.JTextField();
         num = new javax.swing.JSpinner();
-        jButton1 = new javax.swing.JButton();
+        Crear = new javax.swing.JButton();
         Tipo = new javax.swing.JComboBox<>();
         jLabel2 = new javax.swing.JLabel();
 
@@ -69,13 +69,13 @@ public class CrearDocumento extends javax.swing.JFrame {
         getContentPane().add(Titulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, 230, 40));
         getContentPane().add(num, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 110, -1));
 
-        jButton1.setText("Crear");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        Crear.setText("Crear");
+        Crear.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                CrearActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 100, 30));
+        getContentPane().add(Crear, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 350, 100, 30));
 
         Tipo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PDF", "PNG", "TXT", "CSV" }));
         getContentPane().add(Tipo, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 110, -1));
@@ -86,7 +86,7 @@ public class CrearDocumento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void CrearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CrearActionPerformed
         
         /**
          * Método que se encarga de crear los objetos documentos e ingresarlo a la lista de documentos
@@ -132,7 +132,7 @@ public class CrearDocumento extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Debe llenar los campos de título y la cantidad de páginas mayor que cero");
         }
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_CrearActionPerformed
 
     private void BackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BackActionPerformed
         /**
@@ -184,9 +184,9 @@ public class CrearDocumento extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Back;
     private javax.swing.JComboBox<String> ComboBox;
+    private javax.swing.JButton Crear;
     private javax.swing.JComboBox<String> Tipo;
     private javax.swing.JTextField Titulo;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSpinner num;

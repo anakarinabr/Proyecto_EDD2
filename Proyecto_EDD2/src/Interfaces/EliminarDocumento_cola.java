@@ -170,7 +170,7 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
             NodoSimple aux = lista.getpFirst();
             int contador = 0;
 
-            while (contador != lista.getSize()) {
+            for (int i = 0; i < lista.getSize(); i++){
                 Usuario auxusuario = (Usuario) aux.getData();
                 ListaSimpleDocumentos docs = auxusuario.getDocs();
                 NodoSimple doc = docs.getpFirst();
@@ -193,13 +193,7 @@ public class EliminarDocumento_cola extends javax.swing.JFrame {
                     doc = doc.getPnext();
                     contador2++;
                 }
-                contador++;
-                if (contador != lista.getSize()) {
-                    aux = aux.getPnext();
-                   
-                }else{
-                    break;
-                }
+                aux = aux.getPnext();
 
             }
 
